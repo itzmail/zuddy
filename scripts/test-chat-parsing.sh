@@ -16,8 +16,8 @@ SERVER_PID=$!
 # Compilation typically takes a few seconds, which gives the server plenty of
 # time to bind and write its port — avoiding a busy-wait on fast machines.
 swiftc \
-    NotchBuddy/Sources/App/LocalChat.swift \
-    NotchBuddy/Sources/App/ChatMarkdown.swift \
+    Zuddy/Sources/App/LocalChat.swift \
+    Zuddy/Sources/App/ChatMarkdown.swift \
     tests/ChatParsingTests.swift \
     -o "$TEST_DIR/chat-parsing-tests"
 

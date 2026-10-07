@@ -1,8 +1,8 @@
 # Build artefacts
-NotchBuddy/build/
-NotchBuddy/NotchBuddy.xcodeproj/project.xcworkspace/xcuserdata/
-NotchBuddy/NotchBuddy.xcodeproj/xcuserdata/
-NotchBuddy/NotchBuddy.xcodeproj/xcshareddata/
+Zuddy/build/
+Zuddy/*.xcodeproj/project.xcworkspace/xcuserdata/
+Zuddy/*.xcodeproj/xcuserdata/
+Zuddy/*.xcodeproj/xcshareddata/
 *.xcuserstate
 
 # Xcode DerivedData (outside repo — listed for clarity)
@@ -19,3 +19,4 @@ DerivedData/
 # Local only (never published)
 .claude/
 _prive/
+

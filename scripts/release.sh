@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Builds, notarizes and publishes Coucou for macOS (GitHub build).
+# Builds, notarizes and publishes Zuddy for macOS (GitHub build).
 #
 #   ./scripts/release.sh 0.1.2            build, sign, notarize, staple, tag, publish
 #   ./scripts/release.sh 0.1.2 --finish   finish after an interrupted notarization wait
 #
 # Run it from a clean checkout of main. CFBundleShortVersionString in
-# NotchBuddy/project.yml must match the version, and CHANGELOG.md needs a
+# Zuddy/project.yml must match the version, and CHANGELOG.md needs a
 # "## <version>" section: it becomes the release notes.
 set -euo pipefail
 
@@ -13,8 +13,8 @@ VERSION="${1:?Usage: $0 <version> [--finish]}"
 MODE="${2:-}"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD_DIR="/tmp/coucou-release-$VERSION"
-APP="$BUILD_DIR/Coucou.app"
-ZIP="$BUILD_DIR/Coucou.zip"
+APP="$BUILD_DIR/Zuddy.app"
+ZIP="$BUILD_DIR/Zuddy.zip"
 COMMIT_FILE="$BUILD_DIR/commit"
 TAG="v$VERSION"
 
@@ -65,7 +65,7 @@ if [ "$MODE" != "--finish" ]; then
   echo "Signing with: $IDENTITY"
 
   # ── 1b. Developer ID provisioning profile (iCloud for the iPhone sync) ──────
-  PROFILE_NAME="Coucou Developer ID"
+  PROFILE_NAME="Zuddy Developer ID"
   PROFILE_FOUND=""
   TMP_PLIST=$(mktemp)
   for dir in "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles" "$HOME/Library/MobileDevice/Provisioning Profiles"; do
@@ -78,25 +78,25 @@ if [ "$MODE" != "--finish" ]; then
       break 2
     done
   done
-  [ -n "$PROFILE_FOUND" ] || { rm -f "$TMP_PLIST"; die "no provisioning profile named '$PROFILE_NAME'. developer.apple.com → Profiles → Developer ID (Mac) for fr.louisraille.NotchBuddy, then copy it to ~/Library/Developer/Xcode/UserData/Provisioning Profiles/"; }
+  [ -n "$PROFILE_FOUND" ] || { rm -f "$TMP_PLIST"; die "no provisioning profile named '$PROFILE_NAME'. developer.apple.com → Profiles → Developer ID (Mac) for com.ismailalam.zuddy, then copy it to ~/Library/Developer/Xcode/UserData/Provisioning Profiles/"; }
   EXPIRY=$(/usr/libexec/PlistBuddy -c "Print :ExpirationDate" "$TMP_PLIST")
   rm -f "$TMP_PLIST"
   echo "Profile: $PROFILE_FOUND (expires $EXPIRY)"
 
   # ── 2. xcodegen + Release build ─────────────────────────────────────────────
-  cd "$REPO_ROOT/NotchBuddy"
+  cd "$REPO_ROOT/Zuddy"
   PLIST_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Resources/Info.plist 2>/dev/null || true)
-  [ "$PLIST_VERSION" = "$VERSION" ] || die "NotchBuddy/Resources/Info.plist is version $PLIST_VERSION, not $VERSION: run xcodegen and commit Info.plist"
+  [ "$PLIST_VERSION" = "$VERSION" ] || die "Zuddy/Resources/Info.plist is version $PLIST_VERSION, not $VERSION: run xcodegen and commit Info.plist"
   xcodegen generate
   PLIST_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Resources/Info.plist)
-  [ "$PLIST_VERSION" = "$VERSION" ] || die "project.yml says $PLIST_VERSION, not $VERSION: update CFBundleShortVersionString in NotchBuddy/project.yml"
+  [ "$PLIST_VERSION" = "$VERSION" ] || die "project.yml says $PLIST_VERSION, not $VERSION: update CFBundleShortVersionString in Zuddy/project.yml"
 
   rm -rf "$BUILD_DIR" && mkdir -p "$BUILD_DIR"
   echo "$COMMIT" > "$COMMIT_FILE"
 
   xcodebuild \
-    -project NotchBuddy.xcodeproj \
-    -scheme NotchBuddy \
+    -project Zuddy.xcodeproj \
+    -scheme Zuddy \
     -configuration Release \
     build \
     CODE_SIGN_IDENTITY="$IDENTITY" \
@@ -105,7 +105,7 @@ if [ "$MODE" != "--finish" ]; then
     CONFIGURATION_BUILD_DIR="$BUILD_DIR"
 
   [ -f "$APP/Contents/embedded.provisionprofile" ] || die "the provisioning profile was not embedded in the app"
-  codesign -d --entitlements - --xml "$APP" 2>/dev/null | grep -q "iCloud.fr.louisraille.Coucou" \
+  codesign -d --entitlements - --xml "$APP" 2>/dev/null | grep -q "iCloud.com.ismailalam.zuddy" \
     || die "the app is not signed with the iCloud entitlements"
 
   # ── 3. Zip + notarize ───────────────────────────────────────────────────────
@@ -134,7 +134,7 @@ ditto -c -k --keepParent "$APP" "$ZIP"
 echo "Release zip ready: $ZIP"
 
 # ── 6. Tag the built commit + GitHub release ──────────────────────────────────
-NOTES="Coucou $VERSION for macOS 15 or later (Apple silicon and Intel).
+NOTES="Zuddy $VERSION for macOS 15 or later (Apple silicon and Intel).
 
 Signed with a Developer ID and notarized by Apple.
 
@@ -144,8 +144,8 @@ $CHANGES
 
 ## Install
 
-1. Download Coucou.zip below and unzip it.
-2. Move Coucou.app to your Applications folder, replacing the old one if you have it.
+1. Download Zuddy.zip below and unzip it.
+2. Move Zuddy.app to your Applications folder, replacing the old one if you have it.
 3. Launch it, and click Open when macOS asks you to confirm.
 
 Linux and Windows: see the [README](https://github.com/Louis-CFM/coucou#readme)."
@@ -166,7 +166,7 @@ git push origin "$TAG"
 
 gh release create "$TAG" "$ZIP" \
   --repo Louis-CFM/coucou \
-  --title "Coucou $VERSION" \
+  --title "Zuddy $VERSION" \
   --latest \
   --notes "$NOTES"
 

@@ -8,16 +8,16 @@ enum ClaudeHookDetectionTests {
     }
 
     static func main() {
-        // Installed: the hook Coucou writes, GitHub build
+        // Installed: the hook Zuddy writes, GitHub build
         precondition(coucouHooksPresent(inSettings: settings("""
         {"hooks":{"SessionStart":[{"hooks":[
           {"type":"command","command":"$HOME/.claude/coucou/nb-hook"}]}]}}
         """)))
 
-        // Installed: App Store build names NotchBuddy
+        // Installed: App Store build names Zuddy
         precondition(coucouHooksPresent(inSettings: settings("""
         {"hooks":{"SessionStart":[{"hooks":[
-          {"type":"command","command":"/Applications/NotchBuddy.app/.../nb-hook"}]}]}}
+          {"type":"command","command":"/Applications/Zuddy.app/.../nb-hook"}]}]}}
         """)))
 
         // Installed: our hook sits alongside somebody else's

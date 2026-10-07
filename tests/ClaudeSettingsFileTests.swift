@@ -46,7 +46,7 @@ enum ClaudeSettingsFileTests {
         precondition(blank.object.isEmpty && blank.bytes != nil)
 
         // This is the whole bug: content we cannot use came back as an empty
-        // object, and the install then wrote nothing but Coucou's hooks over it.
+        // object, and the install then wrote nothing but Zuddy's hooks over it.
         for bad in ["{ not json", "[1,2,3]", "\"a string\""] {
             try Data(bad.utf8).write(to: url)
             let refused = failure { _ = try ClaudeSettingsFile.read(at: url) }

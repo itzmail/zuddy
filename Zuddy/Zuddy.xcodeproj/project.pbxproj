@@ -1,0 +1,1927 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006BB413849C4B78E2CDDBD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1CA7A86537841FADD1CFE /* AppDelegate.swift */; };
+		01AC6C04721CF33E7FCB9D4A /* N8nPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548367F894A9F40343F32353 /* N8nPoller.swift */; };
+		080F949465FA92458AFBB2CE /* SharedSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46721B59FAD9571C2A07481B /* SharedSessions.swift */; };
+		0A5B2E8127932F18661EDFBB /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC7D2E467F182108FBF67C /* Haptics.swift */; };
+		0AD8A5079DA152B2C6827662 /* ClaudeResponseText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF36A60385F63B56436209 /* ClaudeResponseText.swift */; };
+		0CCA8AC081E1554420F4CAFC /* ChatMarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C99CF2477312E863046229 /* ChatMarkdownView.swift */; };
+		0D9A1601A6193DC36C4BEBC2 /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F49566734A8FF218B82F25 /* ClaudeService.swift */; };
+		0E0A35FBD59C7BD2FA8A9F30 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4982D3B399A86D16BB593F /* ColorHex.swift */; };
+		1119AC1E6274B61DE485522A /* LocalChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3B2AC0282F0FCF5083DFFA /* LocalChat.swift */; };
+		111D99208D7783BC865224BF /* OpenLeadMochiIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08652F050661FBA762D1DC39 /* OpenLeadMochiIntent.swift */; };
+		13426A9F0D533ED3839917C4 /* ChatMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD86940F54A06B9F4F4137 /* ChatMarkdown.swift */; };
+		14957CFD21ED2305CBD91C0F /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
+		161F9AB6523FCA2DB2646B4E /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
+		165A597689E671337EF666DF /* ServicePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74714FC7CD3BB8B223DE8999 /* ServicePublisher.swift */; };
+		168A51634F8C2D156DF6B126 /* PhoneAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE6A6BBBDFE813F0E6477C1D /* PhoneAssets.xcassets */; };
+		16D09F23AF0AD750D1DD816B /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
+		1745F239C2F749B3248DFC15 /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
+		17B729969E9952D087838E90 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */; };
+		1A08EC78FD601CDCE32F77F4 /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
+		1A6A9873EECB42B7FCB4CA33 /* QuestionPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */; };
+		1B8EF35F375A335AFCDB7D46 /* BotEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */; };
+		1BE09C9B591E8CE6778B5E35 /* SharedSessions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46721B59FAD9571C2A07481B /* SharedSessions.swift */; };
+		1C0A004126BE94D5980D5912 /* QuestionPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */; };
+		1EB30828DD2FAC1F437E9E27 /* PillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D08B25980DC793A32AF9A /* PillCatalog.swift */; };
+		1EE63904B284DFD1869439B2 /* MochiLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A48168E7CA84374D0773CE /* MochiLive.swift */; };
+		1EF88B1677001A1681AA6F3E /* MacStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5672F107D3ADC6281CCF2A /* MacStubs.swift */; };
+		1F58AFE23CD46D5D1CDA7AFE /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = EA0BDD34DDFF8F05E8764F87 /* sounds */; };
+		1F63363150C491B1A1B03AD3 /* AgentNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84877603AD38458DEA3FA3 /* AgentNotifier.swift */; };
+		24F04E1652766DDC075E9CC9 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E29AB17BC87574FC4951A /* SessionDetailView.swift */; };
+		2717FAFBAA9AE573104C81A9 /* QuestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4FF8C94E59ED40EAAF7C3 /* QuestionCard.swift */; };
+		288875F5CF31BC403B365B9F /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
+		29493BBCBD2B9AFA8B207923 /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
+		296657802B044768DAFEC724 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
+		2A025DDE7543FA44B0887BC5 /* GitHubPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D5C6CDB30913A2F13D104 /* GitHubPulse.swift */; };
+		2A2B761655F7F4D056AC6691 /* SessionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46537E5EE407D480AA73A7D0 /* SessionPublisher.swift */; };
+		2A9D9DF07F49A81ADCC32178 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB52D5DE47C3D054B14751E /* AppState.swift */; };
+		2AB331A7A5A983934AC40C75 /* IslandStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD8A67550EC4D359A02A5F /* IslandStateMachine.swift */; };
+		2B4D1D92BA1970F13D6A9234 /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
+		2BE087049BA8011CD7A4A59D /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
+		2D0C1EA29AB96BD73491D141 /* OpenLeadMochiIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08652F050661FBA762D1DC39 /* OpenLeadMochiIntent.swift */; };
+		2E596E9F12F3FCEFDD420E1A /* GitHubActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */; };
+		2EAD335D17052D03E809102F /* question.wav in Resources */ = {isa = PBXBuildFile; fileRef = D00CC381DACA2462D938ED6E /* question.wav */; };
+		30705FBA1CA37066E494243C /* ZuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */; };
+		32EA182CDDDC1501318674D8 /* MochiActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6EE037DC61FDD4307C8CA /* MochiActivityAttributes.swift */; };
+		3307D1FFC73C3EA3243948CE /* MochiLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A48168E7CA84374D0773CE /* MochiLive.swift */; };
+		33558184AD8CD27A33A5D3C0 /* WindowContextCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1C398468D80A7F55E3CC45 /* WindowContextCapture.swift */; };
+		335849B5D4E1463E07F89978 /* SessionPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46537E5EE407D480AA73A7D0 /* SessionPublisher.swift */; };
+		3362AACC9CF5BC56F5CA603E /* QuestionRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10E0682ABFF43FFC478837 /* QuestionRelay.swift */; };
+		338C1FF11C5856BE0D4082D1 /* BotEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */; };
+		33E1E9EF1E94D9DC1149F5DC /* ApprovalRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA77DBFFC1E1CD8262C0D302 /* ApprovalRelay.swift */; };
+		37010D80834C6D09E18F0FC7 /* ClaudeSettingsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4ABD7BCDF0F74DD6784DB /* ClaudeSettingsFile.swift */; };
+		386BD83CA6F1FE1485A6588F /* GitHubActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */; };
+		38A68CA6964D6096AF2B4927 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F674148647EEF44C7EC20 /* HotKeyCenter.swift */; };
+		3911B6C40032273627F957F0 /* MochiLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3A620CD1142265F327802D /* MochiLiveActivity.swift */; };
+		39B2E3BB87D706BB66895272 /* PillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D08B25980DC793A32AF9A /* PillCatalog.swift */; };
+		39F8765DEA1BCD57F3802AA8 /* MochiOutfitDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */; };
+		3A7DC1E26D433E12F7ED3823 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D76389B53AC32F0FDA1727 /* SoundEngine.swift */; };
+		3ACF8A5318D49BBBAEEDB7CE /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6BDE2FB6463881F597311A0E /* error.wav */; };
+		3B0BD7D7F70CB41E5538C788 /* LinkTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7CEC11D3D37B7A8543EF9 /* LinkTestView.swift */; };
+		3D11CE21E995EB7A46388D66 /* MochiOutfitDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */; };
+		3DF3E82D3A8B44EAD569F268 /* BotCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8593A71EC34D6635CB94D /* BotCanvasView.swift */; };
+		3F27CFFF93497356CC4BBC5A /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = EA0BDD34DDFF8F05E8764F87 /* sounds */; };
+		40C7917B813A1DAC7A565CD1 /* ClaudeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F49566734A8FF218B82F25 /* ClaudeService.swift */; };
+		40E1002D73D36EA4CD96D096 /* LastTurnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBAF07B95794098295DBE0E /* LastTurnView.swift */; };
+		4116ACBB079E0DE475891981 /* ServicePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74714FC7CD3BB8B223DE8999 /* ServicePublisher.swift */; };
+		4159FE683709B0B6EA4C5361 /* TurnArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B721B7A1AF972A0DDFDD42B7 /* TurnArchive.swift */; };
+		41C5F1963B936C657E6D5314 /* UploadSequenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED601231971BE3BCE136975 /* UploadSequenceEngine.swift */; };
+		436142C64B2FFE1EA275D43C /* CloudProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568259F3BA221E44024D0A66 /* CloudProbe.swift */; };
+		44805F07F49556B7FA63975F /* PillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D08B25980DC793A32AF9A /* PillCatalog.swift */; };
+		448084B561F26E04FF7506C1 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4982D3B399A86D16BB593F /* ColorHex.swift */; };
+		466664CDE7824299DEDD4AE4 /* ShortcutLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231DA5D44E6CB96061FFE56 /* ShortcutLogic.swift */; };
+		489E9FE88A152CB9D4C9F913 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8375493C9CF2497E3F2CA69 /* SettingsView.swift */; };
+		4A008AE91A035000DCF6A4A3 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E72A9D59193FBD50B09776 /* NotificationViewController.swift */; };
+		4E1DA5DCA51E9F2DC101D9C8 /* IslandTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */; };
+		4F3C65A517C3251254F7352A /* IslandTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */; };
+		50F34387B971AE8BC073AE68 /* DemoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE007D5FE8534E100DC8DAD9 /* DemoEngine.swift */; };
+		51E46025BA55D04D72A48B18 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B98B625F5FBB44C3BB980F3 /* IntroView.swift */; };
+		530B1C10960CC0BAAABE7345 /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
+		5316503BDDA34B17DD4F2473 /* MochiOutfitDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */; };
+		5335702AFA1C072D6D8785D2 /* HookServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F13074AEB7F85AE8695FA7 /* HookServer.swift */; };
+		56611E87E0441BC5B2992180 /* MochiActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6EE037DC61FDD4307C8CA /* MochiActivityAttributes.swift */; };
+		578141FD225E74B80D5EE118 /* CloudProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568259F3BA221E44024D0A66 /* CloudProbe.swift */; };
+		59FB90CA03667DAD0646792E /* ZuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */; };
+		5D6F6FD09FE3860B76A70A65 /* TeamConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A3AB7D92215ABD4061C96 /* TeamConfiguration.swift */; };
+		5EC5667A054CE7C5C9609134 /* SessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4643FC9392F067C2FFC5EF55 /* SessionStatus.swift */; };
+		5ECB461AE73E840D49F99189 /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
+		5FABA6DB394204DDD29DD4F0 /* ServiceLiveDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A93D83EFEE0F9FD1C28104 /* ServiceLiveDetail.swift */; };
+		60D9D91ACC93B0B7B8E008AA /* GreetingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488A040BE344102238422B3 /* GreetingCanvasView.swift */; };
+		622E4C3CEEBB35E4365382F1 /* NotionPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */; };
+		6301F04AEFAD05FD2FF45710 /* DenyApprovalIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD20D1045834524237B0E13 /* DenyApprovalIntent.swift */; };
+		63409EA198BC18D132C40F74 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
+		63B8BA013A56AE11B77B2127 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
+		63DE34B2C065C46CCD1149E4 /* InstructionRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF430404846A43D58FDA93E /* InstructionRunner.swift */; };
+		64213C2E408E37C9B5419783 /* TurnShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F67F79168C05BE9B9B1F185 /* TurnShare.swift */; };
+		64DF7CF660F92C45601BFAF8 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
+		65E43EC2251A9775D59FC1E2 /* DesktopMochiLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47BB4F2F340E867254EB113 /* DesktopMochiLogic.swift */; };
+		668C1FB55F6921AFE75E45BC /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
+		670AD3BC3B69874318583CEB /* ZuddyWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C205948F4E048ACBA460D69E /* ZuddyWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		676EAD991A56421BDDEB8430 /* UserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1ACD69522522C35454D3BFF /* UserIdentity.swift */; };
+		694874076CCE0B96C029F87B /* WeeklyRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */; };
+		6BAC6E6DA40CAA7BA29DD528 /* StripePoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB91DEE6FF24A3F739E7E29 /* StripePoller.swift */; };
+		6BC7A294E946C6650ED3AEC4 /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */; };
+		6BD11ABD1DCF21092D528571 /* ShortcutLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2231DA5D44E6CB96061FFE56 /* ShortcutLogic.swift */; };
+		6FE6D6E27FFF49DE58F4CA8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E081A502D580E48E7632291C /* Assets.xcassets */; };
+		6FE7492BB37183FE1734F673 /* AskQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987577031C549B06F4BF8176 /* AskQuestion.swift */; };
+		70863DC7C095F11CA59E6AD6 /* approval.wav in Resources */ = {isa = PBXBuildFile; fileRef = 49EF9FFAA492340DABFCB837 /* approval.wav */; };
+		717077769EBE6B2AF38C36F0 /* BotCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8593A71EC34D6635CB94D /* BotCanvasView.swift */; };
+		71A2D44A0C2C5E32F6132504 /* CalcomPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC3D331A71E69A423AF2490 /* CalcomPoller.swift */; };
+		725E95437553B4183F306428 /* MochiOutfitDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */; };
+		73FFCCFB7C26A205DD05A5A0 /* ApprovalRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA77DBFFC1E1CD8262C0D302 /* ApprovalRelay.swift */; };
+		74407F95A55354F26F787B37 /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
+		74FB9CC0E27A8F476FD90A23 /* MochiStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471CAB555DE01D43B34147CB /* MochiStill.swift */; };
+		7551E848922F258A7DB94628 /* IslandStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCD8A67550EC4D359A02A5F /* IslandStateMachine.swift */; };
+		75FC9F64E140D294FA555D41 /* PillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D08B25980DC793A32AF9A /* PillCatalog.swift */; };
+		779AE9912B461982F4BAF657 /* CodexPlanGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5214D1FDD3434BDECA64F61D /* CodexPlanGauge.swift */; };
+		779B69DB1DE1B64E62223DF6 /* ServiceStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCBF01CF09B88BBB2111EEB /* ServiceStatus.swift */; };
+		78B47CD7B143E655F1D8BCB4 /* ZuddyNotificationContent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5002ABB345DAEC4E5C1022C6 /* ZuddyNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7E376D1DF513856C5BD7A636 /* ResendPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E8420E0FCF85735646F9D /* ResendPoller.swift */; };
+		7F1E951D1F127A51A2998DB1 /* VercelPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0279A2CB49DA7877488EA /* VercelPoller.swift */; };
+		808CEB22665936CD0CD24BC4 /* Decisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68FA71D71D3BBD1A86840A3 /* Decisions.swift */; };
+		815D5B474DAA7020CD4E7775 /* InstructionRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF430404846A43D58FDA93E /* InstructionRunner.swift */; };
+		85975F2C3C010F6140EDEBF3 /* ClaudeHookDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */; };
+		85CAEE903649AED4DD98E678 /* ServiceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E1C8C2F3B51100D26F50A1 /* ServiceViews.swift */; };
+		85CC2C6026E428E02E03B336 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
+		868DF3C1658E6FEFDB07476F /* BotEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */; };
+		86CEADDBD41A7A799E2FD450 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A84F5A145510622B21AFC6 /* HomeView.swift */; };
+		86FB88CBD19D0D089F106D1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8375493C9CF2497E3F2CA69 /* SettingsView.swift */; };
+		87D2293235174CAE73085141 /* MochiStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471CAB555DE01D43B34147CB /* MochiStill.swift */; };
+		8852B111CD9D2EC0450C1709 /* MochiStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471CAB555DE01D43B34147CB /* MochiStill.swift */; };
+		88D167C85DA78F2A6E9F614D /* ClaudePlanCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC414A84BA0658E1EADE0DCC /* ClaudePlanCardView.swift */; };
+		891E6AD5A79D5098C4D14611 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B5D9CCE1E95D526B7A98B0B6 /* Localizable.xcstrings */; };
+		89A3E6561FC4075E1E2EE41B /* TurnRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C1D258CCE589C4CE7B3C5 /* TurnRecorder.swift */; };
+		8A46E4B121165D55B6DEF57B /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
+		8A5CBA16AEB43452BFE397A6 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
+		8B30DD0E34474A6EE78132B8 /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
+		8B66011A64C53BD7B10EDD2D /* QuestionRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10E0682ABFF43FFC478837 /* QuestionRelay.swift */; };
+		8C1F0B8F91189E53AF05F1C8 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
+		8E6F1E420CF547C68E5DCE69 /* PhoneLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A0985D4A2AD9ED7CCDFD2B /* PhoneLink.swift */; };
+		9023E47C529C77C3DDE53C62 /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
+		91540CF855DA10974FB85FB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E081A502D580E48E7632291C /* Assets.xcassets */; };
+		9179E7A26104ED683A7DC8B7 /* IslandWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */; };
+		9182E5DADE52CE468025325C /* N8nPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548367F894A9F40343F32353 /* N8nPoller.swift */; };
+		92429027712E9107747DF066 /* UploadCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0683819AC53A173275CF9 /* UploadCanvasView.swift */; };
+		92AA14A0DA91B61B80D2EC34 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
+		935736D82CC540055C9A6333 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
+		94F651ED2F95F865AE6F31AC /* ChatMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD86940F54A06B9F4F4137 /* ChatMarkdown.swift */; };
+		9604DC760DC46959E39D9B7C /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183602FF8F1D91B7FADBC49 /* AppLog.swift */; };
+		962399DF6C4745C69F83672A /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
+		97CAA1F34818661E8BF380F6 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
+		985FB141467FBF1AE393E51F /* LocalChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3B2AC0282F0FCF5083DFFA /* LocalChat.swift */; };
+		9A36A5B2A7AE667360B2A5ED /* QuestionPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */; };
+		9BD12ADE4A5498166CF3163B /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183602FF8F1D91B7FADBC49 /* AppLog.swift */; };
+		A062157B6A93750365D533F8 /* VercelPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0279A2CB49DA7877488EA /* VercelPoller.swift */; };
+		A14DE878458E33127C4B6FB5 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4982D3B399A86D16BB593F /* ColorHex.swift */; };
+		A1D0A4F60BC4201F74E40716 /* ZuddyControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A838048FE064AFA2C6A3393 /* ZuddyControl.swift */; };
+		A201D3226ABC1EF87DA351A6 /* IslandTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */; };
+		A335B94BAD502907A65AEAE8 /* UploadSequenceEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED601231971BE3BCE136975 /* UploadSequenceEngine.swift */; };
+		A4E2C6C807CCD30EA4473872 /* KitPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97250C79BD1284FC5A3CE4D7 /* KitPreviewView.swift */; };
+		A4E2DFE9002C5A673339223F /* ResendPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E8420E0FCF85735646F9D /* ResendPoller.swift */; };
+		A50503521DC0502E80A66AAB /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */; };
+		A59EFDDAB9D7D86775FB8D2B /* DemoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE007D5FE8534E100DC8DAD9 /* DemoEngine.swift */; };
+		AAB0FE35AD392A7A43286C8E /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC2B6FA1DF3F1B3EDF79142 /* AboutView.swift */; };
+		AE462B5A13786654872975A4 /* finish.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2912F1F2B0737B34A8D730DE /* finish.wav */; };
+		AF4E5508EA24B4D5D45A9D4A /* WeeklyRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */; };
+		B043860DF2229251FB8A6EB5 /* IslandDisplayChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */; };
+		B200991646B377907C708A17 /* BotEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */; };
+		B27C5C940A3912D309096B54 /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
+		B2A9F057568E9E6695B1F19E /* ClaudePlanGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */; };
+		B6297F832893BF90EF36FF90 /* ClaudePlanCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC414A84BA0658E1EADE0DCC /* ClaudePlanCardView.swift */; };
+		B7FEC537DB69835A42561B15 /* HookServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F13074AEB7F85AE8695FA7 /* HookServer.swift */; };
+		B873952FDA49B9D7F44C2188 /* UploadCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E0683819AC53A173275CF9 /* UploadCanvasView.swift */; };
+		B874078A31F0482B73B9EB23 /* AppleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC91324928F18C047FCC2DB /* AppleStyle.swift */; };
+		B8F2719D149E2CC7BBE2FEB3 /* PillCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8D08B25980DC793A32AF9A /* PillCatalog.swift */; };
+		B9101C26661A2DCB924294E0 /* ChatMarkdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C99CF2477312E863046229 /* ChatMarkdownView.swift */; };
+		B9305B524022891F9DF42943 /* ShortcutsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */; };
+		BAC3348287061859EE85DEAE /* NotionPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */; };
+		BD3E2D7F01BCDF1EF8433534 /* DesktopMochiLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47BB4F2F340E867254EB113 /* DesktopMochiLogic.swift */; };
+		BDDCCF62DCA92113320833B1 /* HotKeyCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F674148647EEF44C7EC20 /* HotKeyCenter.swift */; };
+		BF7C017596ED94EA065E4B97 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
+		BFD37F2E39872611C73A292E /* RecapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */; };
+		BFFBD9FDEF53A4308558761F /* ZuddyWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA283DC2F6139F20F1C56E /* ZuddyWidgets.swift */; };
+		C0EE4FB985964A804DCAB9A6 /* MacStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5672F107D3ADC6281CCF2A /* MacStubs.swift */; };
+		C188AB578E8EAE760DDAD086 /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
+		C492D1C07A4690DD4BBB3486 /* GithubPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF401B6F688751219CC6AB94 /* GithubPoller.swift */; };
+		C4EA019734FEF96CCC5C0271 /* MochiStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471CAB555DE01D43B34147CB /* MochiStill.swift */; };
+		C5D608E1C9CFBC4400715332 /* SafeWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123AB8469494530F6D17CB /* SafeWebURL.swift */; };
+		C60C53140124BF128DA6F620 /* MochiOutfitDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */; };
+		C64DD28F7948D6D4E35E062B /* IslandTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */; };
+		C6FF388F6F4482551881A572 /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
+		C827D2069B90ABB2C867B648 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4982D3B399A86D16BB593F /* ColorHex.swift */; };
+		C98EB02D5B658FA58992F3B9 /* ClaudeResponseText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF36A60385F63B56436209 /* ClaudeResponseText.swift */; };
+		C9B8B05E5BEFD61B00D4BEF2 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D76389B53AC32F0FDA1727 /* SoundEngine.swift */; };
+		CA0877CE52401F4D496E5108 /* IslandViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C7A13B7136956A9697F10 /* IslandViewContent.swift */; };
+		CAFFD483FB64AA86D6F8E90B /* IslandViewContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C7A13B7136956A9697F10 /* IslandViewContent.swift */; };
+		CB76C1CF96544C512941482F /* ApprovalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF91E4F311424051D645465 /* ApprovalCard.swift */; };
+		CB80012395C4276F06EBB50A /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
+		CBB0F009FAAC538E6AB74918 /* CalcomPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC3D331A71E69A423AF2490 /* CalcomPoller.swift */; };
+		CBDCDD02339143EE4F4BA6F9 /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
+		CEF2D17E1B4C18257BFB91EB /* GithubPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF401B6F688751219CC6AB94 /* GithubPoller.swift */; };
+		D076BD438C5FA9BC3F335540 /* DenyApprovalIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD20D1045834524237B0E13 /* DenyApprovalIntent.swift */; };
+		D470F1F3200B2439D53420BC /* QuestionPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */; };
+		D48682B935C8627FE535DD60 /* QuestionPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */; };
+		D53A251B9C05A610D7962621 /* IslandTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */; };
+		D7791428F5ED71D1B384845D /* MacStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5672F107D3ADC6281CCF2A /* MacStubs.swift */; };
+		D80DDAE269ECDF46CFACED40 /* LiveActivityRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2057413EC0317499E3568565 /* LiveActivityRelay.swift */; };
+		D850A059C2507EEDC2913064 /* AskQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987577031C549B06F4BF8176 /* AskQuestion.swift */; };
+		D8E25500F80478750F955335 /* ClaudeSettingsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C4ABD7BCDF0F74DD6784DB /* ClaudeSettingsFile.swift */; };
+		D8F007B0F7A9AD03B2E58412 /* LiveActivityRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2057413EC0317499E3568565 /* LiveActivityRelay.swift */; };
+		DA0A9C120F1C33F29FD1013E /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB52D5DE47C3D054B14751E /* AppState.swift */; };
+		DAED5E4619FF3148F8E974A0 /* ZuddyIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79415E6CA0435C6235E8C5A0 /* ZuddyIntents.swift */; };
+		DBF350A8077621F402C75394 /* DesktopMochi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD62C74BDE862916F568743 /* DesktopMochi.swift */; };
+		DC0490A488D69D6411EF31A5 /* InstructionComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC494F30CCD30FBF22401A2D /* InstructionComposer.swift */; };
+		DF3E1806A1D82F7A7D89575D /* RecapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */; };
+		E0A561BD6CEB9F2A1AB38E65 /* ServiceDetailRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */; };
+		E3868AAFA225B7CA0D5BAC3A /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4982D3B399A86D16BB593F /* ColorHex.swift */; };
+		E46DA69E84218540DEC0C2EA /* ServiceDetailRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */; };
+		E58C441F5D4C340415C4529A /* TurnRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C1D258CCE589C4CE7B3C5 /* TurnRecorder.swift */; };
+		E6836DCF00061E0DFBE31BFE /* ShortcutsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */; };
+		E6BE1CBBBBE3EE3DC3DF90EB /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */; };
+		E6FD4488B625302B16D06605 /* DesktopMochi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD62C74BDE862916F568743 /* DesktopMochi.swift */; };
+		E821DECF7CE470511AA0A093 /* LiveActivityLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80891402652C9964FF83D63C /* LiveActivityLink.swift */; };
+		EB5B1261690365915AF59328 /* CodexPlanGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5214D1FDD3434BDECA64F61D /* CodexPlanGauge.swift */; };
+		EC5AA36F391D360D5B41468B /* ClaudePlanGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */; };
+		EE31EF58D2505FEB20E5EA9A /* UserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1ACD69522522C35454D3BFF /* UserIdentity.swift */; };
+		EF329FF45C7E589EC69FDF4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1CA7A86537841FADD1CFE /* AppDelegate.swift */; };
+		EF7EC1A05D796A03DF545F46 /* GitHubPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6D5C6CDB30913A2F13D104 /* GitHubPulse.swift */; };
+		F05FEF551E6C40A7D1870E71 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
+		F0B85D9A46CC4D6440E6D08A /* GreetingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488A040BE344102238422B3 /* GreetingCanvasView.swift */; };
+		F0BC9DD7715CFD7D41F7D2A6 /* StripePoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB91DEE6FF24A3F739E7E29 /* StripePoller.swift */; };
+		F3D676B2FB9B7F9F1C211317 /* IslandRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE1A7A99FBA3A7636F049C0 /* IslandRootView.swift */; };
+		F618951FE75FF72D595ECC0E /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
+		F676241189A567B7FDF54B59 /* IslandRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE1A7A99FBA3A7636F049C0 /* IslandRootView.swift */; };
+		F6FCC9F24A5E0C4F368594A9 /* SafeWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123AB8469494530F6D17CB /* SafeWebURL.swift */; };
+		F7F78A739DA9DD4091A97756 /* IslandWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */; };
+		F9C6227115F4F382A37DEBC0 /* WindowContextCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1C398468D80A7F55E3CC45 /* WindowContextCapture.swift */; };
+		FA31EE209011E974B9F8E35A /* ClaudeHookDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */; };
+		FA37B43E6E95F6449D073F79 /* BotEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */; };
+		FAAA0A11DF8863247AC3DFEC /* MochiStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471CAB555DE01D43B34147CB /* MochiStill.swift */; };
+		FB80DE8B2EFC125756704B5D /* ZuddyPhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EF52ED4A4EB89D27199A6 /* ZuddyPhoneApp.swift */; };
+		FC4C8BEAF4556734132D2F7A /* SearchAndSpotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C92CFFEB1E493351E3B262 /* SearchAndSpotlight.swift */; };
+		FF56D0FE2387FB6E79A773C2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B5D9CCE1E95D526B7A98B0B6 /* Localizable.xcstrings */; };
+		FF753AD657A93C09A4F84DAB /* IslandDisplayChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6B01C6D427F979ADD4F8FFC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 527E1D3856599348955F63C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D6291A2C8311A81831B4E4D9;
+			remoteInfo = ZuddyNotificationContent;
+		};
+		DD1F81AF2B890FE4FE176895 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 527E1D3856599348955F63C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF489BC7E29B265422D5B9B6;
+			remoteInfo = ZuddyWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		155F82495F43C52BA947AA3E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				670AD3BC3B69874318583CEB /* ZuddyWidgets.appex in Embed Foundation Extensions */,
+				78B47CD7B143E655F1D8BCB4 /* ZuddyNotificationContent.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeHookDetection.swift; sourceTree = "<group>"; };
+		073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetail.swift; sourceTree = "<group>"; };
+		07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZuddyApp.swift; sourceTree = "<group>"; };
+		08652F050661FBA762D1DC39 /* OpenLeadMochiIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenLeadMochiIntent.swift; sourceTree = "<group>"; };
+		08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSnapshot.swift; sourceTree = "<group>"; };
+		0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiWardrobe.swift; sourceTree = "<group>"; };
+		12B1CA7A86537841FADD1CFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		14A84F5A145510622B21AFC6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		16D76389B53AC32F0FDA1727 /* SoundEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
+		1AC91324928F18C047FCC2DB /* AppleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleStyle.swift; sourceTree = "<group>"; };
+		1BE1A7A99FBA3A7636F049C0 /* IslandRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandRootView.swift; sourceTree = "<group>"; };
+		1CE7CEC11D3D37B7A8543EF9 /* LinkTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTestView.swift; sourceTree = "<group>"; };
+		2057413EC0317499E3568565 /* LiveActivityRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityRelay.swift; sourceTree = "<group>"; };
+		2231DA5D44E6CB96061FFE56 /* ShortcutLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutLogic.swift; sourceTree = "<group>"; };
+		229A3AB7D92215ABD4061C96 /* TeamConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamConfiguration.swift; sourceTree = "<group>"; };
+		24DA283DC2F6139F20F1C56E /* ZuddyWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZuddyWidgets.swift; sourceTree = "<group>"; };
+		2912F1F2B0737B34A8D730DE /* finish.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = finish.wav; sourceTree = "<group>"; };
+		2B0E29AB17BC87574FC4951A /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		2D50FC0BB164CEA846426111 /* MochiActivityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiActivityState.swift; sourceTree = "<group>"; };
+		3183602FF8F1D91B7FADBC49 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		35A48168E7CA84374D0773CE /* MochiLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiLive.swift; sourceTree = "<group>"; };
+		37E72A9D59193FBD50B09776 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudePlanGauge.swift; sourceTree = "<group>"; };
+		3B98B625F5FBB44C3BB980F3 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		3C3A620CD1142265F327802D /* MochiLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiLiveActivity.swift; sourceTree = "<group>"; };
+		3C3EF52ED4A4EB89D27199A6 /* ZuddyPhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZuddyPhoneApp.swift; sourceTree = "<group>"; };
+		442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandScreenGeometry.swift; sourceTree = "<group>"; };
+		4643FC9392F067C2FFC5EF55 /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
+		46537E5EE407D480AA73A7D0 /* SessionPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPublisher.swift; sourceTree = "<group>"; };
+		46721B59FAD9571C2A07481B /* SharedSessions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedSessions.swift; sourceTree = "<group>"; };
+		471CAB555DE01D43B34147CB /* MochiStill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiStill.swift; sourceTree = "<group>"; };
+		47CD86940F54A06B9F4F4137 /* ChatMarkdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMarkdown.swift; sourceTree = "<group>"; };
+		49EF9FFAA492340DABFCB837 /* approval.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = approval.wav; sourceTree = "<group>"; };
+		4AD62C74BDE862916F568743 /* DesktopMochi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopMochi.swift; sourceTree = "<group>"; };
+		4B5672F107D3ADC6281CCF2A /* MacStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStubs.swift; sourceTree = "<group>"; };
+		5002ABB345DAEC4E5C1022C6 /* ZuddyNotificationContent.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ZuddyNotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5214D1FDD3434BDECA64F61D /* CodexPlanGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexPlanGauge.swift; sourceTree = "<group>"; };
+		548367F894A9F40343F32353 /* N8nPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = N8nPoller.swift; sourceTree = "<group>"; };
+		55E138D98CCDCC4B50D4FCC2 /* ZuddyAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZuddyAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		568259F3BA221E44024D0A66 /* CloudProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudProbe.swift; sourceTree = "<group>"; };
+		5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotEngine.swift; sourceTree = "<group>"; };
+		5DB52D5DE47C3D054B14751E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRecapView.swift; sourceTree = "<group>"; };
+		5FCD8A67550EC4D359A02A5F /* IslandStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandStateMachine.swift; sourceTree = "<group>"; };
+		63C6EE037DC61FDD4307C8CA /* MochiActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiActivityAttributes.swift; sourceTree = "<group>"; };
+		6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandTypes.swift; sourceTree = "<group>"; };
+		6A838048FE064AFA2C6A3393 /* ZuddyControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZuddyControl.swift; sourceTree = "<group>"; };
+		6B2C7A13B7136956A9697F10 /* IslandViewContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandViewContent.swift; sourceTree = "<group>"; };
+		6BDE2FB6463881F597311A0E /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
+		6EB91DEE6FF24A3F739E7E29 /* StripePoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripePoller.swift; sourceTree = "<group>"; };
+		6EC3D331A71E69A423AF2490 /* CalcomPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcomPoller.swift; sourceTree = "<group>"; };
+		74714FC7CD3BB8B223DE8999 /* ServicePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicePublisher.swift; sourceTree = "<group>"; };
+		75F4FF8C94E59ED40EAAF7C3 /* QuestionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCard.swift; sourceTree = "<group>"; };
+		78AF36A60385F63B56436209 /* ClaudeResponseText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeResponseText.swift; sourceTree = "<group>"; };
+		78FC7D2E467F182108FBF67C /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
+		79415E6CA0435C6235E8C5A0 /* ZuddyIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZuddyIntents.swift; sourceTree = "<group>"; };
+		79C99CF2477312E863046229 /* ChatMarkdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMarkdownView.swift; sourceTree = "<group>"; };
+		7A10E0682ABFF43FFC478837 /* QuestionRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRelay.swift; sourceTree = "<group>"; };
+		7FA8593A71EC34D6635CB94D /* BotCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotCanvasView.swift; sourceTree = "<group>"; };
+		80891402652C9964FF83D63C /* LiveActivityLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityLink.swift; sourceTree = "<group>"; };
+		80A0985D4A2AD9ED7CCDFD2B /* PhoneLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneLink.swift; sourceTree = "<group>"; };
+		83C92CFFEB1E493351E3B262 /* SearchAndSpotlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAndSpotlight.swift; sourceTree = "<group>"; };
+		884E8420E0FCF85735646F9D /* ResendPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendPoller.swift; sourceTree = "<group>"; };
+		88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnSnapshot.swift; sourceTree = "<group>"; };
+		894C1D258CCE589C4CE7B3C5 /* TurnRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnRecorder.swift; sourceTree = "<group>"; };
+		8F67F79168C05BE9B9B1F185 /* TurnShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnShare.swift; sourceTree = "<group>"; };
+		9488A040BE344102238422B3 /* GreetingCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingCanvasView.swift; sourceTree = "<group>"; };
+		97250C79BD1284FC5A3CE4D7 /* KitPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitPreviewView.swift; sourceTree = "<group>"; };
+		987577031C549B06F4BF8176 /* AskQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskQuestion.swift; sourceTree = "<group>"; };
+		9B4982D3B399A86D16BB593F /* ColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHex.swift; sourceTree = "<group>"; };
+		9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubActivity.swift; sourceTree = "<group>"; };
+		9C84877603AD38458DEA3FA3 /* AgentNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentNotifier.swift; sourceTree = "<group>"; };
+		A1E0683819AC53A173275CF9 /* UploadCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCanvasView.swift; sourceTree = "<group>"; };
+		A5123AB8469494530F6D17CB /* SafeWebURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeWebURL.swift; sourceTree = "<group>"; };
+		A7A93D83EFEE0F9FD1C28104 /* ServiceLiveDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLiveDetail.swift; sourceTree = "<group>"; };
+		A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
+		AC414A84BA0658E1EADE0DCC /* ClaudePlanCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudePlanCardView.swift; sourceTree = "<group>"; };
+		AED601231971BE3BCE136975 /* UploadSequenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSequenceEngine.swift; sourceTree = "<group>"; };
+		AF401B6F688751219CC6AB94 /* GithubPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubPoller.swift; sourceTree = "<group>"; };
+		AFCBF01CF09B88BBB2111EEB /* ServiceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatus.swift; sourceTree = "<group>"; };
+		AFF430404846A43D58FDA93E /* InstructionRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionRunner.swift; sourceTree = "<group>"; };
+		B5D9CCE1E95D526B7A98B0B6 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B721B7A1AF972A0DDFDD42B7 /* TurnArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurnArchive.swift; sourceTree = "<group>"; };
+		B8375493C9CF2497E3F2CA69 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BA1C398468D80A7F55E3CC45 /* WindowContextCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowContextCapture.swift; sourceTree = "<group>"; };
+		BA6D5C6CDB30913A2F13D104 /* GitHubPulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubPulse.swift; sourceTree = "<group>"; };
+		BA8D08B25980DC793A32AF9A /* PillCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillCatalog.swift; sourceTree = "<group>"; };
+		BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicController.swift; sourceTree = "<group>"; };
+		C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionPayload.swift; sourceTree = "<group>"; };
+		C205948F4E048ACBA460D69E /* ZuddyWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ZuddyWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiOutfitDrawing.swift; sourceTree = "<group>"; };
+		C7C4ABD7BCDF0F74DD6784DB /* ClaudeSettingsFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeSettingsFile.swift; sourceTree = "<group>"; };
+		CE9F674148647EEF44C7EC20 /* HotKeyCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyCenter.swift; sourceTree = "<group>"; };
+		D00CC381DACA2462D938ED6E /* question.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = question.wav; sourceTree = "<group>"; };
+		D7F49566734A8FF218B82F25 /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
+		DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandWindowController.swift; sourceTree = "<group>"; };
+		DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailRunner.swift; sourceTree = "<group>"; };
+		DC494F30CCD30FBF22401A2D /* InstructionComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionComposer.swift; sourceTree = "<group>"; };
+		DC93D0A194982E86124E80CD /* ZuddyPhone.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ZuddyPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapStore.swift; sourceTree = "<group>"; };
+		DE007D5FE8534E100DC8DAD9 /* DemoEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoEngine.swift; sourceTree = "<group>"; };
+		E081A502D580E48E7632291C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E0F13074AEB7F85AE8695FA7 /* HookServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HookServer.swift; sourceTree = "<group>"; };
+		EA0BDD34DDFF8F05E8764F87 /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sounds; path = Resources/sounds; sourceTree = SOURCE_ROOT; };
+		EA77DBFFC1E1CD8262C0D302 /* ApprovalRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalRelay.swift; sourceTree = "<group>"; };
+		EB3B2AC0282F0FCF5083DFFA /* LocalChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChat.swift; sourceTree = "<group>"; };
+		EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotionPoller.swift; sourceTree = "<group>"; };
+		EBBAF07B95794098295DBE0E /* LastTurnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTurnView.swift; sourceTree = "<group>"; };
+		ED0D2544E08357E586456B7D /* Zuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFC2B6FA1DF3F1B3EDF79142 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		EFF91E4F311424051D645465 /* ApprovalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalCard.swift; sourceTree = "<group>"; };
+		F1ACD69522522C35454D3BFF /* UserIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserIdentity.swift; sourceTree = "<group>"; };
+		F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandDisplayChoice.swift; sourceTree = "<group>"; };
+		F3E0279A2CB49DA7877488EA /* VercelPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VercelPoller.swift; sourceTree = "<group>"; };
+		F47BB4F2F340E867254EB113 /* DesktopMochiLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopMochiLogic.swift; sourceTree = "<group>"; };
+		F5E1C8C2F3B51100D26F50A1 /* ServiceViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceViews.swift; sourceTree = "<group>"; };
+		F68FA71D71D3BBD1A86840A3 /* Decisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decisions.swift; sourceTree = "<group>"; };
+		F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsSettingsView.swift; sourceTree = "<group>"; };
+		F96D022700E9BEB03D4F1829 /* DiffEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffEngine.swift; sourceTree = "<group>"; };
+		FDD20D1045834524237B0E13 /* DenyApprovalIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyApprovalIntent.swift; sourceTree = "<group>"; };
+		FE6A6BBBDFE813F0E6477C1D /* PhoneAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PhoneAssets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		027712B951829DDEBE821A8D /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				EFC2B6FA1DF3F1B3EDF79142 /* AboutView.swift */,
+				9C84877603AD38458DEA3FA3 /* AgentNotifier.swift */,
+				1AC91324928F18C047FCC2DB /* AppleStyle.swift */,
+				EFF91E4F311424051D645465 /* ApprovalCard.swift */,
+				F68FA71D71D3BBD1A86840A3 /* Decisions.swift */,
+				FDD20D1045834524237B0E13 /* DenyApprovalIntent.swift */,
+				78FC7D2E467F182108FBF67C /* Haptics.swift */,
+				14A84F5A145510622B21AFC6 /* HomeView.swift */,
+				DC494F30CCD30FBF22401A2D /* InstructionComposer.swift */,
+				3B98B625F5FBB44C3BB980F3 /* IntroView.swift */,
+				97250C79BD1284FC5A3CE4D7 /* KitPreviewView.swift */,
+				EBBAF07B95794098295DBE0E /* LastTurnView.swift */,
+				1CE7CEC11D3D37B7A8543EF9 /* LinkTestView.swift */,
+				80891402652C9964FF83D63C /* LiveActivityLink.swift */,
+				4B5672F107D3ADC6281CCF2A /* MacStubs.swift */,
+				63C6EE037DC61FDD4307C8CA /* MochiActivityAttributes.swift */,
+				35A48168E7CA84374D0773CE /* MochiLive.swift */,
+				08652F050661FBA762D1DC39 /* OpenLeadMochiIntent.swift */,
+				80A0985D4A2AD9ED7CCDFD2B /* PhoneLink.swift */,
+				75F4FF8C94E59ED40EAAF7C3 /* QuestionCard.swift */,
+				83C92CFFEB1E493351E3B262 /* SearchAndSpotlight.swift */,
+				A7A93D83EFEE0F9FD1C28104 /* ServiceLiveDetail.swift */,
+				AFCBF01CF09B88BBB2111EEB /* ServiceStatus.swift */,
+				F5E1C8C2F3B51100D26F50A1 /* ServiceViews.swift */,
+				2B0E29AB17BC87574FC4951A /* SessionDetailView.swift */,
+				4643FC9392F067C2FFC5EF55 /* SessionStatus.swift */,
+				46721B59FAD9571C2A07481B /* SharedSessions.swift */,
+				B721B7A1AF972A0DDFDD42B7 /* TurnArchive.swift */,
+				8F67F79168C05BE9B9B1F185 /* TurnShare.swift */,
+				79415E6CA0435C6235E8C5A0 /* ZuddyIntents.swift */,
+				3C3EF52ED4A4EB89D27199A6 /* ZuddyPhoneApp.swift */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		072260B7E401DDDE781D931E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B5D9CCE1E95D526B7A98B0B6 /* Localizable.xcstrings */,
+				EA0BDD34DDFF8F05E8764F87 /* sounds */,
+				8439A3578AF344416B271887 /* sounds */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		329C788D7D98B0CA11ADB5A7 /* ZuddyKit */ = {
+			isa = PBXGroup;
+			children = (
+				5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */,
+				9B4982D3B399A86D16BB593F /* ColorHex.swift */,
+				F96D022700E9BEB03D4F1829 /* DiffEngine.swift */,
+				442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */,
+				6A1D79E9F09DD2AC09F894A6 /* IslandTypes.swift */,
+				2D50FC0BB164CEA846426111 /* MochiActivityState.swift */,
+				C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */,
+				471CAB555DE01D43B34147CB /* MochiStill.swift */,
+				0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */,
+				BA8D08B25980DC793A32AF9A /* PillCatalog.swift */,
+				C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */,
+				073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */,
+				08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */,
+				88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */,
+			);
+			path = ZuddyKit;
+			sourceTree = "<group>";
+		};
+		415EE2B6D36C161DB3995D96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED0D2544E08357E586456B7D /* Zuddy.app */,
+				55E138D98CCDCC4B50D4FCC2 /* ZuddyAppStore.app */,
+				5002ABB345DAEC4E5C1022C6 /* ZuddyNotificationContent.appex */,
+				DC93D0A194982E86124E80CD /* ZuddyPhone.app */,
+				C205948F4E048ACBA460D69E /* ZuddyWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6616CF2B70C5CA2B923CDBB7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F870006B75D1272F991DD1A1 /* App */,
+				C196D866715E30FA53CB6247 /* NotificationContent */,
+				027712B951829DDEBE821A8D /* Phone */,
+				E4A3E3D41334D8F5BFBA65AA /* Widgets */,
+				329C788D7D98B0CA11ADB5A7 /* ZuddyKit */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8439A3578AF344416B271887 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				49EF9FFAA492340DABFCB837 /* approval.wav */,
+				6BDE2FB6463881F597311A0E /* error.wav */,
+				2912F1F2B0737B34A8D730DE /* finish.wav */,
+				D00CC381DACA2462D938ED6E /* question.wav */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
+		92C4ABDF69CB78D9F2D705A4 /* PhoneLink */ = {
+			isa = PBXGroup;
+			children = (
+				EA77DBFFC1E1CD8262C0D302 /* ApprovalRelay.swift */,
+				568259F3BA221E44024D0A66 /* CloudProbe.swift */,
+				AFF430404846A43D58FDA93E /* InstructionRunner.swift */,
+				2057413EC0317499E3568565 /* LiveActivityRelay.swift */,
+				7A10E0682ABFF43FFC478837 /* QuestionRelay.swift */,
+				DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */,
+				74714FC7CD3BB8B223DE8999 /* ServicePublisher.swift */,
+				46537E5EE407D480AA73A7D0 /* SessionPublisher.swift */,
+				894C1D258CCE589C4CE7B3C5 /* TurnRecorder.swift */,
+			);
+			path = PhoneLink;
+			sourceTree = "<group>";
+		};
+		A0BA00F978B6B1080E5A1CAE = {
+			isa = PBXGroup;
+			children = (
+				E081A502D580E48E7632291C /* Assets.xcassets */,
+				FE6A6BBBDFE813F0E6477C1D /* PhoneAssets.xcassets */,
+				072260B7E401DDDE781D931E /* Resources */,
+				6616CF2B70C5CA2B923CDBB7 /* Sources */,
+				415EE2B6D36C161DB3995D96 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C196D866715E30FA53CB6247 /* NotificationContent */ = {
+			isa = PBXGroup;
+			children = (
+				37E72A9D59193FBD50B09776 /* NotificationViewController.swift */,
+			);
+			path = NotificationContent;
+			sourceTree = "<group>";
+		};
+		E4A3E3D41334D8F5BFBA65AA /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				3C3A620CD1142265F327802D /* MochiLiveActivity.swift */,
+				229A3AB7D92215ABD4061C96 /* TeamConfiguration.swift */,
+				6A838048FE064AFA2C6A3393 /* ZuddyControl.swift */,
+				24DA283DC2F6139F20F1C56E /* ZuddyWidgets.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		F870006B75D1272F991DD1A1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				12B1CA7A86537841FADD1CFE /* AppDelegate.swift */,
+				3183602FF8F1D91B7FADBC49 /* AppLog.swift */,
+				5DB52D5DE47C3D054B14751E /* AppState.swift */,
+				987577031C549B06F4BF8176 /* AskQuestion.swift */,
+				7FA8593A71EC34D6635CB94D /* BotCanvasView.swift */,
+				6EC3D331A71E69A423AF2490 /* CalcomPoller.swift */,
+				47CD86940F54A06B9F4F4137 /* ChatMarkdown.swift */,
+				79C99CF2477312E863046229 /* ChatMarkdownView.swift */,
+				01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */,
+				AC414A84BA0658E1EADE0DCC /* ClaudePlanCardView.swift */,
+				3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */,
+				78AF36A60385F63B56436209 /* ClaudeResponseText.swift */,
+				D7F49566734A8FF218B82F25 /* ClaudeService.swift */,
+				C7C4ABD7BCDF0F74DD6784DB /* ClaudeSettingsFile.swift */,
+				5214D1FDD3434BDECA64F61D /* CodexPlanGauge.swift */,
+				DE007D5FE8534E100DC8DAD9 /* DemoEngine.swift */,
+				4AD62C74BDE862916F568743 /* DesktopMochi.swift */,
+				F47BB4F2F340E867254EB113 /* DesktopMochiLogic.swift */,
+				A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */,
+				9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */,
+				AF401B6F688751219CC6AB94 /* GithubPoller.swift */,
+				BA6D5C6CDB30913A2F13D104 /* GitHubPulse.swift */,
+				9488A040BE344102238422B3 /* GreetingCanvasView.swift */,
+				E0F13074AEB7F85AE8695FA7 /* HookServer.swift */,
+				CE9F674148647EEF44C7EC20 /* HotKeyCenter.swift */,
+				F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */,
+				1BE1A7A99FBA3A7636F049C0 /* IslandRootView.swift */,
+				5FCD8A67550EC4D359A02A5F /* IslandStateMachine.swift */,
+				6B2C7A13B7136956A9697F10 /* IslandViewContent.swift */,
+				DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */,
+				EB3B2AC0282F0FCF5083DFFA /* LocalChat.swift */,
+				BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */,
+				548367F894A9F40343F32353 /* N8nPoller.swift */,
+				EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */,
+				DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */,
+				884E8420E0FCF85735646F9D /* ResendPoller.swift */,
+				A5123AB8469494530F6D17CB /* SafeWebURL.swift */,
+				B8375493C9CF2497E3F2CA69 /* SettingsView.swift */,
+				2231DA5D44E6CB96061FFE56 /* ShortcutLogic.swift */,
+				F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */,
+				16D76389B53AC32F0FDA1727 /* SoundEngine.swift */,
+				6EB91DEE6FF24A3F739E7E29 /* StripePoller.swift */,
+				A1E0683819AC53A173275CF9 /* UploadCanvasView.swift */,
+				AED601231971BE3BCE136975 /* UploadSequenceEngine.swift */,
+				F1ACD69522522C35454D3BFF /* UserIdentity.swift */,
+				F3E0279A2CB49DA7877488EA /* VercelPoller.swift */,
+				5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */,
+				BA1C398468D80A7F55E3CC45 /* WindowContextCapture.swift */,
+				07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */,
+				92C4ABDF69CB78D9F2D705A4 /* PhoneLink */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24226E102AEF95052A464B26 /* ZuddyPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B6559C51B77CF3C90FAFE37 /* Build configuration list for PBXNativeTarget "ZuddyPhone" */;
+			buildPhases = (
+				BF99B97A66A6F40A7AAC84E0 /* Sources */,
+				0A55840F8A1F691FF077CB8A /* Resources */,
+				155F82495F43C52BA947AA3E /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CB5B036FC6A690B44A04D743 /* PBXTargetDependency */,
+				35A25726D7100A3835C14B54 /* PBXTargetDependency */,
+			);
+			name = ZuddyPhone;
+			packageProductDependencies = (
+			);
+			productName = ZuddyPhone;
+			productReference = DC93D0A194982E86124E80CD /* ZuddyPhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4F337003FA1B2F199D89F717 /* Zuddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47215C5AF9C4AB2CD219E5D1 /* Build configuration list for PBXNativeTarget "Zuddy" */;
+			buildPhases = (
+				B8E63E85693BA6ACAF2460E8 /* Sources */,
+				18E432E34F32CE4487726035 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Zuddy;
+			packageProductDependencies = (
+			);
+			productName = Zuddy;
+			productReference = ED0D2544E08357E586456B7D /* Zuddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		54E0D33323E87EF847AA1E07 /* ZuddyAppStore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 935F8E573C70183E7BED43D4 /* Build configuration list for PBXNativeTarget "ZuddyAppStore" */;
+			buildPhases = (
+				D185DE1E62F13CA379933CAE /* Sources */,
+				A08B69326FFD2DF89A81E2C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZuddyAppStore;
+			packageProductDependencies = (
+			);
+			productName = ZuddyAppStore;
+			productReference = 55E138D98CCDCC4B50D4FCC2 /* ZuddyAppStore.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF489BC7E29B265422D5B9B6 /* ZuddyWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0B10CD2F3FBBB484898231B /* Build configuration list for PBXNativeTarget "ZuddyWidgets" */;
+			buildPhases = (
+				E54548444D599EB15C891DF5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZuddyWidgets;
+			packageProductDependencies = (
+			);
+			productName = ZuddyWidgets;
+			productReference = C205948F4E048ACBA460D69E /* ZuddyWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D6291A2C8311A81831B4E4D9 /* ZuddyNotificationContent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FFC82AE88A9B6A454FA1526 /* Build configuration list for PBXNativeTarget "ZuddyNotificationContent" */;
+			buildPhases = (
+				9DC4CE5D4AE12B4C93A53CDB /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZuddyNotificationContent;
+			packageProductDependencies = (
+			);
+			productName = ZuddyNotificationContent;
+			productReference = 5002ABB345DAEC4E5C1022C6 /* ZuddyNotificationContent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		527E1D3856599348955F63C6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					24226E102AEF95052A464B26 = {
+						DevelopmentTeam = GN8S8PZ5CG;
+						ProvisioningStyle = Automatic;
+					};
+					54E0D33323E87EF847AA1E07 = {
+						DevelopmentTeam = GN8S8PZ5CG;
+						ProvisioningStyle = Automatic;
+					};
+					BF489BC7E29B265422D5B9B6 = {
+						DevelopmentTeam = GN8S8PZ5CG;
+						ProvisioningStyle = Automatic;
+					};
+					D6291A2C8311A81831B4E4D9 = {
+						DevelopmentTeam = GN8S8PZ5CG;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = C7CFD0F40B7DE268E8456D08 /* Build configuration list for PBXProject "Zuddy" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A0BA00F978B6B1080E5A1CAE;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 415EE2B6D36C161DB3995D96 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F337003FA1B2F199D89F717 /* Zuddy */,
+				54E0D33323E87EF847AA1E07 /* ZuddyAppStore */,
+				24226E102AEF95052A464B26 /* ZuddyPhone */,
+				BF489BC7E29B265422D5B9B6 /* ZuddyWidgets */,
+				D6291A2C8311A81831B4E4D9 /* ZuddyNotificationContent */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A55840F8A1F691FF077CB8A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				168A51634F8C2D156DF6B126 /* PhoneAssets.xcassets in Resources */,
+				70863DC7C095F11CA59E6AD6 /* approval.wav in Resources */,
+				3ACF8A5318D49BBBAEEDB7CE /* error.wav in Resources */,
+				AE462B5A13786654872975A4 /* finish.wav in Resources */,
+				2EAD335D17052D03E809102F /* question.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18E432E34F32CE4487726035 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FE6D6E27FFF49DE58F4CA8A /* Assets.xcassets in Resources */,
+				FF56D0FE2387FB6E79A773C2 /* Localizable.xcstrings in Resources */,
+				3F27CFFF93497356CC4BBC5A /* sounds in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A08B69326FFD2DF89A81E2C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91540CF855DA10974FB85FB3 /* Assets.xcassets in Resources */,
+				891E6AD5A79D5098C4D14611 /* Localizable.xcstrings in Resources */,
+				1F58AFE23CD46D5D1CDA7AFE /* sounds in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9DC4CE5D4AE12B4C93A53CDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				338C1FF11C5856BE0D4082D1 /* BotEngine.swift in Sources */,
+				448084B561F26E04FF7506C1 /* ColorHex.swift in Sources */,
+				63B8BA013A56AE11B77B2127 /* DiffEngine.swift in Sources */,
+				9023E47C529C77C3DDE53C62 /* IslandScreenGeometry.swift in Sources */,
+				A201D3226ABC1EF87DA351A6 /* IslandTypes.swift in Sources */,
+				1EF88B1677001A1681AA6F3E /* MacStubs.swift in Sources */,
+				8C1F0B8F91189E53AF05F1C8 /* MochiActivityState.swift in Sources */,
+				3307D1FFC73C3EA3243948CE /* MochiLive.swift in Sources */,
+				5316503BDDA34B17DD4F2473 /* MochiOutfitDrawing.swift in Sources */,
+				C4EA019734FEF96CCC5C0271 /* MochiStill.swift in Sources */,
+				BF7C017596ED94EA065E4B97 /* MochiWardrobe.swift in Sources */,
+				4A008AE91A035000DCF6A4A3 /* NotificationViewController.swift in Sources */,
+				75FC9F64E140D294FA555D41 /* PillCatalog.swift in Sources */,
+				D48682B935C8627FE535DD60 /* QuestionPayload.swift in Sources */,
+				668C1FB55F6921AFE75E45BC /* ServiceDetail.swift in Sources */,
+				C6FF388F6F4482551881A572 /* ServiceSnapshot.swift in Sources */,
+				CBDCDD02339143EE4F4BA6F9 /* TurnSnapshot.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8E63E85693BA6ACAF2460E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006BB413849C4B78E2CDDBD6 /* AppDelegate.swift in Sources */,
+				9604DC760DC46959E39D9B7C /* AppLog.swift in Sources */,
+				DA0A9C120F1C33F29FD1013E /* AppState.swift in Sources */,
+				73FFCCFB7C26A205DD05A5A0 /* ApprovalRelay.swift in Sources */,
+				D850A059C2507EEDC2913064 /* AskQuestion.swift in Sources */,
+				717077769EBE6B2AF38C36F0 /* BotCanvasView.swift in Sources */,
+				868DF3C1658E6FEFDB07476F /* BotEngine.swift in Sources */,
+				71A2D44A0C2C5E32F6132504 /* CalcomPoller.swift in Sources */,
+				94F651ED2F95F865AE6F31AC /* ChatMarkdown.swift in Sources */,
+				B9101C26661A2DCB924294E0 /* ChatMarkdownView.swift in Sources */,
+				85975F2C3C010F6140EDEBF3 /* ClaudeHookDetection.swift in Sources */,
+				B6297F832893BF90EF36FF90 /* ClaudePlanCardView.swift in Sources */,
+				B2A9F057568E9E6695B1F19E /* ClaudePlanGauge.swift in Sources */,
+				C98EB02D5B658FA58992F3B9 /* ClaudeResponseText.swift in Sources */,
+				0D9A1601A6193DC36C4BEBC2 /* ClaudeService.swift in Sources */,
+				37010D80834C6D09E18F0FC7 /* ClaudeSettingsFile.swift in Sources */,
+				578141FD225E74B80D5EE118 /* CloudProbe.swift in Sources */,
+				779AE9912B461982F4BAF657 /* CodexPlanGauge.swift in Sources */,
+				E3868AAFA225B7CA0D5BAC3A /* ColorHex.swift in Sources */,
+				50F34387B971AE8BC073AE68 /* DemoEngine.swift in Sources */,
+				E6FD4488B625302B16D06605 /* DesktopMochi.swift in Sources */,
+				BD3E2D7F01BCDF1EF8433534 /* DesktopMochiLogic.swift in Sources */,
+				CB80012395C4276F06EBB50A /* DiffEngine.swift in Sources */,
+				A50503521DC0502E80A66AAB /* FileDropView.swift in Sources */,
+				386BD83CA6F1FE1485A6588F /* GitHubActivity.swift in Sources */,
+				EF7EC1A05D796A03DF545F46 /* GitHubPulse.swift in Sources */,
+				CEF2D17E1B4C18257BFB91EB /* GithubPoller.swift in Sources */,
+				60D9D91ACC93B0B7B8E008AA /* GreetingCanvasView.swift in Sources */,
+				B7FEC537DB69835A42561B15 /* HookServer.swift in Sources */,
+				38A68CA6964D6096AF2B4927 /* HotKeyCenter.swift in Sources */,
+				815D5B474DAA7020CD4E7775 /* InstructionRunner.swift in Sources */,
+				FF753AD657A93C09A4F84DAB /* IslandDisplayChoice.swift in Sources */,
+				F676241189A567B7FDF54B59 /* IslandRootView.swift in Sources */,
+				1A08EC78FD601CDCE32F77F4 /* IslandScreenGeometry.swift in Sources */,
+				2AB331A7A5A983934AC40C75 /* IslandStateMachine.swift in Sources */,
+				4E1DA5DCA51E9F2DC101D9C8 /* IslandTypes.swift in Sources */,
+				CA0877CE52401F4D496E5108 /* IslandViewContent.swift in Sources */,
+				F7F78A739DA9DD4091A97756 /* IslandWindowController.swift in Sources */,
+				D8F007B0F7A9AD03B2E58412 /* LiveActivityRelay.swift in Sources */,
+				1119AC1E6274B61DE485522A /* LocalChat.swift in Sources */,
+				F05FEF551E6C40A7D1870E71 /* MochiActivityState.swift in Sources */,
+				C60C53140124BF128DA6F620 /* MochiOutfitDrawing.swift in Sources */,
+				8852B111CD9D2EC0450C1709 /* MochiStill.swift in Sources */,
+				97CAA1F34818661E8BF380F6 /* MochiWardrobe.swift in Sources */,
+				E6BE1CBBBBE3EE3DC3DF90EB /* MusicController.swift in Sources */,
+				9182E5DADE52CE468025325C /* N8nPoller.swift in Sources */,
+				622E4C3CEEBB35E4365382F1 /* NotionPoller.swift in Sources */,
+				39B2E3BB87D706BB66895272 /* PillCatalog.swift in Sources */,
+				D470F1F3200B2439D53420BC /* QuestionPayload.swift in Sources */,
+				3362AACC9CF5BC56F5CA603E /* QuestionRelay.swift in Sources */,
+				BFD37F2E39872611C73A292E /* RecapStore.swift in Sources */,
+				7E376D1DF513856C5BD7A636 /* ResendPoller.swift in Sources */,
+				C5D608E1C9CFBC4400715332 /* SafeWebURL.swift in Sources */,
+				29493BBCBD2B9AFA8B207923 /* ServiceDetail.swift in Sources */,
+				E0A561BD6CEB9F2A1AB38E65 /* ServiceDetailRunner.swift in Sources */,
+				4116ACBB079E0DE475891981 /* ServicePublisher.swift in Sources */,
+				1745F239C2F749B3248DFC15 /* ServiceSnapshot.swift in Sources */,
+				2A2B761655F7F4D056AC6691 /* SessionPublisher.swift in Sources */,
+				86FB88CBD19D0D089F106D1F /* SettingsView.swift in Sources */,
+				466664CDE7824299DEDD4AE4 /* ShortcutLogic.swift in Sources */,
+				E6836DCF00061E0DFBE31BFE /* ShortcutsSettingsView.swift in Sources */,
+				C9B8B05E5BEFD61B00D4BEF2 /* SoundEngine.swift in Sources */,
+				6BAC6E6DA40CAA7BA29DD528 /* StripePoller.swift in Sources */,
+				89A3E6561FC4075E1E2EE41B /* TurnRecorder.swift in Sources */,
+				962399DF6C4745C69F83672A /* TurnSnapshot.swift in Sources */,
+				B873952FDA49B9D7F44C2188 /* UploadCanvasView.swift in Sources */,
+				A335B94BAD502907A65AEAE8 /* UploadSequenceEngine.swift in Sources */,
+				676EAD991A56421BDDEB8430 /* UserIdentity.swift in Sources */,
+				A062157B6A93750365D533F8 /* VercelPoller.swift in Sources */,
+				694874076CCE0B96C029F87B /* WeeklyRecapView.swift in Sources */,
+				33558184AD8CD27A33A5D3C0 /* WindowContextCapture.swift in Sources */,
+				30705FBA1CA37066E494243C /* ZuddyApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF99B97A66A6F40A7AAC84E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAB0FE35AD392A7A43286C8E /* AboutView.swift in Sources */,
+				1F63363150C491B1A1B03AD3 /* AgentNotifier.swift in Sources */,
+				B874078A31F0482B73B9EB23 /* AppleStyle.swift in Sources */,
+				CB76C1CF96544C512941482F /* ApprovalCard.swift in Sources */,
+				FA37B43E6E95F6449D073F79 /* BotEngine.swift in Sources */,
+				A14DE878458E33127C4B6FB5 /* ColorHex.swift in Sources */,
+				808CEB22665936CD0CD24BC4 /* Decisions.swift in Sources */,
+				6301F04AEFAD05FD2FF45710 /* DenyApprovalIntent.swift in Sources */,
+				288875F5CF31BC403B365B9F /* DiffEngine.swift in Sources */,
+				0A5B2E8127932F18661EDFBB /* Haptics.swift in Sources */,
+				86CEADDBD41A7A799E2FD450 /* HomeView.swift in Sources */,
+				DC0490A488D69D6411EF31A5 /* InstructionComposer.swift in Sources */,
+				51E46025BA55D04D72A48B18 /* IntroView.swift in Sources */,
+				530B1C10960CC0BAAABE7345 /* IslandScreenGeometry.swift in Sources */,
+				D53A251B9C05A610D7962621 /* IslandTypes.swift in Sources */,
+				A4E2C6C807CCD30EA4473872 /* KitPreviewView.swift in Sources */,
+				40E1002D73D36EA4CD96D096 /* LastTurnView.swift in Sources */,
+				3B0BD7D7F70CB41E5538C788 /* LinkTestView.swift in Sources */,
+				E821DECF7CE470511AA0A093 /* LiveActivityLink.swift in Sources */,
+				C0EE4FB985964A804DCAB9A6 /* MacStubs.swift in Sources */,
+				56611E87E0441BC5B2992180 /* MochiActivityAttributes.swift in Sources */,
+				85CC2C6026E428E02E03B336 /* MochiActivityState.swift in Sources */,
+				1EE63904B284DFD1869439B2 /* MochiLive.swift in Sources */,
+				39F8765DEA1BCD57F3802AA8 /* MochiOutfitDrawing.swift in Sources */,
+				74FB9CC0E27A8F476FD90A23 /* MochiStill.swift in Sources */,
+				14957CFD21ED2305CBD91C0F /* MochiWardrobe.swift in Sources */,
+				2D0C1EA29AB96BD73491D141 /* OpenLeadMochiIntent.swift in Sources */,
+				8E6F1E420CF547C68E5DCE69 /* PhoneLink.swift in Sources */,
+				B8F2719D149E2CC7BBE2FEB3 /* PillCatalog.swift in Sources */,
+				2717FAFBAA9AE573104C81A9 /* QuestionCard.swift in Sources */,
+				1C0A004126BE94D5980D5912 /* QuestionPayload.swift in Sources */,
+				FC4C8BEAF4556734132D2F7A /* SearchAndSpotlight.swift in Sources */,
+				C188AB578E8EAE760DDAD086 /* ServiceDetail.swift in Sources */,
+				5FABA6DB394204DDD29DD4F0 /* ServiceLiveDetail.swift in Sources */,
+				2BE087049BA8011CD7A4A59D /* ServiceSnapshot.swift in Sources */,
+				779B69DB1DE1B64E62223DF6 /* ServiceStatus.swift in Sources */,
+				85CAEE903649AED4DD98E678 /* ServiceViews.swift in Sources */,
+				24F04E1652766DDC075E9CC9 /* SessionDetailView.swift in Sources */,
+				5EC5667A054CE7C5C9609134 /* SessionStatus.swift in Sources */,
+				1BE09C9B591E8CE6778B5E35 /* SharedSessions.swift in Sources */,
+				4159FE683709B0B6EA4C5361 /* TurnArchive.swift in Sources */,
+				64213C2E408E37C9B5419783 /* TurnShare.swift in Sources */,
+				74407F95A55354F26F787B37 /* TurnSnapshot.swift in Sources */,
+				DAED5E4619FF3148F8E974A0 /* ZuddyIntents.swift in Sources */,
+				FB80DE8B2EFC125756704B5D /* ZuddyPhoneApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D185DE1E62F13CA379933CAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF329FF45C7E589EC69FDF4B /* AppDelegate.swift in Sources */,
+				9BD12ADE4A5498166CF3163B /* AppLog.swift in Sources */,
+				2A9D9DF07F49A81ADCC32178 /* AppState.swift in Sources */,
+				33E1E9EF1E94D9DC1149F5DC /* ApprovalRelay.swift in Sources */,
+				6FE7492BB37183FE1734F673 /* AskQuestion.swift in Sources */,
+				3DF3E82D3A8B44EAD569F268 /* BotCanvasView.swift in Sources */,
+				1B8EF35F375A335AFCDB7D46 /* BotEngine.swift in Sources */,
+				CBB0F009FAAC538E6AB74918 /* CalcomPoller.swift in Sources */,
+				13426A9F0D533ED3839917C4 /* ChatMarkdown.swift in Sources */,
+				0CCA8AC081E1554420F4CAFC /* ChatMarkdownView.swift in Sources */,
+				FA31EE209011E974B9F8E35A /* ClaudeHookDetection.swift in Sources */,
+				88D167C85DA78F2A6E9F614D /* ClaudePlanCardView.swift in Sources */,
+				EC5AA36F391D360D5B41468B /* ClaudePlanGauge.swift in Sources */,
+				0AD8A5079DA152B2C6827662 /* ClaudeResponseText.swift in Sources */,
+				40C7917B813A1DAC7A565CD1 /* ClaudeService.swift in Sources */,
+				D8E25500F80478750F955335 /* ClaudeSettingsFile.swift in Sources */,
+				436142C64B2FFE1EA275D43C /* CloudProbe.swift in Sources */,
+				EB5B1261690365915AF59328 /* CodexPlanGauge.swift in Sources */,
+				C827D2069B90ABB2C867B648 /* ColorHex.swift in Sources */,
+				A59EFDDAB9D7D86775FB8D2B /* DemoEngine.swift in Sources */,
+				DBF350A8077621F402C75394 /* DesktopMochi.swift in Sources */,
+				65E43EC2251A9775D59FC1E2 /* DesktopMochiLogic.swift in Sources */,
+				296657802B044768DAFEC724 /* DiffEngine.swift in Sources */,
+				17B729969E9952D087838E90 /* FileDropView.swift in Sources */,
+				2E596E9F12F3FCEFDD420E1A /* GitHubActivity.swift in Sources */,
+				2A025DDE7543FA44B0887BC5 /* GitHubPulse.swift in Sources */,
+				C492D1C07A4690DD4BBB3486 /* GithubPoller.swift in Sources */,
+				F0B85D9A46CC4D6440E6D08A /* GreetingCanvasView.swift in Sources */,
+				5335702AFA1C072D6D8785D2 /* HookServer.swift in Sources */,
+				BDDCCF62DCA92113320833B1 /* HotKeyCenter.swift in Sources */,
+				63DE34B2C065C46CCD1149E4 /* InstructionRunner.swift in Sources */,
+				B043860DF2229251FB8A6EB5 /* IslandDisplayChoice.swift in Sources */,
+				F3D676B2FB9B7F9F1C211317 /* IslandRootView.swift in Sources */,
+				161F9AB6523FCA2DB2646B4E /* IslandScreenGeometry.swift in Sources */,
+				7551E848922F258A7DB94628 /* IslandStateMachine.swift in Sources */,
+				4F3C65A517C3251254F7352A /* IslandTypes.swift in Sources */,
+				CAFFD483FB64AA86D6F8E90B /* IslandViewContent.swift in Sources */,
+				9179E7A26104ED683A7DC8B7 /* IslandWindowController.swift in Sources */,
+				D80DDAE269ECDF46CFACED40 /* LiveActivityRelay.swift in Sources */,
+				985FB141467FBF1AE393E51F /* LocalChat.swift in Sources */,
+				63409EA198BC18D132C40F74 /* MochiActivityState.swift in Sources */,
+				725E95437553B4183F306428 /* MochiOutfitDrawing.swift in Sources */,
+				FAAA0A11DF8863247AC3DFEC /* MochiStill.swift in Sources */,
+				8A5CBA16AEB43452BFE397A6 /* MochiWardrobe.swift in Sources */,
+				6BC7A294E946C6650ED3AEC4 /* MusicController.swift in Sources */,
+				01AC6C04721CF33E7FCB9D4A /* N8nPoller.swift in Sources */,
+				BAC3348287061859EE85DEAE /* NotionPoller.swift in Sources */,
+				1EB30828DD2FAC1F437E9E27 /* PillCatalog.swift in Sources */,
+				1A6A9873EECB42B7FCB4CA33 /* QuestionPayload.swift in Sources */,
+				8B66011A64C53BD7B10EDD2D /* QuestionRelay.swift in Sources */,
+				DF3E1806A1D82F7A7D89575D /* RecapStore.swift in Sources */,
+				A4E2DFE9002C5A673339223F /* ResendPoller.swift in Sources */,
+				F6FCC9F24A5E0C4F368594A9 /* SafeWebURL.swift in Sources */,
+				B27C5C940A3912D309096B54 /* ServiceDetail.swift in Sources */,
+				E46DA69E84218540DEC0C2EA /* ServiceDetailRunner.swift in Sources */,
+				165A597689E671337EF666DF /* ServicePublisher.swift in Sources */,
+				5ECB461AE73E840D49F99189 /* ServiceSnapshot.swift in Sources */,
+				335849B5D4E1463E07F89978 /* SessionPublisher.swift in Sources */,
+				489E9FE88A152CB9D4C9F913 /* SettingsView.swift in Sources */,
+				6BD11ABD1DCF21092D528571 /* ShortcutLogic.swift in Sources */,
+				B9305B524022891F9DF42943 /* ShortcutsSettingsView.swift in Sources */,
+				3A7DC1E26D433E12F7ED3823 /* SoundEngine.swift in Sources */,
+				F0BC9DD7715CFD7D41F7D2A6 /* StripePoller.swift in Sources */,
+				E58C441F5D4C340415C4529A /* TurnRecorder.swift in Sources */,
+				16D09F23AF0AD750D1DD816B /* TurnSnapshot.swift in Sources */,
+				92429027712E9107747DF066 /* UploadCanvasView.swift in Sources */,
+				41C5F1963B936C657E6D5314 /* UploadSequenceEngine.swift in Sources */,
+				EE31EF58D2505FEB20E5EA9A /* UserIdentity.swift in Sources */,
+				7F1E951D1F127A51A2998DB1 /* VercelPoller.swift in Sources */,
+				AF4E5508EA24B4D5D45A9D4A /* WeeklyRecapView.swift in Sources */,
+				F9C6227115F4F382A37DEBC0 /* WindowContextCapture.swift in Sources */,
+				59FB90CA03667DAD0646792E /* ZuddyApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E54548444D599EB15C891DF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B200991646B377907C708A17 /* BotEngine.swift in Sources */,
+				0E0A35FBD59C7BD2FA8A9F30 /* ColorHex.swift in Sources */,
+				D076BD438C5FA9BC3F335540 /* DenyApprovalIntent.swift in Sources */,
+				64DF7CF660F92C45601BFAF8 /* DiffEngine.swift in Sources */,
+				8B30DD0E34474A6EE78132B8 /* IslandScreenGeometry.swift in Sources */,
+				C64DD28F7948D6D4E35E062B /* IslandTypes.swift in Sources */,
+				D7791428F5ED71D1B384845D /* MacStubs.swift in Sources */,
+				32EA182CDDDC1501318674D8 /* MochiActivityAttributes.swift in Sources */,
+				92AA14A0DA91B61B80D2EC34 /* MochiActivityState.swift in Sources */,
+				3911B6C40032273627F957F0 /* MochiLiveActivity.swift in Sources */,
+				3D11CE21E995EB7A46388D66 /* MochiOutfitDrawing.swift in Sources */,
+				87D2293235174CAE73085141 /* MochiStill.swift in Sources */,
+				935736D82CC540055C9A6333 /* MochiWardrobe.swift in Sources */,
+				111D99208D7783BC865224BF /* OpenLeadMochiIntent.swift in Sources */,
+				44805F07F49556B7FA63975F /* PillCatalog.swift in Sources */,
+				9A36A5B2A7AE667360B2A5ED /* QuestionPayload.swift in Sources */,
+				8A46E4B121165D55B6DEF57B /* ServiceDetail.swift in Sources */,
+				F618951FE75FF72D595ECC0E /* ServiceSnapshot.swift in Sources */,
+				080F949465FA92458AFBB2CE /* SharedSessions.swift in Sources */,
+				5D6F6FD09FE3860B76A70A65 /* TeamConfiguration.swift in Sources */,
+				2B4D1D92BA1970F13D6A9234 /* TurnSnapshot.swift in Sources */,
+				A1D0A4F60BC4201F74E40716 /* ZuddyControl.swift in Sources */,
+				BFFBD9FDEF53A4308558761F /* ZuddyWidgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		35A25726D7100A3835C14B54 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D6291A2C8311A81831B4E4D9 /* ZuddyNotificationContent */;
+			targetProxy = 6B01C6D427F979ADD4F8FFC8 /* PBXContainerItemProxy */;
+		};
+		CB5B036FC6A690B44A04D743 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF489BC7E29B265422D5B9B6 /* ZuddyWidgets */;
+			targetProxy = DD1F81AF2B890FE4FE176895 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01512B73074CCA64FEA96D79 /* DebugCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-strict-concurrency=complete";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = DebugCloud;
+		};
+		07488E2E7390164FAB3BF0C0 /* DebugCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoNotificationContent.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.NotificationContent;
+				PRODUCT_NAME = ZuddyNotificationContent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = DebugCloud;
+		};
+		07820A5ADE8A47332ABA84D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyAppStoreCloud.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				INFOPLIST_FILE = Resources/InfoAppStore.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "APPSTORE PHONE_LINK";
+			};
+			name = Release;
+		};
+		1421B3D87268E41B892212E3 /* ReleaseCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoWidgets.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.Widgets;
+				PRODUCT_NAME = ZuddyWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = ReleaseCloud;
+		};
+		1668063874BC6A4C6AA83CC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoNotificationContent.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.NotificationContent;
+				PRODUCT_NAME = ZuddyNotificationContent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		186347CBD39A211E24CCCD35 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Blue AppIcon-Green AppIcon-Purple AppIcon-Pink AppIcon-Graphite";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyPhone.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COUCOU_APNS_ENV = production;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoPhone.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1A18DF2AB829DAE99550402B /* ReleaseCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Blue AppIcon-Green AppIcon-Purple AppIcon-Pink AppIcon-Graphite";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyPhone.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COUCOU_APNS_ENV = production;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoPhone.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = ReleaseCloud;
+		};
+		1E0AE1B13E45D7D48449ACC6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-strict-concurrency=complete";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		356A57A275368793B3DEB20E /* DebugCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyAppStoreCloud.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				INFOPLIST_FILE = Resources/InfoAppStore.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "APPSTORE PHONE_LINK";
+			};
+			name = DebugCloud;
+		};
+		458E7AE99EFEEAFAC4E89CB6 /* ReleaseCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyReleaseCloud.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_SANDBOX = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				PROVISIONING_PROFILE_SPECIFIER = "Zuddy Developer ID";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PHONE_LINK;
+			};
+			name = ReleaseCloud;
+		};
+		468175B75E0BB0CA66B1F9DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoWidgets.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.Widgets;
+				PRODUCT_NAME = ZuddyWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		4DB0C4C6989126505945D9BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyAppStore.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				INFOPLIST_FILE = Resources/InfoAppStore.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPSTORE;
+			};
+			name = Debug;
+		};
+		50F1153A738CC01FB77B7490 /* ReleaseCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp";
+				OTHER_SWIFT_FLAGS = "-strict-concurrency=complete";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = ReleaseCloud;
+		};
+		711360FDE34999F9B1FF1017 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/Zuddy.entitlements;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp";
+				OTHER_SWIFT_FLAGS = "-strict-concurrency=complete";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		7D317AF6070BFE3E374DAFB3 /* DebugCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoWidgets.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.Widgets;
+				PRODUCT_NAME = ZuddyWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = DebugCloud;
+		};
+		815890A4F0CF49034146A388 /* DebugCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Blue AppIcon-Green AppIcon-Purple AppIcon-Pink AppIcon-Graphite";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyPhoneProduction.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COUCOU_APNS_ENV = development;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoPhone.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = DebugCloud;
+		};
+		865755EB0054A3F2D55888A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyReleaseCloud.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_SANDBOX = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				PROVISIONING_PROFILE_SPECIFIER = "Zuddy Developer ID";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PHONE_LINK;
+			};
+			name = Release;
+		};
+		9633F29338C8FB1307C24628 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoNotificationContent.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.NotificationContent;
+				PRODUCT_NAME = ZuddyNotificationContent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9EB32839AB7222BB66818725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoWidgets.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.Widgets;
+				PRODUCT_NAME = ZuddyWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) WIDGET_EXTENSION";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B089C513787204A63F152FC0 /* ReleaseCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyAppStore.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				INFOPLIST_FILE = Resources/InfoAppStore.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APPSTORE;
+			};
+			name = ReleaseCloud;
+		};
+		D4660A44F13C7779173FCB2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Blue AppIcon-Green AppIcon-Purple AppIcon-Pink AppIcon-Graphite";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyPhone.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COUCOU_APNS_ENV = development;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoPhone.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E02B6AFC1F8CD07C723AF29B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_SANDBOX = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F0D4AECF8C0D5259217C9647 /* DebugCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/ZuddyCloud.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_SANDBOX = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy;
+				PRODUCT_NAME = Zuddy;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG PHONE_LINK";
+			};
+			name = DebugCloud;
+		};
+		FBA37468591940A288775BF2 /* ReleaseCloud */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGNING_REQUIRED = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GN8S8PZ5CG;
+				ENABLE_HARDENED_RUNTIME = NO;
+				INFOPLIST_FILE = Resources/InfoNotificationContent.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismailalam.zuddy.NotificationContent;
+				PRODUCT_NAME = ZuddyNotificationContent;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = ReleaseCloud;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B6559C51B77CF3C90FAFE37 /* Build configuration list for PBXNativeTarget "ZuddyPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4660A44F13C7779173FCB2E /* Debug */,
+				815890A4F0CF49034146A388 /* DebugCloud */,
+				186347CBD39A211E24CCCD35 /* Release */,
+				1A18DF2AB829DAE99550402B /* ReleaseCloud */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		47215C5AF9C4AB2CD219E5D1 /* Build configuration list for PBXNativeTarget "Zuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E02B6AFC1F8CD07C723AF29B /* Debug */,
+				F0D4AECF8C0D5259217C9647 /* DebugCloud */,
+				865755EB0054A3F2D55888A8 /* Release */,
+				458E7AE99EFEEAFAC4E89CB6 /* ReleaseCloud */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8FFC82AE88A9B6A454FA1526 /* Build configuration list for PBXNativeTarget "ZuddyNotificationContent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1668063874BC6A4C6AA83CC7 /* Debug */,
+				07488E2E7390164FAB3BF0C0 /* DebugCloud */,
+				9633F29338C8FB1307C24628 /* Release */,
+				FBA37468591940A288775BF2 /* ReleaseCloud */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		935F8E573C70183E7BED43D4 /* Build configuration list for PBXNativeTarget "ZuddyAppStore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4DB0C4C6989126505945D9BB /* Debug */,
+				356A57A275368793B3DEB20E /* DebugCloud */,
+				07820A5ADE8A47332ABA84D0 /* Release */,
+				B089C513787204A63F152FC0 /* ReleaseCloud */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B0B10CD2F3FBBB484898231B /* Build configuration list for PBXNativeTarget "ZuddyWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EB32839AB7222BB66818725 /* Debug */,
+				7D317AF6070BFE3E374DAFB3 /* DebugCloud */,
+				468175B75E0BB0CA66B1F9DE /* Release */,
+				1421B3D87268E41B892212E3 /* ReleaseCloud */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C7CFD0F40B7DE268E8456D08 /* Build configuration list for PBXProject "Zuddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E0AE1B13E45D7D48449ACC6 /* Debug */,
+				01512B73074CCA64FEA96D79 /* DebugCloud */,
+				711360FDE34999F9B1FF1017 /* Release */,
+				50F1153A738CC01FB77B7490 /* ReleaseCloud */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 527E1D3856599348955F63C6 /* Project object */;
+}
