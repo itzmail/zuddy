@@ -1281,130 +1281,130 @@
         }
       }
     },
-    "Claude Code finished": {
+    "finished": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "انتهى Claude Code"
+            "value": "انتهت الجلسة"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code শেষ হয়েছে"
+            "value": "সমাপ্ত হয়েছে"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code finished"
+            "value": "finished"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code terminó"
+            "value": "terminó"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code a terminé"
+            "value": "a terminé"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code समाप्त हो गया"
+            "value": "समाप्त हो गया"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code selesai"
+            "value": "selesai"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code terminou"
+            "value": "terminou"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code завершил"
+            "value": "завершил"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code 已完成"
+            "value": "已完成"
           }
         }
       }
     },
-    "Claude Code is asking": {
+    "is asking": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code يسأل"
+            "value": "يسأل"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code জিজ্ঞেস করছে"
+            "value": "জিজ্ঞেস করছে"
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code is asking"
+            "value": "is asking"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code está preguntando"
+            "value": "está preguntando"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code demande"
+            "value": "demande"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code पूछ रहा है"
+            "value": "पूछ रहा है"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code bertanya"
+            "value": "bertanya"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code está perguntando"
+            "value": "está perguntando"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code спрашивает"
+            "value": "спрашивает"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "Claude Code 正在询问"
+            "value": "正在询问"
           }
         }
       }

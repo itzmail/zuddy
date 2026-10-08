@@ -663,7 +663,8 @@ struct CompactMiniGrid: View {
         let cols = [GridItem(.fixed(12), spacing: 4), GridItem(.fixed(12), spacing: 4)]
         LazyVGrid(columns: cols, spacing: 4) {
             ForEach(others) { task in
-                MiniBotCanvasView(task: task)
+                MiniBotCanvasView(task: task,
+                                  isDancing: task.id == "integration_music" && state.musicPlaying)
                     .frame(width: 12 / 0.6, height: 12 / 0.6)
                     .frame(width: 12, height: 12, alignment: .center)
             }

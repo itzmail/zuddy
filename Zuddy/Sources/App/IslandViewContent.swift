@@ -264,7 +264,11 @@ struct OverviewView: View {
             switchChatProvider(.llamacpp)
         case "integration_music":
             #if !APPSTORE
-            MusicController.shared.openMusic()
+            if MusicController.shared.usesMediaControl {
+                MusicController.shared.openMediaSource()
+            } else {
+                MusicController.shared.openMusic()
+            }
             #endif
         default:
             // Non-integration real tasks
@@ -384,7 +388,7 @@ struct QuestionView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     // Header row: agent name + question counter + "Reply in terminal" link
                     HStack(spacing: 4) {
-                        AgentWho(task: nil, label: "Claude Code is asking")
+                        AgentWho(task: state.focusTask, label: "is asking")
                         Spacer(minLength: 4)
                         if q.questions.count > 1 {
                             Text("\(qi + 1)/\(q.questions.count)")
@@ -612,6 +616,38 @@ private func openClaudeDesktopApp() {
     }
 }
 
+private let terminalBundleIds = ["com.apple.Terminal", "com.googlecode.iterm2", "net.kovidgoyal.kitty", "com.mitchellh.ghostty"]
+
+private func activateTerminalApp() {
+    let activated = terminalBundleIds.compactMap { id in
+        NSWorkspace.shared.runningApplications.first { $0.bundleIdentifier == id }
+    }.first.map { $0.activate(options: .activateIgnoringOtherApps) }
+    if activated == nil {
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Terminal.app"))
+    }
+}
+
+/// If the agent runs inside a Herdr pane, focus that exact pane via the Herdr CLI
+/// (in addition to bringing the terminal app forward). Falls back silently when
+/// Herdr is not installed or the CLI fails.
+private func openTerminalOrHerdr(paneId: String?) {
+    activateTerminalApp()
+    guard let paneId, !paneId.isEmpty else { return }
+    let candidates = [
+        ProcessInfo.processInfo.environment["HERDR_BIN_PATH"],
+        "/opt/homebrew/bin/herdr",
+        "/usr/local/bin/herdr",
+    ].compactMap { $0 }.filter { FileManager.default.isExecutableFile(atPath: $0) }
+    guard let herdr = candidates.first else { return }
+    let p = Process()
+    p.executableURL = URL(fileURLWithPath: herdr)
+    p.arguments = ["agent", "focus", paneId]
+    p.standardOutput = FileHandle.nullDevice
+    p.standardError = FileHandle.nullDevice
+    p.terminationHandler = { _ in }
+    try? p.run()
+}
+
 // MARK: - Finished
 
 struct FinishedView: View {
@@ -621,7 +657,7 @@ struct FinishedView: View {
         ZStack {
             CardBackground(wash: .green)
             VStack(alignment: .leading, spacing: 5) {
-                AgentWho(task: state.focusTask, label: "Claude Code finished")
+                AgentWho(task: state.focusTask, label: "finished")
                 Text({
                     if let fl = state.focusTask?.finalLine { return fl }
                     if let s = state.focusTask?.steps.last(where: { !$0.isDiffStep }) { return s }
@@ -640,13 +676,7 @@ struct FinishedView: View {
                     } else {
                         #if !APPSTORE
                         PrimaryButton("Open terminal") {
-                            let terminalBundleIds = ["com.apple.Terminal", "com.googlecode.iterm2", "net.kovidgoyal.kitty", "com.mitchellh.ghostty"]
-                            let activated = terminalBundleIds.compactMap { id in
-                                NSWorkspace.shared.runningApplications.first { $0.bundleIdentifier == id }
-                            }.first.map { $0.activate(options: .activateIgnoringOtherApps) }
-                            if activated == nil {
-                                NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Terminal.app"))
-                            }
+                            openTerminalOrHerdr(paneId: state.focusTask?.herdrPaneId)
                             NotificationCenter.default.post(name: .islandCollapse, object: nil)
                         }
                         #endif
@@ -1730,7 +1760,7 @@ struct IntegrationCardView: View {
             return true  // nothing to install: the relay tags desktop sessions on its own
         case "integration_music":
             #if !APPSTORE
-            return true  // Apple Music is always installed on macOS
+            return true  // Apple Music fallback is always available; browsers via media-control
             #else
             return false
             #endif
@@ -2065,7 +2095,13 @@ struct IntegrationCardView: View {
                         }
                     } else if task.id == "integration_music" {
                         #if !APPSTORE
-                        Button("Open Music") { MusicController.shared.openMusic() }
+                        Button(MusicController.shared.usesMediaControl ? "Open source app" : "Open Music") {
+                            if MusicController.shared.usesMediaControl {
+                                MusicController.shared.openMediaSource()
+                            } else {
+                                MusicController.shared.openMusic()
+                            }
+                        }
                             .font(.system(size: 11, weight: .medium))
                             .foregroundColor(Color(hex: task.color).opacity(0.85))
                             .buttonStyle(.plain)
@@ -3923,9 +3959,11 @@ struct MusicPill: View {
     @Binding var swapping: Bool
     let onTap: () -> Void
     @State private var isHovered = false
+    @ObservedObject private var controller = MusicController.shared
 
     private var isPlaying: Bool { AppState.shared.musicPlaying }
-    private var showControls: Bool { isHovered && MusicController.shared.trackTitle != nil }
+    private var hasTrack: Bool { controller.trackTitle != nil }
+    private var showControls: Bool { hasTrack }
 
     var body: some View {
         ZStack {
@@ -3953,19 +3991,21 @@ struct MusicPill: View {
             }
             .allowsHitTesting(false)
 
-            // Title — trailing padding grows on hover to make room for buttons
+            // Title — trailing padding grows to make room for state buttons
             Text(task.name)
                 .font(.system(size: 10, weight: .semibold))
                 .foregroundColor(isHovered ? Color(hex: task.color).lighter(by: 0.3) : Color(hex: "#6B7079"))
                 .lineLimit(1)
                 .truncationMode(.tail)
                 .padding(.leading, 34)
-                .padding(.trailing, showControls ? 52 : 10)
+                .padding(.trailing, showControls ? (isHovered ? 52 : 30) : 10)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .animation(.spring(response: 0.2, dampingFraction: 0.7), value: showControls)
+                .animation(.spring(response: 0.2, dampingFraction: 0.7), value: isHovered)
                 .allowsHitTesting(false)
 
-            // Playback controls — appear on hover when a track is loaded
+            // Playback controls — play/pause always visible when a track is loaded;
+            // next-track appears on hover
             if showControls {
                 HStack(spacing: 0) {
                     Spacer()
@@ -3973,13 +4013,16 @@ struct MusicPill: View {
                         MusicControlButton(icon: isPlaying ? "pause.fill" : "play.fill", color: task.color) {
                             MusicController.shared.playPause()
                         }
-                        MusicControlButton(icon: "forward.fill", color: task.color) {
-                            MusicController.shared.nextTrack()
+                        if isHovered {
+                            MusicControlButton(icon: "forward.fill", color: task.color) {
+                                MusicController.shared.nextTrack()
+                            }
+                            .transition(.opacity.combined(with: .scale(scale: 0.85, anchor: .trailing)))
                         }
                     }
                     .padding(.trailing, 4)
                 }
-                .transition(.opacity.combined(with: .scale(scale: 0.85, anchor: .trailing)))
+                .transition(.opacity)
             }
         }
         .frame(maxWidth: .infinity)
@@ -4165,7 +4208,8 @@ struct ColumnAgentsView: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(Array(others.prefix(4).enumerated()), id: \.1.id) { idx, task in
-                MiniBotCanvasView(task: task)
+                MiniBotCanvasView(task: task,
+                                  isDancing: task.id == "integration_music" && state.musicPlaying)
                     .frame(width: 16 / 0.6, height: 16 / 0.6)
                     .frame(width: 16, height: 16)
                     .position(x: 0, y: CGFloat(50 + idx * 24))

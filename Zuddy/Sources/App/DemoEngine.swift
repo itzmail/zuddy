@@ -118,7 +118,8 @@ final class DemoEngine: ObservableObject {
         )
 
         // Hide all real pills — show only main during demo (integration + Codex added progressively).
-        let mainTask = s.tasks.first(where: { $0.id == s.mainPillId })
+        // Main pill may not be loaded (user toggled it off): fall back to the first loaded pill.
+        let mainTask = s.tasks.first(where: { $0.id == s.mainPillId }) ?? s.tasks.first
         s.tasks = mainTask.map { [$0] } ?? []
 
         // Weekly recap: available immediately so the reviewer can share it
@@ -262,7 +263,7 @@ final class DemoEngine: ObservableObject {
 
         // Restore focus
         let fid = snap.focusId ?? s.mainPillId
-        s.focusId = s.tasks.contains(where: { $0.id == fid }) ? fid : s.mainPillId
+        s.focusId = s.tasks.contains(where: { $0.id == fid }) ? fid : (s.tasks.first?.id ?? fid)
 
         // Restore view/mode only when no real request is pinned
         if s.pendingApproval == nil && s.pendingQuestion == nil {

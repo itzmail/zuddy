@@ -544,11 +544,10 @@ final class AppState: ObservableObject {
     }
 
     func removeTask(id: String) {
-        // mainPillId: always reset, never remove (the active workspace tool)
-        // activeIntegrations: also reset (user declared it active, keep it as idle)
-        let isProtected = id == mainPillId
+        // Declared-active pills: reset to idle (user wants them visible when idle).
+        // Everything else (incl. toggled-off pills): remove.
         let isActiveDecl = PillCatalog.definition(for: id) != nil && activeIntegrations.contains(id)
-        if isProtected || isActiveDecl {
+        if isActiveDecl {
             if let idx = tasks.firstIndex(where: { $0.id == id }) {
                 let catalogName = PillCatalog.definition(for: id)?.name
                 tasks[idx].state      = .idle
@@ -625,15 +624,13 @@ final class AppState: ObservableObject {
         // Sanitize: remove saved IDs not in catalog
         let catalogIds = Set(catalog.map { $0.id })
         activeIntegrations = activeIntegrations.filter { catalogIds.contains($0) }
-        // Validate mainPillId: must be a non-comingSoon workspace pill in the catalog
+        // mainPillId: kept for preferred-editor fallback and hook insert anchor; not forced
         if !PillCatalog.available.contains(where: { $0.id == mainPillId && $0.category == .workspace && !$0.comingSoon }) {
             mainPillId = PillCatalog.defaultMainPillId
         }
-        // mainPillId must never be in activeIntegrations (migration + invariant)
-        activeIntegrations.remove(mainPillId)
         for def in catalog {
-            // mainPillId always loads; activeIntegrations load
-            let shouldLoad = def.id == mainPillId || activeIntegrations.contains(def.id)
+            // Only user-declared active pills load
+            let shouldLoad = activeIntegrations.contains(def.id)
             let loaded = tasks.contains(where: { $0.id == def.id })
             if shouldLoad && !loaded {
                 let task = AgentTask(id: def.id, name: def.name, color: def.color,
@@ -647,13 +644,12 @@ final class AppState: ObservableObject {
         sortTasksByCatalog()
         if focusId == nil { focusId = mainPillId }
         syncMode()
+        syncView()
     }
 
-    /// Toggle a catalog pill on/off.
-    /// mainPillId: never toggleable (change via the Main picker first).
-    /// Max 4 non-main pills active at once.
+    /// Toggle a catalog pill on/off. All pills (including workspace editors) are toggleable.
+    /// Max 4 active at once.
     func toggleIntegration(_ id: String) {
-        guard id != mainPillId else { return }
         guard PillCatalog.available.contains(where: { $0.id == id }) else { return }
         if activeIntegrations.contains(id) {
             activeIntegrations.remove(id)
@@ -671,6 +667,7 @@ final class AppState: ObservableObject {
             }
         }
         syncMode()
+        syncView()
     }
 
     /// Sort tasks so catalog pills are in catalog order, undeclared pills sit right after

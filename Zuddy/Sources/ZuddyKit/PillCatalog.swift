@@ -39,6 +39,7 @@ struct PillDefinition {
         case "agent_codex":        return "Codex"
         case "agent_zed":          return "Zed"
         case "agent_pi":           return "Pi"
+        case "agent_herdr":        return "Herdr"
         case "agent_hermes":       return "Hermes"
         case "agent_claude-desktop": return "Claude Desktop"
         default:                   return "Agent"
@@ -62,6 +63,8 @@ enum PillCatalog {
               category: .workspace, subtitle: "Integration",  source: .agent,  githubOnly: true),
         .init(id: "agent_zed",           name: "Zed",         color: "#478BE6",
               category: .workspace, subtitle: "Editor",       source: .agent,  githubOnly: true),
+        .init(id: "agent_herdr",         name: "Herdr",       color: "#22D3EE",
+              category: .workspace, subtitle: "Multiplexer",  source: .agent,  githubOnly: true),
         // ── Agents ───────────────────────────────────────────────────────────
         .init(id: "agent_gemini",        name: "Gemini CLI",  color: "#8AB4F8",
               category: .agent,     subtitle: "Agent",        source: .agent,  githubOnly: true),
@@ -109,8 +112,8 @@ enum PillCatalog {
               category: .service,   subtitle: "Integration",  source: .n8n),
         .init(id: "integration_stripe",  name: "Stripe",      color: "#0570DE",
               category: .service,   subtitle: "Integration",  source: .n8n),
-        .init(id: "integration_music",   name: "Apple Music", color: "#FA2D48",
-              category: .service,   subtitle: "Integration",  source: .n8n, githubOnly: true),
+        .init(id: "integration_music",   name: "Now Playing", color: "#FA2D48",
+              category: .service,   subtitle: "Audio & Video", source: .n8n, githubOnly: true),
     ]
 
     /// Pills available in the current build target.

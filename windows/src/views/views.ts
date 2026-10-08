@@ -328,7 +328,7 @@ function buildQuestion(): ViewHost {
     el,
     sync() {
       clear(who);
-      who.append(agentWho(State.focusTask, "Claude Code is asking a question"));
+      who.append(agentWho(State.focusTask, "is asking a question"));
       const task = State.focusTask;
       title.textContent = task?.steps.at(-1) ?? "Claude needs an answer.";
       clear(row);
@@ -374,7 +374,7 @@ function buildFinished(actions: ViewActions): ViewHost {
     el,
     sync() {
       clear(who);
-      who.append(agentWho(State.focusTask, "Claude Code finished"));
+      who.append(agentWho(State.focusTask, "finished"));
       title.textContent = State.focusTask?.steps.at(-1) ?? "Session finished";
     },
   };

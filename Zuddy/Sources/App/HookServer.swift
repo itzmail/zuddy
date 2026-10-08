@@ -445,6 +445,7 @@ final class HookServer: @unchecked Sendable {
         case "SessionStart":
             activeSessionId = sessionId
             if isExternalAgent { upsertExternalAgent(id: agentId, name: validAgent!) } else { upsertWorkspaceTask(id: agentId, projectName: projectName, cwd: cwd) }
+            applyHerdrMeta(id: agentId, payload: payload)
             if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) { state.tasks[idx].finalLine = nil }
             nbLog("SessionStart \(isExternalAgent ? agentId : projectName) (\(sessionId.prefix(8)))")
             NotificationCenter.default.post(name: .checkMondayRecap, object: nil)
@@ -459,6 +460,7 @@ final class HookServer: @unchecked Sendable {
         case "UserPromptSubmit":
             activeSessionId = sessionId
             if isExternalAgent { upsertExternalAgent(id: agentId, name: validAgent!) } else { upsertWorkspaceTask(id: agentId, projectName: projectName, cwd: cwd) }
+            applyHerdrMeta(id: agentId, payload: payload)
             if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) { state.tasks[idx].finalLine = nil }
             state.updateTask(id: agentId, state: .thinking)
             if let prompt = payload["prompt"] as? String, !prompt.isEmpty {
@@ -477,6 +479,7 @@ final class HookServer: @unchecked Sendable {
             // Skip state/step update here to avoid flickering over the question card.
             guard tool != "AskUserQuestion" else { break }
             if isExternalAgent { upsertExternalAgent(id: agentId, name: validAgent!) } else { upsertWorkspaceTask(id: agentId, projectName: projectName, cwd: cwd) }
+            applyHerdrMeta(id: agentId, payload: payload)
             state.updateTask(id: agentId, state: .working)
             let input = payload["tool_input"] as? [String: Any] ?? [:]
             let step = localizedStep(tool: tool, input: input)
@@ -570,6 +573,26 @@ final class HookServer: @unchecked Sendable {
         default:
             break
         }
+    }
+
+    // MARK: - Herdr metadata
+
+    /// Stores Herdr pane/workspace ids (forwarded by agent plugins running inside Herdr)
+    /// on the task, so "Open terminal" can jump straight to the right pane.
+    /// New plugins always send the keys (null when not under Herdr): a present-but-empty
+    /// key clears stale ids so we never focus a pane that no longer exists.
+    @MainActor
+    private func applyHerdrMeta(id: String, payload: [String: Any]) {
+        guard let raw = payload["herdr_pane_id"] else { return }  // absent key → older plugin, keep as-is
+        let state = AppState.shared
+        guard let idx = state.tasks.firstIndex(where: { $0.id == id }) else { return }
+        guard let pane = raw as? String, !pane.isEmpty else {
+            state.tasks[idx].herdrPaneId = nil
+            state.tasks[idx].herdrWorkspaceId = nil
+            return
+        }
+        state.tasks[idx].herdrPaneId = pane
+        state.tasks[idx].herdrWorkspaceId = payload["herdr_workspace_id"] as? String
     }
 
     // MARK: - Agent validation + dynamic pill
@@ -964,6 +987,8 @@ final class HookServer: @unchecked Sendable {
             if !cwd.isEmpty { state.tasks[idx].sessionCwd = cwd }
             return
         }
+        // Catalog pill the user turned off in Settings: never resurrect it transiently.
+        if let def = PillCatalog.definition(for: id), !state.activeIntegrations.contains(def.id) { return }
         // Transient: create and insert after the main pill
         let def = PillCatalog.definition(for: id)
         let color = def?.color ?? "#C0C4CC"
@@ -2455,10 +2480,17 @@ import { spawn } from 'node:child_process';
 import { homedir } from 'node:os';
 
 const HOOK = `\\(process.env.HOME || homedir())/Library/Application Support/Zuddy/nb-hook`;
+const HERDR_PANE_ID = process.env.HERDR_PANE_ID ?? null;
+const HERDR_WORKSPACE_ID = process.env.HERDR_WORKSPACE_ID ?? null;
 
 function forward(hook_event_name: string, fields: Record<string, unknown>): void {
   try {
-    const payload = JSON.stringify({ hook_event_name, ...fields });
+    const payload = JSON.stringify({
+      hook_event_name,
+      herdr_pane_id: HERDR_PANE_ID,
+      herdr_workspace_id: HERDR_WORKSPACE_ID,
+      ...fields,
+    });
     const p = spawn('/bin/sh', [HOOK, '--agent', 'pi'], {
       stdio: ['pipe', 'ignore', 'ignore'],
       detached: true,
@@ -3373,6 +3405,9 @@ def main():
         payload.setdefault('iterm_session_id', env.get('ITERM_SESSION_ID', ''))
         payload.setdefault('term_session_id', env.get('TERM_SESSION_ID', ''))
         payload.setdefault('bundle_id', env.get('__CFBundleIdentifier', ''))
+        # Herdr pane hosting this agent, so Zuddy can focus it exactly.
+        payload.setdefault('herdr_pane_id', env.get('HERDR_PANE_ID') or None)
+        payload.setdefault('herdr_workspace_id', env.get('HERDR_WORKSPACE_ID') or None)
         if 'cwd' not in payload or not payload['cwd']:
             paths = payload.get('workspacePaths') or payload.get('workspace_roots', [])
             if isinstance(paths, list) and paths:
@@ -3440,6 +3475,9 @@ def main():
     payload.setdefault('iterm_session_id', env.get('ITERM_SESSION_ID', ''))
     payload.setdefault('term_session_id', env.get('TERM_SESSION_ID', ''))
     payload.setdefault('bundle_id', env.get('__CFBundleIdentifier', ''))
+    # Herdr pane hosting this agent, so Zuddy can focus it exactly.
+    payload.setdefault('herdr_pane_id', env.get('HERDR_PANE_ID') or None)
+    payload.setdefault('herdr_workspace_id', env.get('HERDR_WORKSPACE_ID') or None)
     if 'cwd' not in payload or not payload['cwd']:
         paths = payload.get('workspacePaths') or payload.get('workspace_roots', [])
         if isinstance(paths, list) and paths:
@@ -3676,6 +3714,9 @@ def main():
         payload.setdefault('iterm_session_id', env.get('ITERM_SESSION_ID', ''))
         payload.setdefault('term_session_id', env.get('TERM_SESSION_ID', ''))
         payload.setdefault('bundle_id', env.get('__CFBundleIdentifier', ''))
+        # Herdr pane hosting this agent, so Zuddy can focus it exactly.
+        payload.setdefault('herdr_pane_id', env.get('HERDR_PANE_ID') or None)
+        payload.setdefault('herdr_workspace_id', env.get('HERDR_WORKSPACE_ID') or None)
         if 'cwd' not in payload or not payload['cwd']:
             paths = payload.get('workspacePaths') or payload.get('workspace_roots', [])
             if isinstance(paths, list) and paths:
@@ -3742,6 +3783,9 @@ def main():
     payload.setdefault('iterm_session_id', env.get('ITERM_SESSION_ID', ''))
     payload.setdefault('term_session_id', env.get('TERM_SESSION_ID', ''))
     payload.setdefault('bundle_id', env.get('__CFBundleIdentifier', ''))
+    # Herdr pane hosting this agent, so Zuddy can focus it exactly.
+    payload.setdefault('herdr_pane_id', env.get('HERDR_PANE_ID') or None)
+    payload.setdefault('herdr_workspace_id', env.get('HERDR_WORKSPACE_ID') or None)
     if 'cwd' not in payload or not payload['cwd']:
         paths = payload.get('workspacePaths') or payload.get('workspace_roots', [])
         if isinstance(paths, list) and paths:

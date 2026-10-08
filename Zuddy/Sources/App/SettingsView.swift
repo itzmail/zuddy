@@ -490,17 +490,6 @@ struct SettingsView: View {
                     .font(.system(size: 11))
                     .foregroundColor(state.activeIntegrations.count >= 4 ? .orange : .secondary)
 
-                Picker(String(localized: "settings.main-pill"), selection: $state.mainPillId) {
-                    ForEach(PillCatalog.available.filter { $0.category == .workspace && !$0.comingSoon }, id: \.id) { def in
-                        Text(def.name).tag(def.id)
-                    }
-                }
-                .onChange(of: state.mainPillId) { _, newId in
-                    state.activeIntegrations.remove(newId)
-                    state.loadIntegrationTasks()
-                    state.setFocus(newId)
-                }
-
                 ForEach(PillCategory.allCases, id: \.self) { cat in
                     let catPills = PillCatalog.available.filter { $0.category == cat }
                     if !catPills.isEmpty {
@@ -1891,11 +1880,9 @@ struct SettingsView: View {
 
     @ViewBuilder
     private func pillRow(_ def: PillDefinition) -> some View {
-        let isMain = def.id == state.mainPillId
         let isOn   = state.activeIntegrations.contains(def.id)
-        let atMax  = state.activeIntegrations.count >= 4 && !isOn && !isMain
+        let atMax  = state.activeIntegrations.count >= 4 && !isOn
         let hint: String? = {
-            if isMain { return nil }
             if def.comingSoon { return String(localized: "Coming soon") }
             #if !APPSTORE
             if def.id == "agent_gemini"        && !HookServer.geminiHooksInstalled()      { return String(localized: "Hooks not installed") }
@@ -1927,23 +1914,17 @@ struct SettingsView: View {
                 .font(.system(size: 12))
                 .foregroundColor(atMax ? .secondary : .primary)
             Spacer()
-            if isMain {
-                Text("Main")
+            if let h = hint {
+                Text(h)
                     .font(.system(size: 11))
                     .foregroundColor(.secondary)
-            } else {
-                if let h = hint {
-                    Text(h)
-                        .font(.system(size: 11))
-                        .foregroundColor(.secondary)
-                }
-                Toggle("", isOn: Binding(
-                    get: { isOn },
-                    set: { _ in state.toggleIntegration(def.id) }
-                ))
-                .labelsHidden()
-                .disabled(atMax)
             }
+            Toggle("", isOn: Binding(
+                get: { isOn },
+                set: { _ in state.toggleIntegration(def.id) }
+            ))
+            .labelsHidden()
+            .disabled(atMax)
         }
     }
 }
