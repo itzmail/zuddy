@@ -640,7 +640,8 @@ struct GreetingCanvasView: View {
     @State private var doneWork: DispatchWorkItem? = nil
 
     var body: some View {
-        TimelineView(.animation) { timeline in
+        // 30 FPS cap — greeting is a short full-canvas animation; 30 fps halves CPU cost
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { timeline in
             let t = timeline.date.timeIntervalSince(startDate)
             Canvas { context, size in
                 context.withCGContext { cgCtx in

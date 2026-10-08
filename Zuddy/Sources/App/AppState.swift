@@ -374,6 +374,23 @@ final class AppState: ObservableObject {
     // Chat conversation history
     @Published var chatHistory: [ChatMessage] = []
 
+    // Chat height toggle — persisted across launches
+    @Published var isChatExpanded: Bool = UserDefaults.standard.bool(forKey: "isChatExpanded") {
+        didSet {
+            if oldValue != isChatExpanded {
+                UserDefaults.standard.set(isChatExpanded, forKey: "isChatExpanded")
+            }
+        }
+    }
+
+    /// Dynamic height of the prompt (chat) view in expanded mode.
+    /// Centralized so layout, window hit-testing and Mochi eye-tracking stay in sync.
+    var chatPromptHeight: CGFloat {
+        let base: CGFloat = isChatExpanded ? 480 : 240
+        let maxH: CGFloat = isChatExpanded ? 540 : 300
+        return min(maxH, base + CGFloat(chatHistory.count) * 40)
+    }
+
     // Pending approval request from Claude Code hook
     @Published var pendingApproval: ApprovalInfo? = nil
 

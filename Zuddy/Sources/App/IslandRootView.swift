@@ -33,11 +33,7 @@ struct IslandContainer: View {
     private let openSpring = Animation.spring(response: 0.5, dampingFraction: 0.72)
     private let closeEase  = Animation.timingCurve(0.45, 0, 0.2, 1, duration: 0.34)
 
-    private var chatPromptHeight: CGFloat {
-        let base: CGFloat = 240
-        let perMsg: CGFloat = 40
-        return min(300, base + CGFloat(state.chatHistory.count) * perMsg)
-    }
+    private var chatPromptHeight: CGFloat { state.chatPromptHeight }
 
     /// Pixels the content must be pushed down to clear the concave ear transparent area.
     /// = 0 in expanded mode (no ears), = earRadius in compact/notch mode.
@@ -100,7 +96,7 @@ struct IslandContainer: View {
                 // retain the panel's full height for particles and hands.
                 .mask(alignment: .topLeading) {
                     Rectangle().frame(width: islandWidth,
-                                      height: state.mode == .expanded ? 320 : islandHeight)
+                                      height: state.mode == .expanded ? 560 : islandHeight)
                 }
                 .opacity(uploadActive || greetingActive ? 0 : 1)
                 .animation(.easeInOut(duration: 0.25), value: uploadActive || greetingActive)
@@ -165,12 +161,16 @@ struct IslandContainer: View {
             guard state.mode == .expanded, state.view == .prompt else { return }
             withAnimation(openSpring) { islandHeight = chatPromptHeight }
         }
+        .onChange(of: state.isChatExpanded) { _, _ in
+            guard state.mode == .expanded, state.view == .prompt else { return }
+            withAnimation(openSpring) { islandHeight = chatPromptHeight }
+        }
         .onAppear {
             let (w, h) = islandSize(mode: state.mode, view: state.view,
                                     progress: state.uploadProgress,
                                     nw: state.notchWidth, nh: state.notchHeight)
             islandWidth      = w
-            islandHeight     = state.view == .prompt ? chatPromptHeight : h
+            islandHeight     = (state.mode == .expanded && state.view == .prompt) ? chatPromptHeight : h
             cornerRadius     = state.mode == .expanded ? IslandConst.expandedCorner : IslandConst.roundedCorner
             islandTopRadius  = 0
         }
@@ -312,7 +312,8 @@ struct BotPlacement: View {
             // Normal: extra 40pt canvas at top for heart particles; position offset up by 20pt;
             // BotEngine compensates with cy = H/2 + particleOverhang/2 + oy*R + R*0.06.
             if isUploading {
-                TimelineView(.animation) { tl in
+                // 30 FPS — dash progress tool doesn't need display-refresh rate
+                TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { tl in
                     let elapsed: Double = {
                         guard let start = state.uploadStartTime else { return 0 }
                         return tl.date.timeIntervalSince(start)

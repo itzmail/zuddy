@@ -52,6 +52,25 @@ final class IslandWindowController: NSWindowController {
     // Island-local key monitor (active only when island is key window)
     private var localKeyMonitor: Any?
 
+    // Retained event monitor tokens — must be removed on teardown to avoid leaks
+    private var monitorTokens: [Any] = []
+
+    /// Remove all retained NSEvent monitor tokens (attach-drag, ghost drag, highlight).
+    private func removeMonitors() {
+        for token in monitorTokens { NSEvent.removeMonitor(token) }
+        monitorTokens.removeAll()
+        if let m = localKeyMonitor { NSEvent.removeMonitor(m); localKeyMonitor = nil }
+        if let m = keyMonitor { NSEvent.removeMonitor(m); keyMonitor = nil }
+    }
+
+    deinit {
+        // deinit is nonisolated; hop to MainActor to touch non-Sendable stored state.
+        Task { @MainActor [weak self] in
+            self?.frameTimer?.invalidate()
+            self?.removeMonitors()
+        }
+    }
+
     convenience init() {
         let screen = Self.targetScreen(for: AppState.shared.islandDisplay)
         Self.currentScreen = screen
@@ -284,8 +303,24 @@ final class IslandWindowController: NSWindowController {
         RunLoop.main.add(frameTimer!, forMode: .common)
     }
 
+    private var pollInterval: TimeInterval = (1.0 / 60.0)
+
     private func pollFrame() {
         guard let panel = window as? IslandPanel else { return }
+
+        // Adaptive poll rate: notch hidden → 30 Hz (hover-to-wake stays responsive on fast swipes),
+        // 60 Hz otherwise (smooth mouse tracking & cursor responsiveness).
+        let wantInterval: TimeInterval = state.mode == .hidden ? (1.0 / 30.0) : (1.0 / 60.0)
+        if abs(wantInterval - pollInterval) > 0.001 {
+            pollInterval = wantInterval
+            frameTimer?.invalidate()
+            let t = Timer.scheduledTimer(withTimeInterval: wantInterval, repeats: true) { [weak self] _ in
+                guard let self else { return }
+                Task { @MainActor in self.pollFrame() }
+            }
+            RunLoop.main.add(t, forMode: .common)
+            frameTimer = t
+        }
 
         let mouse = NSEvent.mouseLocation
         followMouseIfNeeded(mouse)
@@ -534,10 +569,18 @@ final class IslandWindowController: NSWindowController {
         if cmd && event.keyCode == 126 { navigateCard(by: -1); return true }
         // ⌘O — open selected card item
         if cmd && event.keyCode == 31  { openCardSelection(); return true }
-        // ⌘E — toggle diff
-        if cmd && event.keyCode == 14 && state.view == .overview {
-            NotificationCenter.default.post(name: .islandToggleDiff, object: nil)
-            return true
+        // ⌘E — toggle diff in overview, toggle chat height in prompt
+        if cmd && event.keyCode == 14 {
+            if state.view == .overview {
+                NotificationCenter.default.post(name: .islandToggleDiff, object: nil)
+                return true
+            }
+            if state.view == .prompt {
+                withAnimation(.spring(response: 0.5, dampingFraction: 0.72)) {
+                    state.isChatExpanded.toggle()
+                }
+                return true
+            }
         }
         // ⌘↩ — send chat message
         if cmd && event.keyCode == 36 && state.view == .prompt {
@@ -703,7 +746,7 @@ final class IslandWindowController: NSWindowController {
         // Window attach drag.
         // Uses MainActor.assumeIsolated (synchronous) to avoid race with pollFrame().
         // Global mouseUp is the reliable fallback when cursor is outside our panel frame.
-        NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] event in
+        monitorTokens.append(NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] event in
             guard let self else { return event }
             MainActor.assumeIsolated {
                 guard self.wasInIsland else { return }
@@ -721,8 +764,8 @@ final class IslandWindowController: NSWindowController {
                 NotificationCenter.default.post(name: .triggerSlap, object: nil)
             }
             return event
-        }
-        NSEvent.addLocalMonitorForEvents(matching: .leftMouseDragged) { [weak self] event in
+        })
+        monitorTokens.append(NSEvent.addLocalMonitorForEvents(matching: .leftMouseDragged) { [weak self] event in
             guard let self else { return event }
             MainActor.assumeIsolated {
                 guard let start = self.attachDragStart, !self.inAttachDrag else { return }
@@ -733,7 +776,7 @@ final class IslandWindowController: NSWindowController {
                 self.showDragGhost()
             }
             return event
-        }
+        })
 
         // mouseUp — local (cursor still in panel) + global (cursor moved outside panel frame)
         let finishDrag: @Sendable () -> Void = { [weak self] in
@@ -779,7 +822,7 @@ final class IslandWindowController: NSWindowController {
                 #endif
             }
         }
-        NSEvent.addLocalMonitorForEvents(matching: .leftMouseUp) { [weak self] event in
+        monitorTokens.append(NSEvent.addLocalMonitorForEvents(matching: .leftMouseUp) { [weak self] event in
             guard let self else { return event }
             MainActor.assumeIsolated {
                 let hadPendingClick = self.pendingIslandClick
@@ -800,12 +843,12 @@ final class IslandWindowController: NSWindowController {
                 }
             }
             return event
-        }
+        })
         NSEvent.addGlobalMonitorForEvents(matching: .leftMouseUp) { _ in
             finishDrag()
         }
 
-        NSEvent.addLocalMonitorForEvents(matching: .rightMouseDown) { [weak self] event in
+        monitorTokens.append(NSEvent.addLocalMonitorForEvents(matching: .rightMouseDown) { [weak self] event in
             guard let self else { return event }
             MainActor.assumeIsolated {
                 guard self.wasInIsland, self.isBotHit(event.locationInWindow) else { return }
@@ -819,7 +862,7 @@ final class IslandWindowController: NSWindowController {
                 }
             }
             return event
-        }
+        })
 
         // Track last external app for window context capture
         let ourBundle = Bundle.main.bundleIdentifier ?? ""
@@ -1091,9 +1134,7 @@ final class IslandWindowController: NSWindowController {
         // Chat view resizes dynamically — must match IslandContainer.chatPromptHeight
         let islandH: CGFloat
         if s.mode == .expanded && s.view == .prompt {
-            let base: CGFloat = 240
-            let perMsg: CGFloat = 40
-            islandH = min(300, base + CGFloat(s.chatHistory.count) * perMsg)
+            islandH = s.chatPromptHeight
         } else {
             islandH = fixedH
         }
@@ -1188,9 +1229,7 @@ final class IslandPanel: NSPanel {
                                       progress: s.uploadProgress, nw: nw, nh: nh)
         let h: CGFloat
         if s.mode == .expanded && s.view == .prompt {
-            let base: CGFloat = 240
-            let perMsg: CGFloat = 40
-            h = min(300, base + CGFloat(s.chatHistory.count) * perMsg)
+            h = s.chatPromptHeight
         } else {
             h = fixedH
         }

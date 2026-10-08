@@ -11,7 +11,8 @@ struct UploadCanvasView: View {
     private var engine: UploadSequenceEngine { .shared }
 
     var body: some View {
-        TimelineView(.animation) { tl in
+        // 30 FPS cap — upload sequence is sprite-driven; 30 fps is plenty
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { tl in
             let f = engine.frame(at: tl.date)
             let wallTime = tl.date.timeIntervalSinceReferenceDate
 

@@ -934,9 +934,9 @@ struct UploadingView: View {
     private let barTop: CGFloat   = 58
 
     var body: some View {
-        // TimelineView fires at display refresh rate — progress derived from elapsed wall time,
-        // not from @Published uploadProgress (which only flips to 1.0 at completion).
-        TimelineView(.animation) { tl in
+        // Progress derived from elapsed wall time, not from @Published uploadProgress
+        // (which only flips to 1.0 at completion). 30 FPS cap — same visuals, half redraws.
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { tl in
             let elapsed: Double = {
                 guard let start = state.uploadStartTime else { return 0 }
                 return tl.date.timeIntervalSince(start)
@@ -1272,14 +1272,64 @@ struct PromptView: View {
                                 proxy.scrollTo(last.id, anchor: .bottom)
                             }
                         }
+                        .onChange(of: state.isChatExpanded) { _, _ in
+                            // Keep conversation anchored to the newest message when height changes
+                            if let last = state.chatHistory.last(where: { !$0.content.isEmpty }) {
+                                withAnimation { proxy.scrollTo(last.id, anchor: .bottom) }
+                            }
+                        }
                     }
                     .frame(maxHeight: .infinity)
                 } else {
                     Spacer()
                 }
 
-                HStack(spacing: 0) {
+                HStack(spacing: 6) {
+                    // New session — clears chat history and resets the conversation
+                    Button {
+                        NotificationCenter.default.post(name: .islandNewConversation, object: nil)
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "square.and.pencil")
+                                .font(.system(size: 9.5, weight: .medium))
+                            Text(String(localized: "New"))
+                                .font(.system(size: 10.5, weight: .medium))
+                        }
+                        .foregroundColor(Color(hex: "#7B8089"))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.white.opacity(0.06))
+                        .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .help(String(localized: "New session (⌘K)"))
+                    .opacity(state.chatHistory.isEmpty && text.isEmpty ? 0.6 : 1.0)
+
+                    // Chat height toggle — taller chat area for long conversations
+                    Button {
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.72)) {
+                            state.isChatExpanded.toggle()
+                        }
+                    } label: {
+                        Image(systemName: state.isChatExpanded
+                              ? "arrow.down.right.and.arrow.up.left"
+                              : "arrow.up.left.and.arrow.down.right")
+                            .font(.system(size: 9.5, weight: .medium))
+                            .foregroundColor(state.isChatExpanded
+                                             ? Color(hex: "#F5F6F8")
+                                             : Color(hex: "#7B8089"))
+                            .padding(.horizontal, 7)
+                            .padding(.vertical, 5)
+                            .background(Color.white.opacity(state.isChatExpanded ? 0.12 : 0.06))
+                            .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .help(state.isChatExpanded
+                          ? String(localized: "Collapse height (⌘E)")
+                          : String(localized: "Taller chat (⌘E)"))
+
                     Spacer()
+
                     Button {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
                             showModelPicker.toggle()
@@ -1354,6 +1404,8 @@ struct PromptView: View {
             guard state.view == .prompt else { return }
             text = ""
             state.chatHistory = []
+            state.promptContext = nil
+            state.stateOverride = nil
             ClaudeService.shared.clearConversation()
             focused = true
         }
@@ -3752,7 +3804,7 @@ struct TickerRowView: View {
                 // Filename + counts
                 HStack(spacing: 0) {
                     ZStack(alignment: .leading) {
-                        TickerShimmerText(text: dp.filename)
+                        TickerShimmerText(text: dp.filename, active: isActive && shimmerOpacity > 0)
                             .opacity(shimmerOpacity)
                         Text(dp.filename)
                             .font(.system(size: 13, weight: .medium))
@@ -3795,7 +3847,7 @@ struct TickerRowView: View {
 
                 // Text: shimmer fades out, dim completed text fades in (overlapping cross-fade)
                 ZStack(alignment: .leading) {
-                    TickerShimmerText(text: text)
+                    TickerShimmerText(text: text, active: isActive && shimmerOpacity > 0)
                         .opacity(shimmerOpacity)
                     Text(text)
                         .font(.system(size: 13, weight: .medium))
@@ -3812,9 +3864,12 @@ struct TickerRowView: View {
 
 struct TickerShimmerText: View {
     let text: String
+    /// Idle rows keep shimmerOpacity at 0 — pause their animation clock entirely.
+    var active: Bool = true
 
     var body: some View {
-        TimelineView(.animation) { tl in
+        // 30 FPS cap + paused when the shimmer is not visible (inactive rows)
+        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: !active)) { tl in
             let t = tl.date.timeIntervalSinceReferenceDate
             let p = CGFloat(t.truncatingRemainder(dividingBy: 2.2) / 2.2)
             // phase sweeps -0.1 → 1.1 so white peak enters from left and exits right
