@@ -1359,12 +1359,21 @@ struct PromptView: View {
                 }
                 .padding(.horizontal, 10)
 
-                HStack(spacing: 8) {
-                    TextField(state.chatHistory.isEmpty ? String(localized: "Ask me anything…") : String(localized: "Continue…"), text: $text)
+                HStack(alignment: .bottom, spacing: 8) {
+                    TextField(state.chatHistory.isEmpty ? String(localized: "Ask me anything…") : String(localized: "Continue…"), text: $text, axis: .vertical)
                         .textFieldStyle(.plain)
                         .font(.system(size: 13))
+                        .lineLimit(1...8)
                         .focused($focused)
-                        .onSubmit { sendMessage() }
+                        .onKeyPress(.return, phases: .down) { press in
+                            // Shift+Enter inserts a line break; plain Enter sends
+                            if press.modifiers.contains(.shift) {
+                                text.insert("\n", at: text.endIndex)
+                                return .handled
+                            }
+                            sendMessage()
+                            return .handled
+                        }
 
                     Button(action: sendMessage) {
                         Image(systemName: "arrow.up")
