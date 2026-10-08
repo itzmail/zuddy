@@ -28,7 +28,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.mainMenu?.addItem(debugMenuItem)
         #endif
         #if PHONE_LINK
-        CloudProbe.shared.startIfEnabled()
+        if CloudProbe.isEnabled {
+            CloudProbe.shared.startIfEnabled()
+        }
         #endif
     }
 

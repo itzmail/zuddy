@@ -312,8 +312,7 @@ struct BotPlacement: View {
             // Normal: extra 40pt canvas at top for heart particles; position offset up by 20pt;
             // BotEngine compensates with cy = H/2 + particleOverhang/2 + oy*R + R*0.06.
             if isUploading {
-                // 30 FPS — dash progress tool doesn't need display-refresh rate
-                TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { tl in
+                TimelineView(.animation) { tl in
                     let elapsed: Double = {
                         guard let start = state.uploadStartTime else { return 0 }
                         return tl.date.timeIntervalSince(start)

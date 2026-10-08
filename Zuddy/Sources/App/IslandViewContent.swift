@@ -935,8 +935,8 @@ struct UploadingView: View {
 
     var body: some View {
         // Progress derived from elapsed wall time, not from @Published uploadProgress
-        // (which only flips to 1.0 at completion). 30 FPS cap — same visuals, half redraws.
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0)) { tl in
+        // (which only flips to 1.0 at completion).
+        TimelineView(.animation) { tl in
             let elapsed: Double = {
                 guard let start = state.uploadStartTime else { return 0 }
                 return tl.date.timeIntervalSince(start)
@@ -1226,11 +1226,49 @@ struct MailView: View {
 
 // MARK: - Prompt (chat)
 
+#if !APPSTORE
+/// The mic's right-click menu: Automatic (the user's languages) or one fixed language.
+private struct DictationLanguageMenu: View {
+    @Bindable var dictation: MacDictation
+
+    var body: some View {
+        let automatic = MacDictation.automaticLocales().map(\.identifier)
+        Picker(String(localized: "Dictation language"), selection: $dictation.language) {
+            Text(String(localized: "Automatic") + " (" + automatic.map(MacDictation.name(of:)).joined(separator: ", ") + ")")
+                .tag(MacDictation.automatic)
+            ForEach(quickChoices(automatic), id: \.self) { id in
+                Text(MacDictation.name(of: id)).tag(id)
+            }
+        }
+        .pickerStyle(.inline)
+        Menu(String(localized: "Other languages")) {
+            Picker(String(localized: "Dictation language"), selection: $dictation.language) {
+                ForEach(MacDictation.allLanguages, id: \.self) { id in
+                    Text(MacDictation.name(of: id)).tag(id)
+                }
+            }
+            .pickerStyle(.inline)
+            .labelsHidden()
+        }
+    }
+
+    /// Automatic's languages, plus the fixed one when it is another.
+    private func quickChoices(_ automatic: [String]) -> [String] {
+        let chosen = dictation.language
+        return chosen == MacDictation.automatic || automatic.contains(chosen) ? automatic : automatic + [chosen]
+    }
+}
+#endif
+
 struct PromptView: View {
     @ObservedObject var state: AppState
     @State private var text: String = ""
     @FocusState private var focused: Bool
     @State private var showModelPicker = false
+    @State private var isSending = false
+    #if !APPSTORE
+    @State private var dictation = MacDictation()
+    #endif
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -1375,6 +1413,28 @@ struct PromptView: View {
                             return .handled
                         }
 
+                    #if !APPSTORE
+                    // Dictate instead of typing (on-device speech recognition when available)
+                    Button {
+                        Task {
+                            if dictation.isRecording { text = await dictation.finish() }
+                            else { await dictation.start(from: text) }
+                        }
+                    } label: {
+                        Image(systemName: dictation.isRecording ? "mic.fill" : "mic")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundColor(dictation.isRecording ? Color(hex: "#F4505E") : Color(hex: "#7B8089"))
+                            .frame(width: 22, height: 22)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .help(dictation.isRecording ? String(localized: "Stop dictation") : String(localized: "Dictate (right-click to choose the language)"))
+                    .contextMenu { DictationLanguageMenu(dictation: dictation) }
+                    .onChange(of: dictation.transcript) { _, _ in
+                        if dictation.isRecording { text = dictation.text }
+                    }
+                    #endif
+
                     Button(action: sendMessage) {
                         Image(systemName: "arrow.up")
                             .font(.system(size: 11, weight: .semibold))
@@ -1395,6 +1455,9 @@ struct PromptView: View {
         }
         .padding(.bottom, 10)
         .onAppear { focused = true }
+        #if !APPSTORE
+        .onDisappear { dictation.stop() }
+        #endif
         .onChange(of: state.view) { _, view in
             if view == .prompt {
                 state.fetchModelsIfNeeded(for: state.chatProvider)
@@ -1421,6 +1484,19 @@ struct PromptView: View {
     }
 
     private func sendMessage() {
+        guard !isSending else { return }
+        #if !APPSTORE
+        // Still dictating: take the final words (and the right language) before sending.
+        if dictation.isRecording {
+            isSending = true
+            Task {
+                text = await dictation.finish()
+                isSending = false
+                sendMessage()
+            }
+            return
+        }
+        #endif
         let query = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return }
         text = ""
@@ -3813,7 +3889,7 @@ struct TickerRowView: View {
                 // Filename + counts
                 HStack(spacing: 0) {
                     ZStack(alignment: .leading) {
-                        TickerShimmerText(text: dp.filename, active: isActive && shimmerOpacity > 0)
+                        TickerShimmerText(text: dp.filename)
                             .opacity(shimmerOpacity)
                         Text(dp.filename)
                             .font(.system(size: 13, weight: .medium))
@@ -3856,7 +3932,7 @@ struct TickerRowView: View {
 
                 // Text: shimmer fades out, dim completed text fades in (overlapping cross-fade)
                 ZStack(alignment: .leading) {
-                    TickerShimmerText(text: text, active: isActive && shimmerOpacity > 0)
+                    TickerShimmerText(text: text)
                         .opacity(shimmerOpacity)
                     Text(text)
                         .font(.system(size: 13, weight: .medium))
@@ -3873,12 +3949,9 @@ struct TickerRowView: View {
 
 struct TickerShimmerText: View {
     let text: String
-    /// Idle rows keep shimmerOpacity at 0 — pause their animation clock entirely.
-    var active: Bool = true
 
     var body: some View {
-        // 30 FPS cap + paused when the shimmer is not visible (inactive rows)
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0, paused: !active)) { tl in
+        TimelineView(.animation) { tl in
             let t = tl.date.timeIntervalSinceReferenceDate
             let p = CGFloat(t.truncatingRemainder(dividingBy: 2.2) / 2.2)
             // phase sweeps -0.1 → 1.1 so white peak enters from left and exits right

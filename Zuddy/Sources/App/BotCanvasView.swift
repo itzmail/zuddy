@@ -13,12 +13,7 @@ struct BotCanvasView: View {
     @StateObject private var engine = BotEngine()
 
     var body: some View {
-        // Adaptive FPS cap — the engine redraws the full scene each tick and every tick
-        // also re-runs the hosting view layout pass (the app's #1 CPU cost):
-        // hidden → paused (nothing visible), compact notch → 15 fps (tiny character,
-        // breathing only), expanded → 30 fps (full interactions stay smooth).
-        TimelineView(.animation(minimumInterval: state.mode == .compact ? (1.0 / 15.0) : (1.0 / 30.0),
-                                paused: state.mode == .hidden)) { timeline in
+        TimelineView(.animation(paused: state.mode == .hidden)) { timeline in
             Canvas { context, size in
                 let now = timeline.date.timeIntervalSinceReferenceDate
                 let dtRaw = min(0.05, now - engine.lastTime)
@@ -215,10 +210,7 @@ struct MiniBotCanvasView: View {
     }
 
     var body: some View {
-        // 30 FPS cap — mini bots are 12–22 px, 30 fps is indistinguishable and halved
-        // CPU/GPU cost. Fully paused while the island is hidden (nothing is visible).
-        TimelineView(.animation(minimumInterval: 1.0 / 30.0,
-                                paused: AppState.shared.mode == .hidden)) { timeline in
+        TimelineView(.animation) { timeline in
             Canvas { context, size in
                 let now = timeline.date.timeIntervalSinceReferenceDate
                 let dt = min(0.05, now - engine.lastTime)
@@ -231,6 +223,11 @@ struct MiniBotCanvasView: View {
         }
         .onChange(of: task.state) { _, newState in
             engine.setState(newState)
+        }
+        // The colour is set once, when the engine is made: a colour picked in
+        // Settings has to reach a mini Mochi that is already on screen.
+        .onChange(of: task.color) { _, newColor in
+            engine.bodyColor = cgColorFromHex(newColor)
         }
         .onAppear {
             engine.setState(task.state, force: true)

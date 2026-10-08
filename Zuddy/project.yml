@@ -134,6 +134,8 @@ targets:
         NSHighResolutionCapable: YES
         NSSupportsAutomaticGraphicsSwitching: YES
         NSAppleEventsUsageDescription: "Pour sauter au terminal, envoyer des mails et piloter Musique."
+        NSMicrophoneUsageDescription: "Zuddy uses the microphone when you dictate a message in the chat."
+        NSSpeechRecognitionUsageDescription: "Zuddy turns your voice into the text of a chat message."
         NSAccessibilityUsageDescription: "Pour lire le titre de la fenêtre active et l'attacher comme contexte."
         NSAppTransportSecurity:
           NSAllowsLocalNetworking: true

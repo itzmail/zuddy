@@ -3577,8 +3577,12 @@ def main():
     except Exception:
         pass  # Always exit cleanly — never block the agent
 
-    # Gemini CLI, Antigravity, Muse Code and Copilot CLI expect {} on stdout (empty = no decision)
-    if agent in ('gemini', 'antigravity', 'muse', 'copilot'):
+    # Antigravity needs a decision on PreToolUse ({} reads as a denial). "ask" keeps its own
+    # permission prompt (and the user's Always Allow); Zuddy never allows a tool by itself.
+    if agent == 'antigravity' and event == 'PreToolUse':
+        sys.stdout.write('{"decision":"ask"}\\n')
+        sys.stdout.flush()
+    elif agent in ('gemini', 'antigravity', 'muse', 'copilot'):
         sys.stdout.write('{}\\n')
         sys.stdout.flush()
 
@@ -3884,8 +3888,12 @@ def main():
     except Exception:
         pass  # Always exit cleanly — never block the agent
 
-    # Gemini CLI, Antigravity, Muse Code and Copilot CLI expect {} on stdout (empty = no decision)
-    if agent in ('gemini', 'antigravity', 'muse', 'copilot'):
+    # Antigravity needs a decision on PreToolUse ({} reads as a denial). "ask" keeps its own
+    # permission prompt (and the user's Always Allow); Zuddy never allows a tool by itself.
+    if agent == 'antigravity' and event == 'PreToolUse':
+        sys.stdout.write('{"decision":"ask"}\\n')
+        sys.stdout.flush()
+    elif agent in ('gemini', 'antigravity', 'muse', 'copilot'):
         sys.stdout.write('{}\\n')
         sys.stdout.flush()
 

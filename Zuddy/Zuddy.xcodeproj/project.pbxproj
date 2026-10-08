@@ -22,6 +22,7 @@
 		161F9AB6523FCA2DB2646B4E /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
 		165A597689E671337EF666DF /* ServicePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74714FC7CD3BB8B223DE8999 /* ServicePublisher.swift */; };
 		168A51634F8C2D156DF6B126 /* PhoneAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE6A6BBBDFE813F0E6477C1D /* PhoneAssets.xcassets */; };
+		16CCB29F2439395CBB4897EB /* PillColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E51B221421620AE8B282D /* PillColors.swift */; };
 		16D09F23AF0AD750D1DD816B /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
 		1745F239C2F749B3248DFC15 /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
 		17B729969E9952D087838E90 /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */; };
@@ -37,6 +38,7 @@
 		1F63363150C491B1A1B03AD3 /* AgentNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C84877603AD38458DEA3FA3 /* AgentNotifier.swift */; };
 		24F04E1652766DDC075E9CC9 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0E29AB17BC87574FC4951A /* SessionDetailView.swift */; };
 		2717FAFBAA9AE573104C81A9 /* QuestionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F4FF8C94E59ED40EAAF7C3 /* QuestionCard.swift */; };
+		285D556CD0131F8CBAA6804B /* PillColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E51B221421620AE8B282D /* PillColors.swift */; };
 		288875F5CF31BC403B365B9F /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
 		29493BBCBD2B9AFA8B207923 /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
 		296657802B044768DAFEC724 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
@@ -95,7 +97,9 @@
 		5ECB461AE73E840D49F99189 /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
 		5FABA6DB394204DDD29DD4F0 /* ServiceLiveDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A93D83EFEE0F9FD1C28104 /* ServiceLiveDetail.swift */; };
 		60D9D91ACC93B0B7B8E008AA /* GreetingCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488A040BE344102238422B3 /* GreetingCanvasView.swift */; };
+		61B477F7CC249DC91F239C2A /* MacDictation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BE1839180D3F19FE46962 /* MacDictation.swift */; };
 		622E4C3CEEBB35E4365382F1 /* NotionPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */; };
+		627C11B04A93FE1313D1648D /* MacDictation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BE1839180D3F19FE46962 /* MacDictation.swift */; };
 		6301F04AEFAD05FD2FF45710 /* DenyApprovalIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD20D1045834524237B0E13 /* DenyApprovalIntent.swift */; };
 		63409EA198BC18D132C40F74 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
 		63B8BA013A56AE11B77B2127 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
@@ -169,6 +173,7 @@
 		A50503521DC0502E80A66AAB /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */; };
 		A59EFDDAB9D7D86775FB8D2B /* DemoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE007D5FE8534E100DC8DAD9 /* DemoEngine.swift */; };
 		AAB0FE35AD392A7A43286C8E /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC2B6FA1DF3F1B3EDF79142 /* AboutView.swift */; };
+		AB78A93F2C37463021649321 /* PillColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E51B221421620AE8B282D /* PillColors.swift */; };
 		AE462B5A13786654872975A4 /* finish.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2912F1F2B0737B34A8D730DE /* finish.wav */; };
 		AF4E5508EA24B4D5D45A9D4A /* WeeklyRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */; };
 		B043860DF2229251FB8A6EB5 /* IslandDisplayChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */; };
@@ -222,12 +227,14 @@
 		DF3E1806A1D82F7A7D89575D /* RecapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */; };
 		E0A561BD6CEB9F2A1AB38E65 /* ServiceDetailRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */; };
 		E3868AAFA225B7CA0D5BAC3A /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4982D3B399A86D16BB593F /* ColorHex.swift */; };
+		E46A67108B504B2E0287A49E /* PillColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E51B221421620AE8B282D /* PillColors.swift */; };
 		E46DA69E84218540DEC0C2EA /* ServiceDetailRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */; };
 		E58C441F5D4C340415C4529A /* TurnRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894C1D258CCE589C4CE7B3C5 /* TurnRecorder.swift */; };
 		E6836DCF00061E0DFBE31BFE /* ShortcutsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */; };
 		E6BE1CBBBBE3EE3DC3DF90EB /* MusicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */; };
 		E6FD4488B625302B16D06605 /* DesktopMochi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD62C74BDE862916F568743 /* DesktopMochi.swift */; };
 		E821DECF7CE470511AA0A093 /* LiveActivityLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80891402652C9964FF83D63C /* LiveActivityLink.swift */; };
+		E8C1F29CD821FC611CC3FC21 /* PillColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E51B221421620AE8B282D /* PillColors.swift */; };
 		EB5B1261690365915AF59328 /* CodexPlanGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5214D1FDD3434BDECA64F61D /* CodexPlanGauge.swift */; };
 		EC5AA36F391D360D5B41468B /* ClaudePlanGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */; };
 		EE31EF58D2505FEB20E5EA9A /* UserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1ACD69522522C35454D3BFF /* UserIdentity.swift */; };
@@ -305,6 +312,7 @@
 		2D50FC0BB164CEA846426111 /* MochiActivityState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiActivityState.swift; sourceTree = "<group>"; };
 		3183602FF8F1D91B7FADBC49 /* AppLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
 		35A48168E7CA84374D0773CE /* MochiLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiLive.swift; sourceTree = "<group>"; };
+		361E51B221421620AE8B282D /* PillColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillColors.swift; sourceTree = "<group>"; };
 		37E72A9D59193FBD50B09776 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudePlanGauge.swift; sourceTree = "<group>"; };
 		3B98B625F5FBB44C3BB980F3 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -403,6 +411,7 @@
 		F68FA71D71D3BBD1A86840A3 /* Decisions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decisions.swift; sourceTree = "<group>"; };
 		F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsSettingsView.swift; sourceTree = "<group>"; };
 		F96D022700E9BEB03D4F1829 /* DiffEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffEngine.swift; sourceTree = "<group>"; };
+		FB3BE1839180D3F19FE46962 /* MacDictation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacDictation.swift; sourceTree = "<group>"; };
 		FDD20D1045834524237B0E13 /* DenyApprovalIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenyApprovalIntent.swift; sourceTree = "<group>"; };
 		FE6A6BBBDFE813F0E6477C1D /* PhoneAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PhoneAssets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -469,6 +478,7 @@
 				471CAB555DE01D43B34147CB /* MochiStill.swift */,
 				0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */,
 				BA8D08B25980DC793A32AF9A /* PillCatalog.swift */,
+				361E51B221421620AE8B282D /* PillColors.swift */,
 				C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */,
 				073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */,
 				08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */,
@@ -592,6 +602,7 @@
 				6B2C7A13B7136956A9697F10 /* IslandViewContent.swift */,
 				DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */,
 				EB3B2AC0282F0FCF5083DFFA /* LocalChat.swift */,
+				FB3BE1839180D3F19FE46962 /* MacDictation.swift */,
 				BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */,
 				548367F894A9F40343F32353 /* N8nPoller.swift */,
 				EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */,
@@ -812,6 +823,7 @@
 				BF7C017596ED94EA065E4B97 /* MochiWardrobe.swift in Sources */,
 				4A008AE91A035000DCF6A4A3 /* NotificationViewController.swift in Sources */,
 				75FC9F64E140D294FA555D41 /* PillCatalog.swift in Sources */,
+				E8C1F29CD821FC611CC3FC21 /* PillColors.swift in Sources */,
 				D48682B935C8627FE535DD60 /* QuestionPayload.swift in Sources */,
 				668C1FB55F6921AFE75E45BC /* ServiceDetail.swift in Sources */,
 				C6FF388F6F4482551881A572 /* ServiceSnapshot.swift in Sources */,
@@ -863,6 +875,7 @@
 				F7F78A739DA9DD4091A97756 /* IslandWindowController.swift in Sources */,
 				D8F007B0F7A9AD03B2E58412 /* LiveActivityRelay.swift in Sources */,
 				1119AC1E6274B61DE485522A /* LocalChat.swift in Sources */,
+				627C11B04A93FE1313D1648D /* MacDictation.swift in Sources */,
 				F05FEF551E6C40A7D1870E71 /* MochiActivityState.swift in Sources */,
 				C60C53140124BF128DA6F620 /* MochiOutfitDrawing.swift in Sources */,
 				8852B111CD9D2EC0450C1709 /* MochiStill.swift in Sources */,
@@ -871,6 +884,7 @@
 				9182E5DADE52CE468025325C /* N8nPoller.swift in Sources */,
 				622E4C3CEEBB35E4365382F1 /* NotionPoller.swift in Sources */,
 				39B2E3BB87D706BB66895272 /* PillCatalog.swift in Sources */,
+				E46A67108B504B2E0287A49E /* PillColors.swift in Sources */,
 				D470F1F3200B2439D53420BC /* QuestionPayload.swift in Sources */,
 				3362AACC9CF5BC56F5CA603E /* QuestionRelay.swift in Sources */,
 				BFD37F2E39872611C73A292E /* RecapStore.swift in Sources */,
@@ -931,6 +945,7 @@
 				2D0C1EA29AB96BD73491D141 /* OpenLeadMochiIntent.swift in Sources */,
 				8E6F1E420CF547C68E5DCE69 /* PhoneLink.swift in Sources */,
 				B8F2719D149E2CC7BBE2FEB3 /* PillCatalog.swift in Sources */,
+				16CCB29F2439395CBB4897EB /* PillColors.swift in Sources */,
 				2717FAFBAA9AE573104C81A9 /* QuestionCard.swift in Sources */,
 				1C0A004126BE94D5980D5912 /* QuestionPayload.swift in Sources */,
 				FC4C8BEAF4556734132D2F7A /* SearchAndSpotlight.swift in Sources */,
@@ -994,6 +1009,7 @@
 				9179E7A26104ED683A7DC8B7 /* IslandWindowController.swift in Sources */,
 				D80DDAE269ECDF46CFACED40 /* LiveActivityRelay.swift in Sources */,
 				985FB141467FBF1AE393E51F /* LocalChat.swift in Sources */,
+				61B477F7CC249DC91F239C2A /* MacDictation.swift in Sources */,
 				63409EA198BC18D132C40F74 /* MochiActivityState.swift in Sources */,
 				725E95437553B4183F306428 /* MochiOutfitDrawing.swift in Sources */,
 				FAAA0A11DF8863247AC3DFEC /* MochiStill.swift in Sources */,
@@ -1002,6 +1018,7 @@
 				01AC6C04721CF33E7FCB9D4A /* N8nPoller.swift in Sources */,
 				BAC3348287061859EE85DEAE /* NotionPoller.swift in Sources */,
 				1EB30828DD2FAC1F437E9E27 /* PillCatalog.swift in Sources */,
+				285D556CD0131F8CBAA6804B /* PillColors.swift in Sources */,
 				1A6A9873EECB42B7FCB4CA33 /* QuestionPayload.swift in Sources */,
 				8B66011A64C53BD7B10EDD2D /* QuestionRelay.swift in Sources */,
 				DF3E1806A1D82F7A7D89575D /* RecapStore.swift in Sources */,
@@ -1048,6 +1065,7 @@
 				935736D82CC540055C9A6333 /* MochiWardrobe.swift in Sources */,
 				111D99208D7783BC865224BF /* OpenLeadMochiIntent.swift in Sources */,
 				44805F07F49556B7FA63975F /* PillCatalog.swift in Sources */,
+				AB78A93F2C37463021649321 /* PillColors.swift in Sources */,
 				9A36A5B2A7AE667360B2A5ED /* QuestionPayload.swift in Sources */,
 				8A46E4B121165D55B6DEF57B /* ServiceDetail.swift in Sources */,
 				F618951FE75FF72D595ECC0E /* ServiceSnapshot.swift in Sources */,

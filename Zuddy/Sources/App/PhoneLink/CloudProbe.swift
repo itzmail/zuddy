@@ -23,7 +23,13 @@ final class CloudProbe {
     static let zoneID = CKRecordZone.ID(zoneName: "Zuddy", ownerName: CKCurrentUserDefaultName)
     private static let subscriptionID = "coucou-zone-mac"
 
-    private let container = CKContainer(identifier: CloudProbe.containerID)
+    private var _container: CKContainer?
+    private var container: CKContainer {
+        if let c = _container { return c }
+        let c = CKContainer(identifier: CloudProbe.containerID)
+        _container = c
+        return c
+    }
     private var database: CKDatabase { container.privateCloudDatabase }
 
     private let launchDate = Date()
