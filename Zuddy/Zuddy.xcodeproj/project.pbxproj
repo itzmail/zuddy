@@ -49,6 +49,7 @@
 		2B4D1D92BA1970F13D6A9234 /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
 		2BE087049BA8011CD7A4A59D /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
 		2D0C1EA29AB96BD73491D141 /* OpenLeadMochiIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08652F050661FBA762D1DC39 /* OpenLeadMochiIntent.swift */; };
+		2DA6FDE4F0DDD44B87AE9652 /* TerminalTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D580B93F8F925E76114DE7E /* TerminalTarget.swift */; };
 		2E596E9F12F3FCEFDD420E1A /* GitHubActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */; };
 		2EAD335D17052D03E809102F /* question.wav in Resources */ = {isa = PBXBuildFile; fileRef = D00CC381DACA2462D938ED6E /* question.wav */; };
 		30705FBA1CA37066E494243C /* ZuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */; };
@@ -149,7 +150,9 @@
 		8B66011A64C53BD7B10EDD2D /* QuestionRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A10E0682ABFF43FFC478837 /* QuestionRelay.swift */; };
 		8C1F0B8F91189E53AF05F1C8 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
 		8E6F1E420CF547C68E5DCE69 /* PhoneLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A0985D4A2AD9ED7CCDFD2B /* PhoneLink.swift */; };
+		8E822391B267D6194CEED8A4 /* ClaudeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065D833B1EA315A16E14F40 /* ClaudeHost.swift */; };
 		9023E47C529C77C3DDE53C62 /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
+		90E5E321CF84F87C39CD3566 /* TerminalTarget+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB74CBF8F2B7E1EDB9DD614 /* TerminalTarget+AppKit.swift */; };
 		91540CF855DA10974FB85FB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E081A502D580E48E7632291C /* Assets.xcassets */; };
 		9179E7A26104ED683A7DC8B7 /* IslandWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */; };
 		9182E5DADE52CE468025325C /* N8nPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548367F894A9F40343F32353 /* N8nPoller.swift */; };
@@ -157,8 +160,11 @@
 		92AA14A0DA91B61B80D2EC34 /* MochiActivityState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D50FC0BB164CEA846426111 /* MochiActivityState.swift */; };
 		935736D82CC540055C9A6333 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
 		94F651ED2F95F865AE6F31AC /* ChatMarkdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CD86940F54A06B9F4F4137 /* ChatMarkdown.swift */; };
+		950D78F67BF5A28BD847ED8B /* NowPlayingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9A601073D5E0C625B934D /* NowPlayingViews.swift */; };
 		9604DC760DC46959E39D9B7C /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3183602FF8F1D91B7FADBC49 /* AppLog.swift */; };
 		962399DF6C4745C69F83672A /* TurnSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A8CC8D67A75174302AFAA1 /* TurnSnapshot.swift */; };
+		96B1AB701B582C69E2A839D8 /* ClaudeHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0065D833B1EA315A16E14F40 /* ClaudeHost.swift */; };
+		9747C8D95E4374B1F0DEDCF6 /* TerminalTarget+AppKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB74CBF8F2B7E1EDB9DD614 /* TerminalTarget+AppKit.swift */; };
 		97CAA1F34818661E8BF380F6 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
 		985FB141467FBF1AE393E51F /* LocalChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3B2AC0282F0FCF5083DFFA /* LocalChat.swift */; };
 		9A36A5B2A7AE667360B2A5ED /* QuestionPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB76A1782DB8A4E0FC96C9 /* QuestionPayload.swift */; };
@@ -172,9 +178,12 @@
 		A4E2DFE9002C5A673339223F /* ResendPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E8420E0FCF85735646F9D /* ResendPoller.swift */; };
 		A50503521DC0502E80A66AAB /* FileDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */; };
 		A59EFDDAB9D7D86775FB8D2B /* DemoEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE007D5FE8534E100DC8DAD9 /* DemoEngine.swift */; };
+		A8CC60F1EE81DB83C53B3146 /* NowPlayingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E9A601073D5E0C625B934D /* NowPlayingViews.swift */; };
+		A91F2D72AC2EB2472D89A31F /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD582A1912C7DEB41648C3 /* SpotifyController.swift */; };
 		AAB0FE35AD392A7A43286C8E /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC2B6FA1DF3F1B3EDF79142 /* AboutView.swift */; };
 		AB78A93F2C37463021649321 /* PillColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E51B221421620AE8B282D /* PillColors.swift */; };
 		AE462B5A13786654872975A4 /* finish.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2912F1F2B0737B34A8D730DE /* finish.wav */; };
+		AEDB445F9D9270099ED738F8 /* SpotifyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67EC921E28190728C20D99 /* SpotifyViews.swift */; };
 		AF4E5508EA24B4D5D45A9D4A /* WeeklyRecapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */; };
 		B043860DF2229251FB8A6EB5 /* IslandDisplayChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */; };
 		B200991646B377907C708A17 /* BotEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */; };
@@ -247,6 +256,7 @@
 		F618951FE75FF72D595ECC0E /* ServiceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D41B6E722F875F56B1CDEF /* ServiceSnapshot.swift */; };
 		F676241189A567B7FDF54B59 /* IslandRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE1A7A99FBA3A7636F049C0 /* IslandRootView.swift */; };
 		F6FCC9F24A5E0C4F368594A9 /* SafeWebURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5123AB8469494530F6D17CB /* SafeWebURL.swift */; };
+		F7DD9070F3CE2BBD3248A26D /* TerminalTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D580B93F8F925E76114DE7E /* TerminalTarget.swift */; };
 		F7F78A739DA9DD4091A97756 /* IslandWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */; };
 		F9C6227115F4F382A37DEBC0 /* WindowContextCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1C398468D80A7F55E3CC45 /* WindowContextCapture.swift */; };
 		FA31EE209011E974B9F8E35A /* ClaudeHookDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */; };
@@ -254,6 +264,8 @@
 		FAAA0A11DF8863247AC3DFEC /* MochiStill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471CAB555DE01D43B34147CB /* MochiStill.swift */; };
 		FB80DE8B2EFC125756704B5D /* ZuddyPhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3EF52ED4A4EB89D27199A6 /* ZuddyPhoneApp.swift */; };
 		FC4C8BEAF4556734132D2F7A /* SearchAndSpotlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C92CFFEB1E493351E3B262 /* SearchAndSpotlight.swift */; };
+		FD12BE815FD815BD2A36FA21 /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD582A1912C7DEB41648C3 /* SpotifyController.swift */; };
+		FDBED527604DB6787D80030B /* SpotifyViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB67EC921E28190728C20D99 /* SpotifyViews.swift */; };
 		FF56D0FE2387FB6E79A773C2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B5D9CCE1E95D526B7A98B0B6 /* Localizable.xcstrings */; };
 		FF753AD657A93C09A4F84DAB /* IslandDisplayChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A5FE073F696FD178BE27AB /* IslandDisplayChoice.swift */; };
 /* End PBXBuildFile section */
@@ -291,6 +303,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0065D833B1EA315A16E14F40 /* ClaudeHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeHost.swift; sourceTree = "<group>"; };
+		01BD582A1912C7DEB41648C3 /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
 		01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeHookDetection.swift; sourceTree = "<group>"; };
 		073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetail.swift; sourceTree = "<group>"; };
 		07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZuddyApp.swift; sourceTree = "<group>"; };
@@ -328,6 +342,7 @@
 		4AD62C74BDE862916F568743 /* DesktopMochi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopMochi.swift; sourceTree = "<group>"; };
 		4B5672F107D3ADC6281CCF2A /* MacStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStubs.swift; sourceTree = "<group>"; };
 		5002ABB345DAEC4E5C1022C6 /* ZuddyNotificationContent.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ZuddyNotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		50E9A601073D5E0C625B934D /* NowPlayingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViews.swift; sourceTree = "<group>"; };
 		5214D1FDD3434BDECA64F61D /* CodexPlanGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodexPlanGauge.swift; sourceTree = "<group>"; };
 		548367F894A9F40343F32353 /* N8nPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = N8nPoller.swift; sourceTree = "<group>"; };
 		55E138D98CCDCC4B50D4FCC2 /* ZuddyAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZuddyAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,11 +379,13 @@
 		9B4982D3B399A86D16BB593F /* ColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHex.swift; sourceTree = "<group>"; };
 		9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubActivity.swift; sourceTree = "<group>"; };
 		9C84877603AD38458DEA3FA3 /* AgentNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentNotifier.swift; sourceTree = "<group>"; };
+		9D580B93F8F925E76114DE7E /* TerminalTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerminalTarget.swift; sourceTree = "<group>"; };
 		A1E0683819AC53A173275CF9 /* UploadCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCanvasView.swift; sourceTree = "<group>"; };
 		A5123AB8469494530F6D17CB /* SafeWebURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeWebURL.swift; sourceTree = "<group>"; };
 		A7A93D83EFEE0F9FD1C28104 /* ServiceLiveDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLiveDetail.swift; sourceTree = "<group>"; };
 		A7C83E83F7A3634AC5BFE926 /* FileDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileDropView.swift; sourceTree = "<group>"; };
 		AC414A84BA0658E1EADE0DCC /* ClaudePlanCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudePlanCardView.swift; sourceTree = "<group>"; };
+		ADB74CBF8F2B7E1EDB9DD614 /* TerminalTarget+AppKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TerminalTarget+AppKit.swift"; sourceTree = "<group>"; };
 		AED601231971BE3BCE136975 /* UploadSequenceEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSequenceEngine.swift; sourceTree = "<group>"; };
 		AF401B6F688751219CC6AB94 /* GithubPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubPoller.swift; sourceTree = "<group>"; };
 		AFCBF01CF09B88BBB2111EEB /* ServiceStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceStatus.swift; sourceTree = "<group>"; };
@@ -388,6 +405,7 @@
 		D00CC381DACA2462D938ED6E /* question.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = question.wav; sourceTree = "<group>"; };
 		D7F49566734A8FF218B82F25 /* ClaudeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeService.swift; sourceTree = "<group>"; };
 		DA6FACF494A88BBD1E66A86B /* IslandWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IslandWindowController.swift; sourceTree = "<group>"; };
+		DB67EC921E28190728C20D99 /* SpotifyViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyViews.swift; sourceTree = "<group>"; };
 		DC1C10FA39AB3DAA6FB6C958 /* ServiceDetailRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailRunner.swift; sourceTree = "<group>"; };
 		DC494F30CCD30FBF22401A2D /* InstructionComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionComposer.swift; sourceTree = "<group>"; };
 		DC93D0A194982E86124E80CD /* ZuddyPhone.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ZuddyPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -580,6 +598,7 @@
 				47CD86940F54A06B9F4F4137 /* ChatMarkdown.swift */,
 				79C99CF2477312E863046229 /* ChatMarkdownView.swift */,
 				01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */,
+				0065D833B1EA315A16E14F40 /* ClaudeHost.swift */,
 				AC414A84BA0658E1EADE0DCC /* ClaudePlanCardView.swift */,
 				3A4C288D81019F8033874AA6 /* ClaudePlanGauge.swift */,
 				78AF36A60385F63B56436209 /* ClaudeResponseText.swift */,
@@ -606,6 +625,7 @@
 				BAFD5DB2A8CA7CA4DEB2C0C1 /* MusicController.swift */,
 				548367F894A9F40343F32353 /* N8nPoller.swift */,
 				EB78E32A75D7F95288B2FFE1 /* NotionPoller.swift */,
+				50E9A601073D5E0C625B934D /* NowPlayingViews.swift */,
 				DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */,
 				884E8420E0FCF85735646F9D /* ResendPoller.swift */,
 				A5123AB8469494530F6D17CB /* SafeWebURL.swift */,
@@ -613,7 +633,11 @@
 				2231DA5D44E6CB96061FFE56 /* ShortcutLogic.swift */,
 				F704BA262AE6364AE937D9D0 /* ShortcutsSettingsView.swift */,
 				16D76389B53AC32F0FDA1727 /* SoundEngine.swift */,
+				01BD582A1912C7DEB41648C3 /* SpotifyController.swift */,
+				DB67EC921E28190728C20D99 /* SpotifyViews.swift */,
 				6EB91DEE6FF24A3F739E7E29 /* StripePoller.swift */,
+				9D580B93F8F925E76114DE7E /* TerminalTarget.swift */,
+				ADB74CBF8F2B7E1EDB9DD614 /* TerminalTarget+AppKit.swift */,
 				A1E0683819AC53A173275CF9 /* UploadCanvasView.swift */,
 				AED601231971BE3BCE136975 /* UploadSequenceEngine.swift */,
 				F1ACD69522522C35454D3BFF /* UserIdentity.swift */,
@@ -846,6 +870,7 @@
 				94F651ED2F95F865AE6F31AC /* ChatMarkdown.swift in Sources */,
 				B9101C26661A2DCB924294E0 /* ChatMarkdownView.swift in Sources */,
 				85975F2C3C010F6140EDEBF3 /* ClaudeHookDetection.swift in Sources */,
+				96B1AB701B582C69E2A839D8 /* ClaudeHost.swift in Sources */,
 				B6297F832893BF90EF36FF90 /* ClaudePlanCardView.swift in Sources */,
 				B2A9F057568E9E6695B1F19E /* ClaudePlanGauge.swift in Sources */,
 				C98EB02D5B658FA58992F3B9 /* ClaudeResponseText.swift in Sources */,
@@ -883,6 +908,7 @@
 				E6BE1CBBBBE3EE3DC3DF90EB /* MusicController.swift in Sources */,
 				9182E5DADE52CE468025325C /* N8nPoller.swift in Sources */,
 				622E4C3CEEBB35E4365382F1 /* NotionPoller.swift in Sources */,
+				A8CC60F1EE81DB83C53B3146 /* NowPlayingViews.swift in Sources */,
 				39B2E3BB87D706BB66895272 /* PillCatalog.swift in Sources */,
 				E46A67108B504B2E0287A49E /* PillColors.swift in Sources */,
 				D470F1F3200B2439D53420BC /* QuestionPayload.swift in Sources */,
@@ -899,7 +925,11 @@
 				466664CDE7824299DEDD4AE4 /* ShortcutLogic.swift in Sources */,
 				E6836DCF00061E0DFBE31BFE /* ShortcutsSettingsView.swift in Sources */,
 				C9B8B05E5BEFD61B00D4BEF2 /* SoundEngine.swift in Sources */,
+				A91F2D72AC2EB2472D89A31F /* SpotifyController.swift in Sources */,
+				FDBED527604DB6787D80030B /* SpotifyViews.swift in Sources */,
 				6BAC6E6DA40CAA7BA29DD528 /* StripePoller.swift in Sources */,
+				9747C8D95E4374B1F0DEDCF6 /* TerminalTarget+AppKit.swift in Sources */,
+				F7DD9070F3CE2BBD3248A26D /* TerminalTarget.swift in Sources */,
 				89A3E6561FC4075E1E2EE41B /* TurnRecorder.swift in Sources */,
 				962399DF6C4745C69F83672A /* TurnSnapshot.swift in Sources */,
 				B873952FDA49B9D7F44C2188 /* UploadCanvasView.swift in Sources */,
@@ -980,6 +1010,7 @@
 				13426A9F0D533ED3839917C4 /* ChatMarkdown.swift in Sources */,
 				0CCA8AC081E1554420F4CAFC /* ChatMarkdownView.swift in Sources */,
 				FA31EE209011E974B9F8E35A /* ClaudeHookDetection.swift in Sources */,
+				8E822391B267D6194CEED8A4 /* ClaudeHost.swift in Sources */,
 				88D167C85DA78F2A6E9F614D /* ClaudePlanCardView.swift in Sources */,
 				EC5AA36F391D360D5B41468B /* ClaudePlanGauge.swift in Sources */,
 				0AD8A5079DA152B2C6827662 /* ClaudeResponseText.swift in Sources */,
@@ -1017,6 +1048,7 @@
 				6BC7A294E946C6650ED3AEC4 /* MusicController.swift in Sources */,
 				01AC6C04721CF33E7FCB9D4A /* N8nPoller.swift in Sources */,
 				BAC3348287061859EE85DEAE /* NotionPoller.swift in Sources */,
+				950D78F67BF5A28BD847ED8B /* NowPlayingViews.swift in Sources */,
 				1EB30828DD2FAC1F437E9E27 /* PillCatalog.swift in Sources */,
 				285D556CD0131F8CBAA6804B /* PillColors.swift in Sources */,
 				1A6A9873EECB42B7FCB4CA33 /* QuestionPayload.swift in Sources */,
@@ -1033,7 +1065,11 @@
 				6BD11ABD1DCF21092D528571 /* ShortcutLogic.swift in Sources */,
 				B9305B524022891F9DF42943 /* ShortcutsSettingsView.swift in Sources */,
 				3A7DC1E26D433E12F7ED3823 /* SoundEngine.swift in Sources */,
+				FD12BE815FD815BD2A36FA21 /* SpotifyController.swift in Sources */,
+				AEDB445F9D9270099ED738F8 /* SpotifyViews.swift in Sources */,
 				F0BC9DD7715CFD7D41F7D2A6 /* StripePoller.swift in Sources */,
+				90E5E321CF84F87C39CD3566 /* TerminalTarget+AppKit.swift in Sources */,
+				2DA6FDE4F0DDD44B87AE9652 /* TerminalTarget.swift in Sources */,
 				E58C441F5D4C340415C4529A /* TurnRecorder.swift in Sources */,
 				16D09F23AF0AD750D1DD816B /* TurnSnapshot.swift in Sources */,
 				92429027712E9107747DF066 /* UploadCanvasView.swift in Sources */,

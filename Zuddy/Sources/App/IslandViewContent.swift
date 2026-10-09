@@ -188,6 +188,7 @@ struct OverviewView: View {
         guard let task else { return }
         switch task.id {
         case "integration_claude":
+            if ClaudeHost.activate(task.hostApp) { return }
             let vscodeBundleId = "com.microsoft.VSCode"
             if let app = NSWorkspace.shared.runningApplications.first(where: { $0.bundleIdentifier == vscodeBundleId }) {
                 app.activate(options: .activateIgnoringOtherApps)
@@ -229,13 +230,7 @@ struct OverviewView: View {
         case "agent_gemini", "agent_antigravity",
              "agent_copilot", "agent_muse", "agent_opencode", "agent_amp", "agent_pi":
             #if !APPSTORE
-            let terminalBundleIds = ["com.apple.Terminal", "com.googlecode.iterm2",
-                                     "net.kovidgoyal.kitty", "com.mitchellh.ghostty"]
-            if let hit = terminalBundleIds.compactMap({ id in
-                NSWorkspace.shared.runningApplications.first { $0.bundleIdentifier == id }
-            }).first {
-                hit.activate(options: .activateIgnoringOtherApps)
-            }
+            TerminalTarget.activate(sessionBundleId: nil)
             #endif
         case "agent_zed":
             #if !APPSTORE
@@ -270,6 +265,10 @@ struct OverviewView: View {
                 MusicController.shared.openMusic()
             }
             #endif
+        case "integration_spotify":
+            #if !APPSTORE
+            SpotifyController.shared.openSpotify()
+            #endif
         default:
             // Non-integration real tasks
             if task.source == .n8n {
@@ -278,13 +277,7 @@ struct OverviewView: View {
                 }
             } else {
                 #if !APPSTORE
-                let terminalBundleIds = ["com.apple.Terminal", "com.googlecode.iterm2",
-                                         "net.kovidgoyal.kitty", "com.mitchellh.ghostty"]
-                if let hit = terminalBundleIds.compactMap({ id in
-                    NSWorkspace.shared.runningApplications.first { $0.bundleIdentifier == id }
-                }).first {
-                    hit.activate(options: .activateIgnoringOtherApps)
-                }
+                TerminalTarget.activate(sessionBundleId: task.sessionBundleId)
                 #endif
             }
         }
@@ -616,22 +609,21 @@ private func openClaudeDesktopApp() {
     }
 }
 
-private let terminalBundleIds = ["com.apple.Terminal", "com.googlecode.iterm2", "net.kovidgoyal.kitty", "com.mitchellh.ghostty"]
-
-private func activateTerminalApp() {
-    let activated = terminalBundleIds.compactMap { id in
-        NSWorkspace.shared.runningApplications.first { $0.bundleIdentifier == id }
-    }.first.map { $0.activate(options: .activateIgnoringOtherApps) }
-    if activated == nil {
+private func activateTerminalApp(sessionBundleId: String? = nil) {
+    #if !APPSTORE
+    if !TerminalTarget.activate(sessionBundleId: sessionBundleId) {
         NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Terminal.app"))
     }
+    #else
+    NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Applications/Utilities/Terminal.app"))
+    #endif
 }
 
 /// If the agent runs inside a Herdr pane, focus that exact pane via the Herdr CLI
 /// (in addition to bringing the terminal app forward). Falls back silently when
 /// Herdr is not installed or the CLI fails.
-private func openTerminalOrHerdr(paneId: String?) {
-    activateTerminalApp()
+private func openTerminalOrHerdr(paneId: String?, sessionBundleId: String? = nil) {
+    activateTerminalApp(sessionBundleId: sessionBundleId)
     guard let paneId, !paneId.isEmpty else { return }
     let candidates = [
         ProcessInfo.processInfo.environment["HERDR_BIN_PATH"],
@@ -676,7 +668,12 @@ struct FinishedView: View {
                     } else {
                         #if !APPSTORE
                         PrimaryButton("Open terminal") {
-                            openTerminalOrHerdr(paneId: state.focusTask?.herdrPaneId)
+                            let task = state.focusTask
+                            if !(task?.id == "integration_claude" && ClaudeHost.activate(task?.hostApp)) {
+                                openTerminalOrHerdr(paneId: task?.herdrPaneId, sessionBundleId: task?.sessionBundleId)
+                            } else if let paneId = task?.herdrPaneId {
+                                openTerminalOrHerdr(paneId: paneId)
+                            }
                             NotificationCenter.default.post(name: .islandCollapse, object: nil)
                         }
                         #endif
@@ -1993,6 +1990,15 @@ struct IntegrationCardView: View {
         #endif
     }
 
+    // Spotify: its own card for every state (playing, idle, not installed, Automation denied)
+    private var isSpotify: Bool {
+        #if !APPSTORE
+        return task.id == "integration_spotify"
+        #else
+        return false
+        #endif
+    }
+
     private var statusDot: Color {
         #if !APPSTORE
         if task.id == "integration_music" {
@@ -2125,6 +2131,11 @@ struct IntegrationCardView: View {
             MusicCardView()
                 .transition(.opacity)
             #endif
+        } else if isSpotify {
+            #if !APPSTORE
+            SpotifyCardView()
+                .transition(.opacity)
+            #endif
         } else if agentSessionActive {
             // Active session view — reuse overview layout
             VStack(alignment: .leading, spacing: 0) {
@@ -2168,7 +2179,8 @@ struct IntegrationCardView: View {
                     Circle()
                         .fill(Color(hex: task.color))
                         .frame(width: 7, height: 7)
-                    Text(PillCatalog.definition(for: task.id)?.name ?? task.name)
+                    Text(task.id == "integration_claude" ? ClaudeHost.pillName(hostApp: task.hostApp)
+                                                         : PillCatalog.definition(for: task.id)?.name ?? task.name)
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(Color(hex: "#F5F6F8"))
                     Text(PillCatalog.definition(for: task.id)?.subtitle ?? "Integration")
@@ -2190,7 +2202,12 @@ struct IntegrationCardView: View {
                 .padding(.top, 2)
 
                 HStack(spacing: 8) {
-                    if task.id == "integration_claude" {
+                    if task.id == "integration_claude", task.hostApp != nil {
+                        Button("Open \(ClaudeHost.name(for: task.hostApp))") { ClaudeHost.activate(task.hostApp) }
+                            .font(.system(size: 11, weight: .medium))
+                            .foregroundColor(Color(hex: task.color).opacity(0.7))
+                            .buttonStyle(.plain)
+                    } else if task.id == "integration_claude" {
                         Button("Open in \(preferredEditor.name)") { openInPreferredEditor() }
                             .font(.system(size: 11, weight: .medium))
                             .foregroundColor(Color(hex: task.color).opacity(0.7))
@@ -4001,6 +4018,13 @@ struct AgentPillsView: View {
                             SoundEngine.shared.play("blip")
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { swapping = false }
                         }
+                    } else if task.id == "integration_spotify" {
+                        SpotifyPill(task: task, swapping: $swapping) {
+                            swapping = true
+                            state.setFocus(task.id)
+                            SoundEngine.shared.play("blip")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { swapping = false }
+                        }
                     } else {
                         AgentPill(task: task, state: state, swapping: $swapping) {
                             swapping = true
@@ -4035,9 +4059,9 @@ struct AgentPill: View {
 
     private var effectiveColor: String { task.color }
 
-    // VS Code pill always shows "VS Code" label regardless of active project name
+    // The Claude pill shows "VS Code" (or "Claude Code" for a terminal session) regardless of project name
     private var displayName: String {
-        task.id == "integration_claude" ? "VS Code" : task.name
+        task.id == "integration_claude" ? ClaudeHost.pillName(hostApp: task.hostApp) : task.name
     }
 
     var body: some View {

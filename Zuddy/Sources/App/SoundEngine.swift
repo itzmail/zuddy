@@ -12,8 +12,7 @@ final class SoundEngine {
         didSet { players.values.forEach { $0.forEach { $0.volume = volume } } }
     }
 
-    // Pool per sound to allow overlapping playback.
-    // Pool size 2: enough for rapid double-blips while halving held audio buffers.
+    // Pool of 2 players per sound to allow overlapping playback
     private var players: [String: [AVAudioPlayer]] = [:]
 
     /// Sounds loaded eagerly at launch (fired during greetings/expansion).
@@ -21,11 +20,46 @@ final class SoundEngine {
     /// far fewer decoded WAV buffers held at startup.
     private static let eagerSounds = ["peek", "open", "close", "hover", "blip", "tick", "greeting"]
 
+    static let soundNames = ["peek","open","close","hover","blip","slap","annoyed","dizzy","greet",
+                             "work","finish","error","approval","question","approve","gulp","tick",
+                             "send","love","pop","proud","wink","yawn","attach","think","search",
+                             "rate","sleep","greeting"]
+
+    /// Your own sounds: a file named like a built-in sound (e.g. finish.wav, approval.mp3) in this
+    /// folder replaces it. ~/Library/Application Support/Zuddy/Sounds (in the App Store build,
+    /// the same path inside the app's container).
+    static var customFolder: URL? {
+        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?
+            .appendingPathComponent("Zuddy/Sounds", isDirectory: true)
+    }
+    private static let customExtensions = ["wav", "aiff", "aif", "caf", "m4a", "mp3"]
+
+    /// The custom file for a sound, if the user dropped one in the folder.
+    static func customURL(for name: String) -> URL? {
+        guard let dir = customFolder else { return nil }
+        for ext in customExtensions {
+            let url = dir.appendingPathComponent(name).appendingPathExtension(ext)
+            if FileManager.default.isReadableFile(atPath: url.path) { return url }
+        }
+        return nil
+    }
+
+    /// Names of the built-in sounds currently replaced by a custom file.
+    private(set) var customized: [String] = []
+
     private init() {
         preload()
     }
 
     private func preload() {
+        players.removeAll()
+        var custom: [String] = []
+        for name in Self.soundNames {
+            if Self.customURL(for: name) != nil {
+                custom.append(name)
+            }
+        }
+        customized = custom
         for name in Self.eagerSounds {
             ensurePool(name)
         }
@@ -34,7 +68,16 @@ final class SoundEngine {
     /// Lazily build (or extend) a sound's player pool on first use.
     private func ensurePool(_ name: String) {
         if players[name] != nil { return }
-        guard let url = Bundle.main.url(forResource: name, withExtension: "wav", subdirectory: "sounds") else { return }
+        let own = Self.customURL(for: name)
+        var pool = own.map { makePool($0) } ?? []
+        if pool.isEmpty {
+            guard let url = Bundle.main.url(forResource: name, withExtension: "wav", subdirectory: "sounds") else { return }
+            pool = makePool(url)
+        }
+        if !pool.isEmpty { players[name] = pool }
+    }
+
+    private func makePool(_ url: URL) -> [AVAudioPlayer] {
         var pool: [AVAudioPlayer] = []
         for _ in 0..<2 {
             if let p = try? AVAudioPlayer(contentsOf: url) {
@@ -43,7 +86,17 @@ final class SoundEngine {
                 pool.append(p)
             }
         }
-        if !pool.isEmpty { players[name] = pool }
+        return pool
+    }
+
+    /// Re-reads the sounds (after the user changed the custom folder).
+    func reload() { preload() }
+
+    /// Creates the custom folder if needed and shows it in the Finder.
+    func revealCustomFolder() {
+        guard let dir = Self.customFolder else { return }
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        NSWorkspace.shared.activateFileViewerSelecting([dir])
     }
 
     /// Fade out all currently-playing instances of `name` over `duration` seconds,

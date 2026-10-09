@@ -16,7 +16,7 @@ jobs:
         run: brew install xcodegen
 
       - name: Generate project
-        run: cd NotchBuddy && xcodegen
+        run: cd Zuddy && xcodegen
 
       - name: Test screen geometry
         run: bash scripts/test-screen-geometry.sh
@@ -66,14 +66,20 @@ jobs:
       - name: Pill colour tests
         run: bash scripts/test-pill-colors.sh
 
+      - name: Test Claude host
+        run: bash scripts/test-claude-host.sh
+
+      - name: Test terminal target
+        run: bash scripts/test-terminal-target.sh
+
       - name: Claude settings file tests
         run: bash scripts/test-claude-settings.sh
 
       - name: Build
         run: |
           xcodebuild \
-            -project NotchBuddy/NotchBuddy.xcodeproj \
-            -scheme NotchBuddy \
+            -project Zuddy/Zuddy.xcodeproj \
+            -scheme Zuddy \
             -configuration Release \
             build \
             CODE_SIGNING_ALLOWED=NO \
@@ -82,8 +88,8 @@ jobs:
       - name: Build App Store target (unsigned)
         run: |
           xcodebuild \
-            -project NotchBuddy/NotchBuddy.xcodeproj \
-            -scheme CoucouAppStore \
+            -project Zuddy/Zuddy.xcodeproj \
+            -scheme ZuddyAppStore \
             -configuration Debug \
             build \
             CODE_SIGNING_ALLOWED=NO \
@@ -92,8 +98,8 @@ jobs:
       - name: Build iPhone link spike (Mac, DebugCloud, unsigned)
         run: |
           xcodebuild \
-            -project NotchBuddy/NotchBuddy.xcodeproj \
-            -scheme NotchBuddyCloud \
+            -project Zuddy/Zuddy.xcodeproj \
+            -scheme ZuddyCloud \
             -configuration DebugCloud \
             build \
             CODE_SIGNING_ALLOWED=NO \
@@ -102,8 +108,8 @@ jobs:
       - name: Build iPhone link spike (Mac, ReleaseCloud, unsigned)
         run: |
           xcodebuild \
-            -project NotchBuddy/NotchBuddy.xcodeproj \
-            -scheme NotchBuddy \
+            -project Zuddy/Zuddy.xcodeproj \
+            -scheme Zuddy \
             -configuration ReleaseCloud \
             build \
             CODE_SIGNING_ALLOWED=NO \
@@ -112,8 +118,8 @@ jobs:
       - name: Build iPhone app (unsigned)
         run: |
           xcodebuild \
-            -project NotchBuddy/NotchBuddy.xcodeproj \
-            -scheme CoucouPhone \
+            -project Zuddy/Zuddy.xcodeproj \
+            -scheme ZuddyPhone \
             -destination 'generic/platform=iOS' \
             build \
             CODE_SIGNING_ALLOWED=NO

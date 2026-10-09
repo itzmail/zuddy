@@ -32,6 +32,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             CloudProbe.shared.startIfEnabled()
         }
         #endif
+        #if !APPSTORE
+        _ = SpotifyController.shared
+        #endif
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
