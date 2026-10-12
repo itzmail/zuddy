@@ -52,6 +52,7 @@
 		2DA6FDE4F0DDD44B87AE9652 /* TerminalTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D580B93F8F925E76114DE7E /* TerminalTarget.swift */; };
 		2E596E9F12F3FCEFDD420E1A /* GitHubActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77FE21C50038F9C6FE8072 /* GitHubActivity.swift */; };
 		2EAD335D17052D03E809102F /* question.wav in Resources */ = {isa = PBXBuildFile; fileRef = D00CC381DACA2462D938ED6E /* question.wav */; };
+		2F52262BE6D68372D496D884 /* ApprovalQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */; };
 		30705FBA1CA37066E494243C /* ZuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */; };
 		32EA182CDDDC1501318674D8 /* MochiActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6EE037DC61FDD4307C8CA /* MochiActivityAttributes.swift */; };
 		3307D1FFC73C3EA3243948CE /* MochiLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A48168E7CA84374D0773CE /* MochiLive.swift */; };
@@ -90,6 +91,7 @@
 		530B1C10960CC0BAAABE7345 /* IslandScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A7F5F2150C16E51B0BFA2 /* IslandScreenGeometry.swift */; };
 		5316503BDDA34B17DD4F2473 /* MochiOutfitDrawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785E6D7E9B4A3B7F6AE070C /* MochiOutfitDrawing.swift */; };
 		5335702AFA1C072D6D8785D2 /* HookServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F13074AEB7F85AE8695FA7 /* HookServer.swift */; };
+		5623F0A0A079A9FB6985A960 /* ApprovalQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */; };
 		56611E87E0441BC5B2992180 /* MochiActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C6EE037DC61FDD4307C8CA /* MochiActivityAttributes.swift */; };
 		578141FD225E74B80D5EE118 /* CloudProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568259F3BA221E44024D0A66 /* CloudProbe.swift */; };
 		59FB90CA03667DAD0646792E /* ZuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DC1B83C4956C16A62F2365 /* ZuddyApp.swift */; };
@@ -106,6 +108,7 @@
 		63B8BA013A56AE11B77B2127 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
 		63DE34B2C065C46CCD1149E4 /* InstructionRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF430404846A43D58FDA93E /* InstructionRunner.swift */; };
 		64213C2E408E37C9B5419783 /* TurnShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F67F79168C05BE9B9B1F185 /* TurnShare.swift */; };
+		643CEACA7ABC6171FE16391D /* ApprovalQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */; };
 		64DF7CF660F92C45601BFAF8 /* DiffEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96D022700E9BEB03D4F1829 /* DiffEngine.swift */; };
 		65E43EC2251A9775D59FC1E2 /* DesktopMochiLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47BB4F2F340E867254EB113 /* DesktopMochiLogic.swift */; };
 		668C1FB55F6921AFE75E45BC /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
@@ -131,6 +134,7 @@
 		78B47CD7B143E655F1D8BCB4 /* ZuddyNotificationContent.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5002ABB345DAEC4E5C1022C6 /* ZuddyNotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7E376D1DF513856C5BD7A636 /* ResendPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884E8420E0FCF85735646F9D /* ResendPoller.swift */; };
 		7F1E951D1F127A51A2998DB1 /* VercelPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0279A2CB49DA7877488EA /* VercelPoller.swift */; };
+		80805D7A7696EAF652620E85 /* ApprovalQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */; };
 		808CEB22665936CD0CD24BC4 /* Decisions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68FA71D71D3BBD1A86840A3 /* Decisions.swift */; };
 		815D5B474DAA7020CD4E7775 /* InstructionRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF430404846A43D58FDA93E /* InstructionRunner.swift */; };
 		85975F2C3C010F6140EDEBF3 /* ClaudeHookDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01FAA5BE48729D5ED99B7B17 /* ClaudeHookDetection.swift */; };
@@ -202,6 +206,7 @@
 		BF7C017596ED94EA065E4B97 /* MochiWardrobe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DBAD8FCF73888BF0E5DE9F1 /* MochiWardrobe.swift */; };
 		BFD37F2E39872611C73A292E /* RecapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE1D6CB21444EA16D75CA1C /* RecapStore.swift */; };
 		BFFBD9FDEF53A4308558761F /* ZuddyWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA283DC2F6139F20F1C56E /* ZuddyWidgets.swift */; };
+		C084AC2D544CF682C0B19D6A /* ApprovalQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */; };
 		C0EE4FB985964A804DCAB9A6 /* MacStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5672F107D3ADC6281CCF2A /* MacStubs.swift */; };
 		C188AB578E8EAE760DDAD086 /* ServiceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073949BBE6EB30EAA3E37A07 /* ServiceDetail.swift */; };
 		C492D1C07A4690DD4BBB3486 /* GithubPoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF401B6F688751219CC6AB94 /* GithubPoller.swift */; };
@@ -347,6 +352,7 @@
 		548367F894A9F40343F32353 /* N8nPoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = N8nPoller.swift; sourceTree = "<group>"; };
 		55E138D98CCDCC4B50D4FCC2 /* ZuddyAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZuddyAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		568259F3BA221E44024D0A66 /* CloudProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudProbe.swift; sourceTree = "<group>"; };
+		5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovalQueue.swift; sourceTree = "<group>"; };
 		5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotEngine.swift; sourceTree = "<group>"; };
 		5DB52D5DE47C3D054B14751E /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		5E7C27D6B606D0443F322D44 /* WeeklyRecapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRecapView.swift; sourceTree = "<group>"; };
@@ -486,6 +492,7 @@
 		329C788D7D98B0CA11ADB5A7 /* ZuddyKit */ = {
 			isa = PBXGroup;
 			children = (
+				5803623C5AF0B67F5C910BE8 /* ApprovalQueue.swift */,
 				5BDA9489BBCB8DCA7F0B31D9 /* BotEngine.swift */,
 				9B4982D3B399A86D16BB593F /* ColorHex.swift */,
 				F96D022700E9BEB03D4F1829 /* DiffEngine.swift */,
@@ -834,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C084AC2D544CF682C0B19D6A /* ApprovalQueue.swift in Sources */,
 				338C1FF11C5856BE0D4082D1 /* BotEngine.swift in Sources */,
 				448084B561F26E04FF7506C1 /* ColorHex.swift in Sources */,
 				63B8BA013A56AE11B77B2127 /* DiffEngine.swift in Sources */,
@@ -862,6 +870,7 @@
 				006BB413849C4B78E2CDDBD6 /* AppDelegate.swift in Sources */,
 				9604DC760DC46959E39D9B7C /* AppLog.swift in Sources */,
 				DA0A9C120F1C33F29FD1013E /* AppState.swift in Sources */,
+				80805D7A7696EAF652620E85 /* ApprovalQueue.swift in Sources */,
 				73FFCCFB7C26A205DD05A5A0 /* ApprovalRelay.swift in Sources */,
 				D850A059C2507EEDC2913064 /* AskQuestion.swift in Sources */,
 				717077769EBE6B2AF38C36F0 /* BotCanvasView.swift in Sources */,
@@ -950,6 +959,7 @@
 				1F63363150C491B1A1B03AD3 /* AgentNotifier.swift in Sources */,
 				B874078A31F0482B73B9EB23 /* AppleStyle.swift in Sources */,
 				CB76C1CF96544C512941482F /* ApprovalCard.swift in Sources */,
+				5623F0A0A079A9FB6985A960 /* ApprovalQueue.swift in Sources */,
 				FA37B43E6E95F6449D073F79 /* BotEngine.swift in Sources */,
 				A14DE878458E33127C4B6FB5 /* ColorHex.swift in Sources */,
 				808CEB22665936CD0CD24BC4 /* Decisions.swift in Sources */,
@@ -1002,6 +1012,7 @@
 				EF329FF45C7E589EC69FDF4B /* AppDelegate.swift in Sources */,
 				9BD12ADE4A5498166CF3163B /* AppLog.swift in Sources */,
 				2A9D9DF07F49A81ADCC32178 /* AppState.swift in Sources */,
+				2F52262BE6D68372D496D884 /* ApprovalQueue.swift in Sources */,
 				33E1E9EF1E94D9DC1149F5DC /* ApprovalRelay.swift in Sources */,
 				6FE7492BB37183FE1734F673 /* AskQuestion.swift in Sources */,
 				3DF3E82D3A8B44EAD569F268 /* BotCanvasView.swift in Sources */,
@@ -1086,6 +1097,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				643CEACA7ABC6171FE16391D /* ApprovalQueue.swift in Sources */,
 				B200991646B377907C708A17 /* BotEngine.swift in Sources */,
 				0E0A35FBD59C7BD2FA8A9F30 /* ColorHex.swift in Sources */,
 				D076BD438C5FA9BC3F335540 /* DenyApprovalIntent.swift in Sources */,
