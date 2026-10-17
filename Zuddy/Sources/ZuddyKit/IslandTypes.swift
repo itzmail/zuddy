@@ -70,6 +70,29 @@ struct AgentTask: Identifiable, Equatable {
     var hostApp: String? = nil          // Bundle id of terminal running Claude Code (nil = VS Code)
     var herdrPaneId: String? = nil  // Herdr pane hosting this agent (e.g. "wV:p35")
     var herdrWorkspaceId: String? = nil
+    var sessions: [AgentSessionState] = []
+    var selectedSessionId: String? = nil
+
+    var activeSession: AgentSessionState? {
+        if let selected = selectedSessionId, let s = sessions.first(where: { $0.id == selected }) {
+            return s
+        }
+        return sessions.last
+    }
+}
+
+// MARK: - Agent Session State (Multi-session per pill)
+
+struct AgentSessionState: Identifiable, Equatable {
+    var id: String             // sessionId
+    var projectName: String    // Folder/Project name
+    var cwd: String            // Working directory
+    var state: BotState        // .working, .thinking, .finished, .idle, .error
+    var steps: [String] = []   // Log tool execution untuk sesi ini
+    var finalLine: String?     // Hasil akhir assistant
+    var lastUserMessage: String?       // Pesan prompt user terakhir
+    var lastAssistantMessage: String?  // Pesan jawaban assistant terakhir
+    var lastActive: Date = Date()
 }
 
 enum AgentSource: Equatable {

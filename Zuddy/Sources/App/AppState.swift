@@ -627,6 +627,81 @@ final class AppState: ObservableObject {
         tasks[idx].pillBadge = badge
     }
 
+    // MARK: - Multi-Session Management
+
+    func selectSession(pillId: String, sessionId: String) {
+        guard let idx = tasks.firstIndex(where: { $0.id == pillId }) else { return }
+        tasks[idx].selectedSessionId = sessionId
+    }
+
+    func updateSession(pillId: String, sessionId: String, projectName: String? = nil, cwd: String? = nil, state: BotState? = nil, step: String? = nil, finalLine: String? = nil, userMessage: String? = nil, assistantMessage: String? = nil) {
+        guard let idx = tasks.firstIndex(where: { $0.id == pillId }) else { return }
+        var sessions = tasks[idx].sessions
+        if let sIdx = sessions.firstIndex(where: { $0.id == sessionId }) {
+            if let p = projectName, !p.isEmpty { sessions[sIdx].projectName = p }
+            if let c = cwd, !c.isEmpty { sessions[sIdx].cwd = c }
+            if let st = state { sessions[sIdx].state = st }
+            if let sp = step {
+                sessions[sIdx].steps.append(sp)
+                if sessions[sIdx].steps.count > 30 { sessions[sIdx].steps.removeFirst() }
+            }
+            if let f = finalLine { sessions[sIdx].finalLine = f }
+            if let um = userMessage, !um.isEmpty { sessions[sIdx].lastUserMessage = um }
+            if let am = assistantMessage, !am.isEmpty { sessions[sIdx].lastAssistantMessage = am }
+            sessions[sIdx].lastActive = Date()
+        } else {
+            var newSession = AgentSessionState(
+                id: sessionId,
+                projectName: projectName ?? tasks[idx].name,
+                cwd: cwd ?? (tasks[idx].sessionCwd ?? ""),
+                state: state ?? tasks[idx].state
+            )
+            if let sp = step { newSession.steps.append(sp) }
+            newSession.finalLine = finalLine
+            newSession.lastUserMessage = userMessage
+            newSession.lastAssistantMessage = assistantMessage
+            sessions.append(newSession)
+        }
+        tasks[idx].sessions = sessions
+        if tasks[idx].selectedSessionId == nil || !sessions.contains(where: { $0.id == tasks[idx].selectedSessionId }) {
+            tasks[idx].selectedSessionId = sessionId
+        }
+    }
+
+    func removeSession(pillId: String, sessionId: String) {
+        guard let idx = tasks.firstIndex(where: { $0.id == pillId }) else { return }
+        tasks[idx].sessions.removeAll { $0.id == sessionId }
+        if tasks[idx].selectedSessionId == sessionId {
+            tasks[idx].selectedSessionId = tasks[idx].sessions.last?.id
+        }
+    }
+
+    private var lastSweepTime: Date = .distantPast
+
+    /// Automatically clean up stale sessions that haven't sent any event for maxSilence (default 15 minutes)
+    func sweepStaleSessions(maxSilence: TimeInterval = 15 * 60) {
+        let now = Date()
+        // Throttle sweep execution to at most once every 60 seconds
+        guard now.timeIntervalSince(lastSweepTime) >= 60 else { return }
+        lastSweepTime = now
+
+        for idx in tasks.indices {
+            let active = tasks[idx].sessions.filter { session in
+                // Keep sessions that are actively needing attention (approval, question, ratelimit)
+                if session.state == .approval || session.state == .question || session.state == .ratelimit {
+                    return true
+                }
+                return now.timeIntervalSince(session.lastActive) < maxSilence
+            }
+            if active.count != tasks[idx].sessions.count {
+                tasks[idx].sessions = active
+                if let sel = tasks[idx].selectedSessionId, !active.contains(where: { $0.id == sel }) {
+                    tasks[idx].selectedSessionId = active.last?.id
+                }
+            }
+        }
+    }
+
     /// Called on main thread after each GitHub pulse poll. Fires badge + sound based on events.
     func handleGitHubEvents(_ events: [GitHubEvent]) {
         guard !events.isEmpty else { return }

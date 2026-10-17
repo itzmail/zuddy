@@ -506,6 +506,7 @@ final class HookServer: @unchecked Sendable {
         // A sibling session's event must not take the pill out of its approval state.
         defer {
             if approvals.hasEntries(forPill: agentId) { state.updateTask(id: agentId, state: .approval) }
+            state.sweepStaleSessions()
         }
 
         switch name {
@@ -515,6 +516,7 @@ final class HookServer: @unchecked Sendable {
             if isExternalAgent { upsertExternalAgent(id: agentId, name: validAgent!) } else { upsertWorkspaceTask(id: agentId, projectName: projectName, cwd: cwd, hostApp: hostApp, bundleId: bundleId) }
             applyHerdrMeta(id: agentId, payload: payload)
             if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) { state.tasks[idx].finalLine = nil }
+            state.updateSession(pillId: agentId, sessionId: sessionId, projectName: projectName, cwd: cwd, state: .idle)
             nbLog("SessionStart \(isExternalAgent ? agentId : projectName) (\(sessionId.prefix(8)))")
             NotificationCenter.default.post(name: .checkMondayRecap, object: nil)
             if state.isPresent { expandIfNeeded(to: .overview) }
@@ -522,7 +524,7 @@ final class HookServer: @unchecked Sendable {
             if agentId == "agent_hermes", let platform = payload["platform"] as? String,
                !platform.isEmpty, platform != "cli" {
                 let capitalized = platform.prefix(1).uppercased() + platform.dropFirst()
-                appendStep(id: agentId, step: String(capitalized))
+                appendStep(id: agentId, step: String(capitalized), sessionId: sessionId)
             }
 
         case "UserPromptSubmit":
@@ -531,8 +533,11 @@ final class HookServer: @unchecked Sendable {
             applyHerdrMeta(id: agentId, payload: payload)
             if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) { state.tasks[idx].finalLine = nil }
             state.updateTask(id: agentId, state: .thinking)
-            if let prompt = payload["prompt"] as? String, !prompt.isEmpty {
-                appendStep(id: agentId, step: String(prompt.prefix(60)))
+            let promptText = payload["prompt"] as? String ?? ""
+            let stepText = promptText.isEmpty ? nil : String(promptText.prefix(60))
+            state.updateSession(pillId: agentId, sessionId: sessionId, projectName: projectName, cwd: cwd, state: .thinking, userMessage: promptText)
+            if let st = stepText {
+                appendStep(id: agentId, step: st, sessionId: sessionId)
             }
             RecapStore.shared.userPromptSubmit(sessionId: recapSessionId, pillId: agentId, project: projectName)
             NotificationCenter.default.post(name: .checkMondayRecap, object: nil)
@@ -551,34 +556,39 @@ final class HookServer: @unchecked Sendable {
             state.updateTask(id: agentId, state: .working)
             let input = payload["tool_input"] as? [String: Any] ?? [:]
             let step = localizedStep(tool: tool, input: input)
-            appendStep(id: agentId, step: step)
+            state.updateSession(pillId: agentId, sessionId: sessionId, projectName: projectName, cwd: cwd, state: .working)
+            appendStep(id: agentId, step: step, sessionId: sessionId)
             nbLog("PreToolUse \(tool)")
 
         case "PostToolUse":
             state.updateTask(id: agentId, state: .working)
+            state.updateSession(pillId: agentId, sessionId: sessionId, state: .working)
             // Live diff for Edit / MultiEdit / Write
             let diffTool = payload["tool_name"] as? String ?? ""
             let diffInput = payload["tool_input"] as? [String: Any] ?? [:]
             if let diff = buildFileDiff(tool: diffTool, input: diffInput, pillId: agentId) {
                 let idx = state.appendSessionDiff(diff, for: agentId)
                 let step = String.makeDiffStep(filename: diff.name, added: diff.added, removed: diff.removed, diffId: idx)
-                appendStep(id: agentId, step: step)
+                appendStep(id: agentId, step: step, sessionId: sessionId)
                 RecapStore.shared.recordFileDiff(sessionId: recapSessionId, path: diff.name, added: diff.added, removed: diff.removed)
             }
 
         case "PostToolUseFailure":
             state.updateTask(id: agentId, state: .working)
-            appendStep(id: agentId, step: "⚠ failed")
+            state.updateSession(pillId: agentId, sessionId: sessionId, state: .working)
+            appendStep(id: agentId, step: "⚠ failed", sessionId: sessionId)
 
         case "Notification":
             let message = payload["message"] as? String ?? ""
             let lower = message.lowercased()
             if lower.contains("rate limit") || lower.contains("limite d") {
                 state.updateTask(id: agentId, state: .ratelimit)
+                state.updateSession(pillId: agentId, sessionId: sessionId, state: .ratelimit)
                 SoundEngine.shared.play("rate")
             } else if message.hasSuffix("?") {
                 state.updateTask(id: agentId, state: .question)
-                appendStep(id: agentId, step: message)
+                state.updateSession(pillId: agentId, sessionId: sessionId, state: .question)
+                appendStep(id: agentId, step: message, sessionId: sessionId)
             }
 
         case "Stop":
@@ -586,22 +596,40 @@ final class HookServer: @unchecked Sendable {
             let rawFinal = (payload["last_assistant_message"] as? String)
                 ?? (payload["message"] as? String) ?? ""
             let finalText = DiffEngine.toOneLine(rawFinal)
+            state.updateSession(pillId: agentId, sessionId: sessionId, state: .finished, finalLine: finalText.isEmpty ? nil : finalText, assistantMessage: rawFinal)
             if !finalText.isEmpty {
-                appendStep(id: agentId, step: finalText)
+                appendStep(id: agentId, step: finalText, sessionId: sessionId)
                 if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) {
                     state.tasks[idx].finalLine = finalText
                 }
             }
+
+            // If user is currently in the prompt/chat view for this agent, append the assistant reply
+            if state.view == .prompt, state.focusId == agentId {
+                let replyContent = rawFinal.isEmpty ? (finalText.isEmpty ? "Done" : finalText) : rawFinal
+                state.chatHistory.append(ChatMessage(role: .assistant, content: replyContent))
+                state.stateOverride = nil
+            }
+
             RecapStore.shared.stop(sessionId: recapSessionId)
             SoundEngine.shared.play("finish")
             if focused {
-                expandIfNeeded(to: .finished)
+                if state.view != .prompt {
+                    expandIfNeeded(to: .finished)
+                }
             } else {
                 setPillBadge(id: agentId, badge: .finished)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 5.2) {
                 if isExternalAgent {
-                    AppState.shared.removeTask(id: agentId)
+                    // Do not remove task if user is actively chatting or has sessions
+                    if let tIdx = AppState.shared.tasks.firstIndex(where: { $0.id == agentId }),
+                       AppState.shared.tasks[tIdx].sessions.isEmpty {
+                        AppState.shared.removeTask(id: agentId)
+                    } else {
+                        AppState.shared.updateTask(id: agentId, state: .idle)
+                        self.clearPillBadge(id: agentId)
+                    }
                 } else {
                     AppState.shared.updateTask(id: agentId, state: .idle)
                     self.clearPillBadge(id: agentId)
@@ -611,6 +639,7 @@ final class HookServer: @unchecked Sendable {
         case "StopFailure":
             RecapStore.shared.stop(sessionId: recapSessionId)
             state.updateTask(id: agentId, state: .error)
+            state.updateSession(pillId: agentId, sessionId: sessionId, state: .error)
             SoundEngine.shared.play("error")
             if focused {
                 expandIfNeeded(to: .error)
@@ -623,13 +652,19 @@ final class HookServer: @unchecked Sendable {
             RecapStore.shared.stop(sessionId: recapSessionId)
             activeSessionId = nil
             state.updateTask(id: agentId, state: .idle)
+            state.updateSession(pillId: agentId, sessionId: sessionId, state: .idle)
             clearPillBadge(id: agentId)
 
         case "SessionEnd":
             activeSessionId = nil
-            if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) { state.tasks[idx].finalLine = nil }
-            state.clearSessionDiffs(for: agentId)
-            state.removeTask(id: agentId)
+            state.removeSession(pillId: agentId, sessionId: sessionId)
+            if let idx = state.tasks.firstIndex(where: { $0.id == agentId }) {
+                if state.tasks[idx].sessions.isEmpty {
+                    state.tasks[idx].finalLine = nil
+                    state.clearSessionDiffs(for: agentId)
+                    state.removeTask(id: agentId)
+                }
+            }
             RecapStore.shared.sessionEnd(sessionId: recapSessionId)
 
         case "SubagentStart":
@@ -1070,12 +1105,15 @@ final class HookServer: @unchecked Sendable {
     }
 
     @MainActor
-    private func appendStep(id: String, step: String) {
+    private func appendStep(id: String, step: String, sessionId: String? = nil) {
         let state = AppState.shared
         guard let idx = state.tasks.firstIndex(where: { $0.id == id }) else { return }
         state.tasks[idx].steps.append(step)
         if state.tasks[idx].steps.count > 20 { state.tasks[idx].steps.removeFirst() }
         state.tasks[idx].stepIndex = state.tasks[idx].steps.count - 1
+        if let sId = sessionId, !sId.isEmpty {
+            state.updateSession(pillId: id, sessionId: sId, step: step)
+        }
     }
 
     // MARK: - Project name alias mapping

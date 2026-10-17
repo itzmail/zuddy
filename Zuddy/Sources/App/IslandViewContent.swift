@@ -58,7 +58,7 @@ struct OverviewView: View {
                                 Circle()
                                     .fill(Color(hex: agent.color))
                                     .frame(width: 7, height: 7)
-                                Text(agent.name)
+                                Text(agent.activeSession?.projectName.isEmpty == false ? agent.activeSession!.projectName : agent.name)
                                     .font(.system(size: 12, weight: .semibold))
                                     .foregroundColor(Color(hex: "#F5F6F8"))
                                     .lineLimit(1)
@@ -76,8 +76,9 @@ struct OverviewView: View {
                                     .lineLimit(1)
                                     .truncationMode(.tail)
                                 Spacer(minLength: 2)
-                                if agent.steps.count > 1 {
-                                    Text("\(min(agent.stepIndex + 1, agent.steps.count))/\(agent.steps.count)")
+                                let currentSteps = agent.activeSession?.steps ?? agent.steps
+                                if currentSteps.count > 1 {
+                                    Text("\(currentSteps.count)")
                                         .font(.system(size: 11))
                                         .foregroundColor(Color(hex: "#6B7079"))
                                         .fixedSize()
@@ -87,11 +88,18 @@ struct OverviewView: View {
                             .padding(.leading, 108)
                             .padding(.trailing, 36)
 
+                            if !agent.sessions.isEmpty {
+                                AgentSubPillsBar(task: agent, state: state)
+                                    .padding(.top, 3)
+                                    .padding(.leading, 108)
+                                    .padding(.trailing, 12)
+                            }
+
                             TickerView(task: agent, onDiffTap: { diffIdx in
                                 withAnimation(.easeIn(duration: 0.16)) { activeDiffId = diffIdx }
                             })
                                 .frame(height: 44)
-                                .padding(.top, 6)
+                                .padding(.top, agent.sessions.isEmpty ? 6 : 2)
                                 .padding(.leading, 108)
                                 .padding(.trailing, 12)
                         }
@@ -270,6 +278,11 @@ struct OverviewView: View {
             SpotifyController.shared.openSpotify()
             #endif
         default:
+            // If the agent is running in a Herdr pane, focus the pane directly
+            if let paneId = task.herdrPaneId, !paneId.isEmpty {
+                HerdrBridge.focusPane(paneId: paneId)
+                return
+            }
             // Non-integration real tasks
             if task.source == .n8n {
                 if let urlStr = KeychainStore.shared.get("n8n-url"), let url = URL(string: urlStr) {
@@ -1282,6 +1295,49 @@ struct PromptView: View {
             CardBackground(wash: .indigo)
 
             VStack(alignment: .leading, spacing: 6) {
+                // If an agent pill with sessions is active, render sub-pills & current status at top of chat
+                if let focusId = state.focusId,
+                   let task = state.tasks.first(where: { $0.id == focusId }),
+                   !task.sessions.isEmpty {
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack(spacing: 5) {
+                            Circle()
+                                .fill(Color(hex: task.color))
+                                .frame(width: 6, height: 6)
+                            Text(task.name)
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundColor(Color(hex: "#F5F6F8"))
+                            Spacer()
+                            Button {
+                                withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
+                                    state.view = .overview
+                                }
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(Color(hex: "#7B8089"))
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        AgentSubPillsBar(task: task, state: state, showChatButton: false)
+                        if let lastStep = task.activeSession?.steps.last ?? task.steps.last, !lastStep.isEmpty, lastStep != "…" {
+                            HStack(spacing: 4) {
+                                Image(systemName: "bolt.fill")
+                                    .font(.system(size: 8))
+                                    .foregroundColor(Color(hex: task.color))
+                                Text(lastStep)
+                                    .font(.system(size: 10))
+                                    .foregroundColor(Color(hex: "#8E939C"))
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                            }
+                            .padding(.top, 1)
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                    .padding(.top, 4)
+                }
+
                 if let ctx = state.promptContext {
                     ContextChip(context: ctx).padding(.top, 4)
                 }
@@ -1294,7 +1350,14 @@ struct PromptView: View {
                                     ChatBubble(message: msg).id(msg.id)
                                 }
                                 if state.stateOverride != nil {
-                                    HStack { TypingDotsView(); Spacer(minLength: 32) }
+                                    let activeStepText: String? = {
+                                        guard let fid = state.focusId, let t = state.tasks.first(where: { $0.id == fid }) else { return nil }
+                                        let s = t.activeSession?.steps.last ?? t.steps.last
+                                        return (s != nil && !s!.isEmpty && s != "…") ? s : nil
+                                    }()
+                                    let activeTaskColor = state.tasks.first(where: { $0.id == state.focusId })?.color ?? "#38BDF8"
+
+                                    ChatLiveStepView(step: activeStepText, taskColor: activeTaskColor)
                                         .id("typing")
                                 }
                             }
@@ -1375,31 +1438,49 @@ struct PromptView: View {
 
                     Spacer()
 
-                    Button {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
-                            showModelPicker.toggle()
-                        }
-                    } label: {
+                    if let focusId = state.focusId,
+                       let task = state.tasks.first(where: { $0.id == focusId }),
+                       !task.sessions.isEmpty {
+                        // In agent session context: show connected agent badge
                         HStack(spacing: 5) {
                             Circle()
-                                .fill(Color(hex: state.chatProvider.accentHex))
+                                .fill(Color(hex: task.color))
                                 .frame(width: 6, height: 6)
-                            Text(state.activeChatModel)
+                            Text(task.name)
                                 .font(.system(size: 10.5, weight: .medium))
-                                .foregroundColor(Color(hex: "#7B8089"))
-                            Image(systemName: "chevron.up.chevron.down")
-                                .font(.system(size: 8))
-                                .foregroundColor(Color(hex: "#5C6370"))
+                                .foregroundColor(Color(hex: "#F5F6F8"))
                         }
                         .padding(.horizontal, 8)
                         .padding(.vertical, 4)
-                        .background(Color.white.opacity(0.06))
+                        .background(Color(hex: task.color).opacity(0.18))
                         .clipShape(Capsule())
-                    }
-                    .buttonStyle(.plain)
-                    .popover(isPresented: $showModelPicker, arrowEdge: .bottom) {
-                        ModelPickerView(state: state, isPresented: $showModelPicker)
-                            .frame(width: 300)
+                    } else {
+                        Button {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
+                                showModelPicker.toggle()
+                            }
+                        } label: {
+                            HStack(spacing: 5) {
+                                Circle()
+                                    .fill(Color(hex: state.chatProvider.accentHex))
+                                    .frame(width: 6, height: 6)
+                                Text(state.activeChatModel)
+                                    .font(.system(size: 10.5, weight: .medium))
+                                    .foregroundColor(Color(hex: "#7B8089"))
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .font(.system(size: 8))
+                                    .foregroundColor(Color(hex: "#5C6370"))
+                            }
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.white.opacity(0.06))
+                            .clipShape(Capsule())
+                        }
+                        .buttonStyle(.plain)
+                        .popover(isPresented: $showModelPicker, arrowEdge: .bottom) {
+                            ModelPickerView(state: state, isPresented: $showModelPicker)
+                                .frame(width: 300)
+                        }
                     }
                 }
                 .padding(.horizontal, 10)
@@ -1508,11 +1589,156 @@ struct PromptView: View {
         guard !query.isEmpty else { return }
         text = ""
         focused = false
+
+        // Check if an agent session (such as Agent Pi) is currently focused
+        if let focusId = state.focusId,
+           let task = state.tasks.first(where: { $0.id == focusId }),
+           let activeSession = task.activeSession,
+           task.id.hasPrefix("agent_") || task.id == "integration_claude" {
+            // Clear previous chat history to show clean turn execution for this prompt
+            state.chatHistory = [ChatMessage(role: .user, content: query)]
+            state.stateOverride = .thinking
+
+            let sid = activeSession.id
+            let paneId = task.herdrPaneId
+            Task.detached(priority: .userInitiated) {
+                let sockPath = "/tmp/zuddy-pi-\(sid).sock"
+                var success = Self.sendSocketMessage(sockPath: sockPath, message: query)
+                
+                // If direct extension socket is not available, check if agent is hosted inside a Herdr pane
+                if !success, let pane = paneId, !pane.isEmpty {
+                    success = Self.sendHerdrPrompt(paneId: pane, message: query)
+                }
+
+                await MainActor.run {
+                    if !success {
+                        NSLog("Failed to forward prompt to agent via socket or herdr (pane: \(paneId ?? "nil"))")
+                        state.stateOverride = nil
+                        state.chatHistory.append(ChatMessage(role: .assistant, content: "Couldn't reach the agent."))
+                    }
+                    focused = true
+                }
+            }
+            return
+        }
+
         state.chatHistory.append(ChatMessage(role: .user, content: query))
         state.stateOverride = .thinking
         Task {
             await ClaudeService.shared.chat(query: query, context: state.promptContext, state: state)
             await MainActor.run { focused = true }
+        }
+    }
+
+    nonisolated private static func sendSocketMessage(sockPath: String, message: String) -> Bool {
+        guard FileManager.default.fileExists(atPath: sockPath) else { return false }
+        let fd = socket(AF_UNIX, SOCK_STREAM, 0)
+        guard fd >= 0 else { return false }
+        defer { close(fd) }
+
+        // Set 500ms send timeout so UI/background task never blocks indefinitely
+        var tv = timeval(tv_sec: 0, tv_usec: 500_000)
+        setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, &tv, socklen_t(MemoryLayout<timeval>.size))
+
+        var addr = sockaddr_un()
+        addr.sun_family = sa_family_t(AF_UNIX)
+        let maxLen = MemoryLayout.size(ofValue: addr.sun_path)
+        let count = sockPath.utf8.count
+        guard count < maxLen else { return false }
+
+        _ = sockPath.withCString {
+            strncpy(&addr.sun_path.0, $0, maxLen - 1)
+        }
+
+        let connectRes = withUnsafePointer(to: &addr) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                connect(fd, $0, socklen_t(MemoryLayout<sockaddr_un>.size))
+            }
+        }
+        guard connectRes == 0 else { return false }
+
+        let payload: [String: Any] = ["action": "send", "message": message]
+        guard let data = try? JSONSerialization.data(withJSONObject: payload),
+              var str = String(data: data, encoding: .utf8) else { return false }
+        str.append("\n")
+
+        let sent = str.utf8CString.withUnsafeBufferPointer { buf -> Int in
+            guard let base = buf.baseAddress else { return 0 }
+            return write(fd, base, buf.count - 1)
+        }
+        return sent > 0
+    }
+
+    nonisolated private static func sendHerdrPrompt(paneId: String, message: String) -> Bool {
+        HerdrBridge.sendPrompt(paneId: paneId, message: message)
+    }
+}
+
+// MARK: - Herdr CLI Bridge
+
+enum HerdrBridge {
+    /// Cached resolved binary path for Herdr CLI
+    static let binaryPath: String? = {
+        let candidates = [
+            ProcessInfo.processInfo.environment["HERDR_BIN_PATH"],
+            "/opt/homebrew/bin/herdr",
+            "/usr/local/bin/herdr",
+        ].compactMap { $0 }.filter { FileManager.default.isExecutableFile(atPath: $0) }
+        return candidates.first
+    }()
+
+    @discardableResult
+    static func sendPrompt(paneId: String, message: String) -> Bool {
+        guard let herdr = binaryPath else { return false }
+        let p = Process()
+        p.executableURL = URL(fileURLWithPath: herdr)
+        p.arguments = ["agent", "prompt", paneId, "--", message]
+        p.standardOutput = FileHandle.nullDevice
+        p.standardError = FileHandle.nullDevice
+        do {
+            try p.run()
+            p.waitUntilExit()
+            return p.terminationStatus == 0
+        } catch {
+            return false
+        }
+    }
+
+    static func focusPane(paneId: String) {
+        guard let herdr = binaryPath else { return }
+        let p = Process()
+        p.executableURL = URL(fileURLWithPath: herdr)
+        p.arguments = ["agent", "focus", paneId]
+        p.standardOutput = FileHandle.nullDevice
+        p.standardError = FileHandle.nullDevice
+        try? p.run()
+    }
+}
+
+// MARK: - Chat Live Step View
+
+struct ChatLiveStepView: View {
+    let step: String?
+    let taskColor: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            if let activeStep = step {
+                HStack(spacing: 5) {
+                    Circle()
+                        .fill(Color(hex: taskColor))
+                        .frame(width: 5, height: 5)
+                    TickerShimmerText(text: activeStep)
+                }
+                .padding(.horizontal, 9)
+                .padding(.vertical, 4)
+                .background(Color.white.opacity(0.06))
+                .clipShape(Capsule())
+            }
+            HStack {
+                TypingDotsView()
+                Spacer(minLength: 32)
+            }
         }
     }
 }
@@ -2146,6 +2372,73 @@ struct IntegrationCardView: View {
             SpotifyCardView()
                 .transition(.opacity)
             #endif
+        } else if task.id == "agent_pi" {
+            // Pi Agent: purely driven by sub-pills & sessions, no "Hooks installed" or "Open in Zed"
+            VStack(alignment: .leading, spacing: 6) {
+                HStack(spacing: 6) {
+                    Circle()
+                        .fill(Color(hex: task.color))
+                        .frame(width: 7, height: 7)
+                    Text(task.activeSession?.projectName.isEmpty == false ? task.activeSession!.projectName : task.name)
+                        .font(.system(size: 12, weight: .semibold))
+                        .foregroundColor(Color(hex: "#F5F6F8"))
+                    Text("Agent")
+                        .font(.system(size: 11))
+                        .foregroundColor(Color(hex: "#8E939C"))
+                    Spacer(minLength: 2)
+                    let currentSteps = task.activeSession?.steps ?? task.steps
+                    if currentSteps.count > 1 {
+                        Text("\(currentSteps.count)")
+                            .font(.system(size: 11))
+                            .foregroundColor(Color(hex: "#6B7079"))
+                            .fixedSize()
+                    }
+                }
+                .padding(.top, 6)
+                .padding(.leading, 108)
+                .padding(.trailing, 36)
+
+                // Sub-pills bar
+                if !task.sessions.isEmpty {
+                    AgentSubPillsBar(task: task, state: appState, showChatButton: true)
+                        .padding(.leading, 108)
+                        .padding(.trailing, 12)
+                        .padding(.top, 1)
+
+                    TickerView(task: task, onDiffTap: onDiffTap)
+                        .frame(height: 44)
+                        .padding(.top, 1)
+                        .padding(.leading, 108)
+                        .padding(.trailing, 12)
+                } else {
+                    HStack(spacing: 8) {
+                        Text("No active session")
+                            .font(.system(size: 11))
+                            .foregroundColor(Color(hex: "#6B7079"))
+
+                        Button {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+                                appState.isChatExpanded = true
+                                appState.view = .prompt
+                            }
+                            SoundEngine.shared.play("pop")
+                        } label: {
+                            HStack(spacing: 3) {
+                                Image(systemName: "bubble.left.fill")
+                                    .font(.system(size: 8.5))
+                                Text("Chat")
+                                    .font(.system(size: 11, weight: .semibold))
+                            }
+                            .foregroundColor(Color(hex: task.color).lighter(by: 0.2))
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    .padding(.leading, 108)
+                    .padding(.top, 4)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .topLeading)
+            .padding(.top, 4)
         } else if agentSessionActive {
             // Active session view — reuse overview layout
             VStack(alignment: .leading, spacing: 0) {
@@ -2310,6 +2603,26 @@ struct IntegrationCardView: View {
                             .font(.system(size: 11, weight: .medium))
                             .foregroundColor(Color(hex: task.color).opacity(0.85))
                             .buttonStyle(.plain)
+                    }
+
+                    // Chat button for coding agents (Pi, Copilot, Cursor, etc.)
+                    if task.id == "agent_pi" || (task.source == .agent && !task.sessions.isEmpty) {
+                        Button {
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+                                appState.isChatExpanded = true
+                                appState.view = .prompt
+                            }
+                            SoundEngine.shared.play("pop")
+                        } label: {
+                            HStack(spacing: 3) {
+                                Image(systemName: "bubble.left.fill")
+                                    .font(.system(size: 8.5))
+                                Text("Chat")
+                                    .font(.system(size: 11, weight: .semibold))
+                            }
+                            .foregroundColor(Color(hex: task.color).lighter(by: 0.2))
+                        }
+                        .buttonStyle(.plain)
                     }
                     if task.id == "integration_stripe" && isConfigured {
                         Button("Refresh") { Task { @MainActor in StripePoller.shared.pollNow() } }
@@ -3787,6 +4100,9 @@ struct TickerView: View {
     private let completedScale: CGFloat = 11.5 / 13   // 0.885 — matches completed font size
 
     var steps: [String] {
+        if let active = task?.activeSession, !active.steps.isEmpty {
+            return active.steps
+        }
         let raw = task?.steps ?? []
         return raw.isEmpty ? ["…"] : raw
     }
@@ -3827,23 +4143,31 @@ struct TickerView: View {
             startPoint: .top, endPoint: .bottom
         ))
         .onAppear {
-            let idx = task?.stepIndex ?? -1
+            let idx = (task?.activeSession?.steps.count ?? 0) > 0 ? (task!.activeSession!.steps.count - 1) : (task?.stepIndex ?? -1)
             displayIndex = idx
             if idx >= 0, !steps.isEmpty {
                 rowA = idx > 0 ? steps[max(0, idx - 1)] : "…"
                 rowB = steps[min(idx, steps.count - 1)]
             }
         }
-        .onChange(of: task?.steps.count) { _, _ in
-            guard let task, !task.steps.isEmpty, !isTransitioning else { return }
-            let newIdx = task.stepIndex
+        .onChange(of: task?.selectedSessionId) { _, _ in
+            let idx = steps.count - 1
+            displayIndex = idx
+            if idx >= 0, !steps.isEmpty {
+                rowA = idx > 0 ? steps[max(0, idx - 1)] : "…"
+                rowB = steps[min(idx, steps.count - 1)]
+            }
+        }
+        .onChange(of: steps.last) { _, newStep in
+            guard let task, let newStep, !newStep.isEmpty, !isTransitioning else { return }
+            let newIdx = steps.count - 1
             if displayIndex < 0 {
                 displayIndex = newIdx
                 rowA = newIdx > 0 ? steps[max(0, newIdx - 1)] : "…"
-                rowB = steps[min(newIdx, steps.count - 1)]
+                rowB = newStep
                 return
             }
-            guard newIdx != displayIndex else { return }
+            guard newStep != rowB || newIdx != displayIndex else { return }
             tickerAnimate(to: newIdx)
         }
     }
@@ -3992,6 +4316,152 @@ struct TickerShimmerText: View {
                     .init(color: Color(hex: "#F2F3F5"), location: max(0, min(1, phase))),
                     .init(color: Color(hex: "#7c818a"), location: min(1, phase + 0.3)),
                 ], startPoint: .leading, endPoint: .trailing))
+        }
+    }
+}
+
+// MARK: - Agent Sub-Pills Bar (Multi-session per agent)
+
+struct AgentSubPillsBar: View {
+    let task: AgentTask
+    @ObservedObject var state: AppState
+    var showChatButton: Bool = true
+    @State private var isExpanded: Bool = false
+
+    private var activeSessions: [AgentSessionState] {
+        task.sessions
+    }
+
+    private var displayedSessions: [AgentSessionState] {
+        if isExpanded || activeSessions.count <= 3 {
+            return activeSessions
+        }
+        return Array(activeSessions.prefix(3))
+    }
+
+    var body: some View {
+        if !activeSessions.isEmpty {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 5) {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 5) {
+                            ForEach(displayedSessions) { session in
+                                let isSelected = (task.selectedSessionId == session.id) || (task.selectedSessionId == nil && session.id == activeSessions.last?.id)
+                                HStack(spacing: 3) {
+                                    Button {
+                                        withAnimation(.spring(response: 0.25, dampingFraction: 0.75)) {
+                                            state.selectSession(pillId: task.id, sessionId: session.id)
+                                        }
+                                        SoundEngine.shared.play("blip")
+                                    } label: {
+                                        HStack(spacing: 4) {
+                                            Circle()
+                                                .fill(sessionDotColor(session.state))
+                                                .frame(width: 5, height: 5)
+                                            Text(session.projectName.isEmpty ? String(session.id.prefix(6)) : session.projectName)
+                                                .font(.system(size: 10, weight: isSelected ? .semibold : .medium))
+                                                .foregroundColor(isSelected ? Color(hex: "#F5F6F8") : Color(hex: "#8E939C"))
+                                                .lineLimit(1)
+                                        }
+                                    }
+                                    .buttonStyle(.plain)
+
+                                    // Close session button (✕)
+                                    Button {
+                                        withAnimation(.spring(response: 0.28, dampingFraction: 0.8)) {
+                                            state.removeSession(pillId: task.id, sessionId: session.id)
+                                        }
+                                        SoundEngine.shared.play("pop")
+                                    } label: {
+                                        Image(systemName: "xmark")
+                                            .font(.system(size: 7, weight: .bold))
+                                            .foregroundColor(isSelected ? Color(hex: "#C5C8CD") : Color(hex: "#6B7079"))
+                                            .padding(2)
+                                    }
+                                    .buttonStyle(.plain)
+                                    .help("Close session")
+                                }
+                                .padding(.leading, 7)
+                                .padding(.trailing, 4)
+                                .padding(.vertical, 3)
+                                .background(isSelected ? Color(hex: task.color).opacity(0.2) : Color.white.opacity(0.06))
+                                .clipShape(Capsule())
+                                .overlay(
+                                    Capsule()
+                                        .stroke(isSelected ? Color(hex: task.color).opacity(0.6) : Color.clear, lineWidth: 1)
+                                )
+                            }
+
+                            if activeSessions.count > 3 {
+                                Button {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
+                                        isExpanded.toggle()
+                                    }
+                                } label: {
+                                    Text(isExpanded ? "Less" : "+\(activeSessions.count - 3)")
+                                        .font(.system(size: 9.5, weight: .semibold))
+                                        .foregroundColor(Color(hex: "#8E939C"))
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 3)
+                                        .background(Color.white.opacity(0.06))
+                                        .clipShape(Capsule())
+                                }
+                                .buttonStyle(.plain)
+                            }
+                        }
+                    }
+
+                    if showChatButton {
+                        Button {
+                            let sid = task.activeSession?.id ?? ""
+                            state.focusId = task.id
+                            state.selectSession(pillId: task.id, sessionId: sid)
+                            
+                            // Populate chatHistory with the active session's last user and assistant message
+                            var history: [ChatMessage] = []
+                            if let s = task.activeSession {
+                                if let u = s.lastUserMessage, !u.isEmpty {
+                                    history.append(ChatMessage(role: .user, content: u))
+                                }
+                                if let a = s.lastAssistantMessage ?? s.finalLine, !a.isEmpty {
+                                    history.append(ChatMessage(role: .assistant, content: a))
+                                }
+                            }
+                            state.chatHistory = history
+
+                            withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+                                state.isChatExpanded = true
+                                state.view = .prompt
+                            }
+                            SoundEngine.shared.play("pop")
+                        } label: {
+                            HStack(spacing: 3) {
+                                Image(systemName: "bubble.left.fill")
+                                    .font(.system(size: 8))
+                                Text("Chat")
+                                    .font(.system(size: 9.5, weight: .semibold))
+                            }
+                            .foregroundColor(Color(hex: task.color).lighter(by: 0.2))
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 3)
+                            .background(Color(hex: task.color).opacity(0.15))
+                            .clipShape(Capsule())
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+            }
+        }
+    }
+
+    private func sessionDotColor(_ state: BotState) -> Color {
+        switch state {
+        case .working:   return Color(hex: "#38BDF8") // Sky blue
+        case .thinking:  return Color(hex: "#FACC15") // Yellow
+        case .finished:  return Color(hex: "#22C55E") // Green
+        case .error:     return Color(hex: "#F4505E") // Red
+        case .question, .approval: return Color(hex: "#FB923C") // Orange
+        default:         return Color(hex: "#6B7079") // Dim gray
         }
     }
 }

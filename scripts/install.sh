@@ -49,23 +49,15 @@ cd "$REPO_ROOT"
 BUILD_DIR="$(mktemp -d "${TMPDIR:-/tmp}/zuddy-install-build.XXXXXX")"
 trap 'rm -rf "$BUILD_DIR"' EXIT
 
-echo "==> 3. Building Zuddy (Release configuration)..."
-xcodebuild \
+echo "==> 3. Building Zuddy (Debug configuration)..."
+xcodebuild -destination "platform=macOS" \
     -project "$REPO_ROOT/Zuddy/Zuddy.xcodeproj" \
     -scheme Zuddy \
-    -configuration Release \
+    -configuration Debug \
     -derivedDataPath "$BUILD_DIR" \
-    ENABLE_HARDENED_RUNTIME=NO \
-    CODE_SIGNING_ALLOWED=YES \
-    CODE_SIGNING_REQUIRED=NO \
-    CODE_SIGN_IDENTITY="-" \
-    CODE_SIGN_STYLE=Manual \
-    PROVISIONING_PROFILE_SPECIFIER="" \
-    SWIFT_ACTIVE_COMPILATION_CONDITIONS="" \
-    CODE_SIGN_ENTITLEMENTS="Resources/Zuddy.entitlements" \
-    build | grep -E "(BUILD SUCCEEDED|BUILD FAILED|error:)" || true
+    build 
 
-BUILT_APP="$BUILD_DIR/Build/Products/Release/Zuddy.app"
+BUILT_APP="$BUILD_DIR/Build/Products/Debug/Zuddy.app"
 if [ ! -d "$BUILT_APP" ]; then
     echo "error: Build output not found at $BUILT_APP" >&2
     exit 1
