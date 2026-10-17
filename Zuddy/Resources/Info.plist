@@ -44,10 +44,12 @@
 	</dict>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Pour sauter au terminal, envoyer des mails et piloter Musique.</string>
+	<key>NSAudioCaptureUsageDescription</key>
+	<string>Zuddy records what your Mac plays only while you note a call, to write down what the other people say.</string>
 	<key>NSHighResolutionCapable</key>
 	<true/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Zuddy uses the microphone when you dictate a message in the chat.</string>
+	<string>Zuddy uses the microphone when you dictate, and to note your calls when you ask it to.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Zuddy turns your voice into the text of a chat message.</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>

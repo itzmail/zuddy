@@ -278,9 +278,12 @@ struct OverviewView: View {
             SpotifyController.shared.openSpotify()
             #endif
         default:
-            // If the agent is running in a Herdr pane, focus the pane directly
+            // If the agent is running in a Herdr pane, focus the pane and bring terminal to front
             if let paneId = task.herdrPaneId, !paneId.isEmpty {
                 HerdrBridge.focusPane(paneId: paneId)
+                #if !APPSTORE
+                TerminalTarget.activate(sessionBundleId: task.sessionBundleId)
+                #endif
                 return
             }
             // Non-integration real tasks

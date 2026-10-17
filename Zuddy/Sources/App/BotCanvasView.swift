@@ -1,5 +1,13 @@
 import SwiftUI
 
+@MainActor
+enum MochiFrameClock {
+    /// One engine step per drawn frame
+    static func advance(_ engine: BotEngine) {
+        engine.update(dt: 0.05)
+    }
+}
+
 /// SwiftUI wrapper: TimelineView drives a Canvas that calls BotEngine.draw().
 /// Uses a shared engine per-task; the main bot uses AppState's shared engine.
 struct BotCanvasView: View {
