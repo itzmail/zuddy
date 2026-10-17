@@ -1729,20 +1729,50 @@ enum HerdrBridge {
         try? pAgent.run()
         pAgent.waitUntilExit()
 
-        // 2. Extract workspace & pane info if compound ID (e.g. "wV:p35")
-        // Ensuring Herdr switches to the active workspace containing this pane
-        if let colonIdx = paneId.firstIndex(of: ":") {
-            let wsId = String(paneId[..<colonIdx])
-            if !wsId.isEmpty {
-                let pWs = Process()
-                pWs.executableURL = URL(fileURLWithPath: herdr)
-                pWs.arguments = ["workspace", "focus", wsId]
-                pWs.standardOutput = FileHandle.nullDevice
-                pWs.standardError = FileHandle.nullDevice
-                try? pWs.run()
-                pWs.waitUntilExit()
+        // 2. Query pane details to get exact tab_id and workspace_id
+        let pGet = Process()
+        let pipe = Pipe()
+        pGet.executableURL = URL(fileURLWithPath: herdr)
+        pGet.arguments = ["pane", "get", paneId]
+        pGet.standardOutput = pipe
+        pGet.standardError = FileHandle.nullDevice
+        if (try? pGet.run()) != nil {
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            pGet.waitUntilExit()
+            if let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+               let res = json["result"] as? [String: Any],
+               let pane = res["pane"] as? [String: Any] {
+                // Focus the tab containing this pane
+                if let tabId = pane["tab_id"] as? String, !tabId.isEmpty {
+                    let pTab = Process()
+                    pTab.executableURL = URL(fileURLWithPath: herdr)
+                    pTab.arguments = ["tab", "focus", tabId]
+                    pTab.standardOutput = FileHandle.nullDevice
+                    pTab.standardError = FileHandle.nullDevice
+                    try? pTab.run()
+                    pTab.waitUntilExit()
+                }
+                // Focus the workspace containing this pane
+                if let wsId = pane["workspace_id"] as? String, !wsId.isEmpty {
+                    let pWs = Process()
+                    pWs.executableURL = URL(fileURLWithPath: herdr)
+                    pWs.arguments = ["workspace", "focus", wsId]
+                    pWs.standardOutput = FileHandle.nullDevice
+                    pWs.standardError = FileHandle.nullDevice
+                    try? pWs.run()
+                    pWs.waitUntilExit()
+                }
             }
         }
+
+        // 3. Re-focus the target agent pane so cursor and active pane in Herdr tab lands exactly on it
+        let pReFocus = Process()
+        pReFocus.executableURL = URL(fileURLWithPath: herdr)
+        pReFocus.arguments = ["agent", "focus", paneId]
+        pReFocus.standardOutput = FileHandle.nullDevice
+        pReFocus.standardError = FileHandle.nullDevice
+        try? pReFocus.run()
+        pReFocus.waitUntilExit()
     }
 }
 
