@@ -1719,12 +1719,30 @@ enum HerdrBridge {
 
     static func focusPane(paneId: String) {
         guard let herdr = binaryPath else { return }
-        let p = Process()
-        p.executableURL = URL(fileURLWithPath: herdr)
-        p.arguments = ["agent", "focus", paneId]
-        p.standardOutput = FileHandle.nullDevice
-        p.standardError = FileHandle.nullDevice
-        try? p.run()
+        
+        // 1. Focus agent & its pane
+        let pAgent = Process()
+        pAgent.executableURL = URL(fileURLWithPath: herdr)
+        pAgent.arguments = ["agent", "focus", paneId]
+        pAgent.standardOutput = FileHandle.nullDevice
+        pAgent.standardError = FileHandle.nullDevice
+        try? pAgent.run()
+        pAgent.waitUntilExit()
+
+        // 2. Extract workspace & pane info if compound ID (e.g. "wV:p35")
+        // Ensuring Herdr switches to the active workspace containing this pane
+        if let colonIdx = paneId.firstIndex(of: ":") {
+            let wsId = String(paneId[..<colonIdx])
+            if !wsId.isEmpty {
+                let pWs = Process()
+                pWs.executableURL = URL(fileURLWithPath: herdr)
+                pWs.arguments = ["workspace", "focus", wsId]
+                pWs.standardOutput = FileHandle.nullDevice
+                pWs.standardError = FileHandle.nullDevice
+                try? pWs.run()
+                pWs.waitUntilExit()
+            }
+        }
     }
 }
 
