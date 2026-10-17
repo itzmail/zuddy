@@ -194,6 +194,16 @@ struct OverviewView: View {
 
     private func openAgentTarget(_ task: AgentTask?) {
         guard let task else { return }
+
+        // If the agent is running in a Herdr pane, always focus the pane and bring terminal to front
+        if let paneId = task.herdrPaneId, !paneId.isEmpty {
+            HerdrBridge.focusPane(paneId: paneId)
+            #if !APPSTORE
+            TerminalTarget.activate(sessionBundleId: task.sessionBundleId)
+            #endif
+            return
+        }
+
         switch task.id {
         case "integration_claude":
             if ClaudeHost.activate(task.hostApp) { return }

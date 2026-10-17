@@ -9,6 +9,19 @@ extension TerminalTarget {
         let running = Set(apps.compactMap(\.bundleIdentifier))
         guard let id = pick(sessionBundleId: sessionBundleId, running: running),
               let app = apps.first(where: { $0.bundleIdentifier == id }) else { return false }
-        return app.activate(options: .activateIgnoringOtherApps)
+        
+        // 1. AppKit activate
+        let success = app.activate(options: .activateIgnoringOtherApps)
+        
+        // 2. On macOS full-screen / Space switches, NSRunningApplication.activate()
+        // often does not switch Spaces. AppleScript tell application ... to activate
+        // reliably triggers WindowServer to switch desktop/Space to the terminal window.
+        let script = "tell application id \"\(id)\" to activate"
+        if let appleScript = NSAppleScript(source: script) {
+            var error: NSDictionary?
+            appleScript.executeAndReturnError(&error)
+        }
+        
+        return success
     }
 }
